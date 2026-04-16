@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Your Best Retention Offer — ProsperStack</title>
+  <meta name="description" content="Answer a few questions and generate your highest-converting retention strategy instantly." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue: #2F75FF;
+      --blue-dark: #1E5FD8;
+      --blue-accent: #3B82F6;
+      --blue-highlight: #DBEAFE;
+      --ink: #09090B;
+      --ink-muted: #6B7280;
+      --ink-soft: #9CA3AF;
+      --bg: #FFFFFF;
+      --bg-soft: #F7F7FB;
+      --bg-card: #EDEDF2;
+      --mint: #D9F2EA;
+      --lavender: #E8E8F5;
+      --sky: #DCE7FD;
+      --border: #E4E4E7;
+      --border-soft: #EEEEF1;
+      --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.04);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      min-height: 100vh;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      background: linear-gradient(180deg, #F4F4FB 0%, #FFFFFF 45%);
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 20px 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      padding-top: 4px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Fira Sans', sans-serif; font-weight: 600; font-size: 17px;
+      color: var(--ink); text-decoration: none; flex-shrink: 0;
+    }
+    .logo-mark {
+      width: 26px; height: 26px; border-radius: 7px;
+      background: linear-gradient(135deg, #2F75FF 0%, #7FA5FF 100%);
+      box-shadow: inset 0 -6px 10px rgba(255,255,255,0.25), 0 2px 6px rgba(47,117,255,0.25);
+      position: relative;
+    }
+    .logo-mark::after{
+      content:""; position:absolute; left:6px; top:7px; width:14px; height:3px;
+      background:rgba(255,255,255,0.85); border-radius:2px;
+      box-shadow: 0 5px 0 rgba(255,255,255,0.65), 0 10px 0 rgba(255,255,255,0.45);
+    }
+    .progress-wrap {
+      flex: 1;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .progress {
+      flex: 1;
+      height: 6px;
+      background: var(--border);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .progress__bar {
+      height: 100%;
+      background: linear-gradient(90deg, #2F75FF, #6E9BFF);
+      width: 0;
+      transition: width 500ms cubic-bezier(0.22, 1, 0.36, 1);
+      border-radius: 9999px;
+    }
+    .progress__text {
+      font-size: 13px;
+      color: var(--ink-muted);
+      font-variant-numeric: tabular-nums;
+      min-width: 40px;
+      text-align: right;
+      font-family: 'Fira Sans', sans-serif;
+      font-weight: 500;
+    }
+    .back-btn {
+      background: transparent; border: none; color: var(--ink-muted);
+      font-size: 14px; cursor: pointer; padding: 6px 10px;
+      font-family: inherit; border-radius: 8px; transition: all 160ms;
+    }
+    .back-btn:hover { color: var(--ink); background: var(--bg-card); }
+    .back-btn:disabled { visibility: hidden; }
+
+    #root { flex: 1; display: flex; flex-direction: column; }
+
+    .step {
+      animation: fadeUp 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero { text-align: center; padding: 40px 0 0; }
+    .hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 9999px;
+      background: var(--blue-highlight); color: var(--blue-accent);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+      margin-bottom: 24px;
+      font-family: 'Fira Sans', sans-serif;
+    }
+    .hero__eyebrow::before {
+      content: "✦"; font-size: 14px;
+    }
+    .hero h1 {
+      font-family: 'Fira Sans', sans-serif; font-weight: 600;
+      font-size: clamp(34px, 6vw, 58px);
+      line-height: 1.08; letter-spacing: -0.025em;
+      margin-bottom: 20px;
+      color: var(--ink);
+    }
+    .hero h1 .accent {
+      color: var(--blue-accent);
+      background: var(--blue-highlight);
+      padding: 0 0.08em;
+      display: inline-block;
+    }
+    .hero__body {
+      font-size: 18px;
+      color: var(--ink-muted);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.5;
+    }
+    .hero__meta {
+      display: flex; justify-content: center; gap: 28px;
+      margin-top: 40px; flex-wrap: wrap;
+      color: var(--ink-muted); font-size: 13px;
+    }
+    .hero__meta span { display: inline-flex; align-items: center; gap: 6px; }
+    .hero__meta span::before {
+      content: "✓"; color: var(--blue); font-weight: 600;
+    }
+
+    .q { padding-top: 8px; }
+    .q__number {
+      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue); font-weight: 500; margin-bottom: 12px;
+      font-family: 'Fira Sans', sans-serif;
+    }
+    .q__title {
+      font-family: 'Fira Sans', sans-serif; font-weight: 600;
+      font-size: clamp(24px, 3.6vw, 36px);
+      line-height: 1.15; letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .q__subtitle {
+      color: var(--ink-muted); font-size: 15px; margin-bottom: 28px;
+    }
+
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option {
+      display: flex; align-items: center; gap: 14px;
+      padding: 18px 20px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+      transition: all 180ms ease;
+      width: 100%;
+    }
+    .option:hover { border-color: #B3CBFF; background: #FAFBFE; transform: translateY(-1px); }
+    .option.selected {
+      border-color: var(--blue);
+      background: #EEF4FF;
+      box-shadow: 0 0 0 4px rgba(47,117,255,0.12);
+    }
+    .option__key {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--bg-card); color: var(--ink-muted);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600; flex-shrink: 0;
+      font-family: 'Fira Sans', sans-serif;
+      transition: all 180ms;
+    }
+    .option.selected .option__key { background: var(--blue); color: #fff; }
+    .option__label { flex: 1; }
+    .option--multi .option__key::after { content: ""; }
+    .option--multi.selected .option__key::after { content: "✓"; }
+
+    .multi-hint {
+      font-size: 13px; color: var(--ink-muted); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .multi-hint::before { content: "◇"; color: var(--blue); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 14px 28px;
+      font-family: 'Fira Sans', sans-serif; font-weight: 500;
+      font-size: 16px;
+      border-radius: 9999px;
+      border: none; cursor: pointer;
+      text-decoration: none;
+      transition: all 200ms ease;
+      line-height: 1;
+    }
+    .btn--primary {
+      background: var(--blue); color: #fff;
+    }
+    .btn--primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(47,117,255,0.32); }
+    .btn--primary:disabled { background: #B5C8E8; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn--large { padding: 17px 34px; font-size: 17px; }
+    .btn__arrow { transition: transform 200ms; }
+    .btn:hover .btn__arrow { transform: translateX(3px); }
+
+    .actions {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 28px; gap: 16px;
+    }
+    .actions--center { justify-content: center; }
+
+    .text-input {
+      width: 100%; padding: 14px 16px;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      font-family: inherit; font-size: 16px;
+      margin-top: 14px; display: none;
+      transition: border 160ms;
+    }
+    .text-input.visible { display: block; }
+    .text-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(47,117,255,0.12); }
+
+    .interstitial { text-align: center; padding: 40px 0 24px; }
+    .interstitial__badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 9999px;
+      background: var(--blue-highlight); color: var(--blue-accent);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+      margin-bottom: 24px;
+      font-family: 'Fira Sans', sans-serif;
+    }
+    .interstitial__badge::before { content: "✦"; }
+    .interstitial h2 {
+      font-family: 'Fira Sans', sans-serif; font-weight: 600;
+      font-size: clamp(26px, 4.2vw, 42px);
+      line-height: 1.15; letter-spacing: -0.02em;
+      margin-bottom: 20px; color: var(--ink);
+    }
+    .interstitial p {
+      font-size: 17px; color: var(--ink-muted);
+      max-width: 540px; margin: 0 auto 12px; line-height: 1.55;
+    }
+    .interstitial p em { color: var(--ink); font-style: normal; font-weight: 500; }
+    .feature-list {
+      display: flex; flex-direction: column; gap: 10px;
+      max-width: 460px; margin: 28px auto 0; text-align: left;
+    }
+    .feature-list li {
+      list-style: none;
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 16px 20px;
+      background: #fff; border-radius: 12px; border: 1px solid var(--border);
+      font-size: 15px; line-height: 1.4;
+    }
+    .feature-list li::before {
+      content: "✦"; color: var(--blue); font-size: 16px; flex-shrink: 0;
+      font-weight: 500;
+    }
+
+    .testimonial {
+      background: linear-gradient(160deg, #F7F8FB 0%, #EEF0F6 100%);
+      padding: 36px; border-radius: 20px;
+      max-width: 580px; margin: 0 auto 24px; text-align: left;
+      border: 1px solid var(--border-soft);
+    }
+    .testimonial__mark { font-family: 'Fira Sans'; font-size: 42px; line-height: 0.6; color: var(--blue); }
+    .testimonial__quote {
+      font-family: 'Fira Sans', sans-serif; font-weight: 500;
+      font-size: 20px; line-height: 1.38; letter-spacing: -0.01em;
+      color: var(--ink); margin: 10px 0 18px;
+    }
+    .testimonial__author {
+      font-size: 14px; color: var(--ink-muted);
+    }
+    .testimonial__author strong { color: var(--ink); font-weight: 500; }
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+      max-width: 620px; margin: 0 auto 28px;
+    }
+    .stats__item {
+      padding: 24px 14px; border-radius: 16px;
+      text-align: center;
+    }
+    .stats__item:nth-child(1) { background: linear-gradient(160deg, var(--sky), #F1F6FF); }
+    .stats__item:nth-child(2) { background: linear-gradient(160deg, var(--mint), #F2FBF7); }
+    .stats__item:nth-child(3) { background: linear-gradient(160deg, var(--lavender), #F5F5FC); }
+    .stats__value {
+      font-family: 'Fira Sans', sans-serif; font-weight: 600;
+      font-size: clamp(22px, 3vw, 30px); color: var(--ink);
+      letter-spacing: -0.02em; margin-bottom: 4px; line-height: 1.1;
+    }
+    .stats__label {
+      font-size: 13px; color: var(--ink-muted); line-height: 1.3;
+    }
+
+    .email-step h2 {
+      font-family: 'Fira Sans', sans-serif; font-weight: 600;
+      font-size: clamp(24px, 3.6vw, 34px); line-height: 1.15;
+      letter-spacing: -0.02em; margin-bottom: 8px;
+    }
+    .email-step .sub {
+      color: var(--ink-muted); font-size: 16px; margin-bottom: 24px;
+    }
+    .unlock-card {
+      padding: 20px; border-radius: 16px;
+      background: #F7F8FB;
+      border: 1px solid var(--border-soft);
+      margin-bottom: 24px;
+    }
+    .unlock-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 9999px;
+      background: var(--blue); color: #fff;
+      font-size: 12px; font-weight: 500;
+      margin-bottom: 12px; font-family: 'Fira Sans', sans-serif;
+    }
+    .unlock-label::before { content: "✦"; }
+    .blurred-offers {
+      display: flex; flex-direction: column; gap: 8px;
+      position: relative;
+    }
+    .fake-offer {
+      padding: 14px 16px; background: #fff;
+      border: 1px solid var(--border-soft); border-radius: 10px;
+      font-size: 15px; color: var(--ink);
+      filter: blur(5px);
+      user-select: none;
+      font-family: 'Fira Sans', sans-serif; font-weight: 500;
+    }
+    .email-form { display: flex; flex-direction: column; gap: 12px; }
+    .email-input {
+      width: 100%; padding: 16px 18px;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      font-family: inherit; font-size: 16px;
+      transition: all 160ms;
+      background: #fff;
+    }
+    .email-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(47,117,255,0.15); }
+    .email-error {
+      color: #DC2626; font-size: 13px;
+      display: none;
+    }
+    .email-error.show { display: block; }
+    .email-privacy {
+      font-size: 12px; color: var(--ink-soft);
+      margin-top: 10px; text-align: center;
+    }
+
+    .results-hero {
+      background: linear-gradient(160deg, #EEF4FF 0%, #F7F3FF 100%);
+      padding: 36px 32px; border-radius: 24px; margin-bottom: 28px;
+      border: 1px solid var(--border-soft);
+    }
+    .results-hero__eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 9999px;
+      background: #fff; color: var(--blue);
+      font-size: 12px; font-weight: 500;
+      margin-bottom: 16px;
+      font-family: 'Fira Sans', sans-serif;
+    }
+    .results-hero__eyebrow::before { content: "✦"; }
+    .results-hero h1 {
+      font-family: 'Fira Sans', sans-serif; font-weight: 600;
+      font-size: clamp(28px, 4.2vw, 40px);
+      line-height: 1.12; letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .results-hero .sub {
+      color: var(--ink-muted); font-size: 16px; line-height: 1.5;
+    }
+    .results-section { margin-bottom: 28px; }
+    .results-section h3 {
+      font-family: 'Fira Sans', sans-serif; font-weight: 600;
+      font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: 14px;
+    }
+    .snapshot-list { display: flex; flex-direction: column; gap: 10px; }
+    .snapshot-list li {
+      list-style: none; padding: 16px 20px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; font-size: 15px; line-height: 1.5;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .snapshot-list li::before {
+      content: ""; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--blue); flex-shrink: 0; margin-top: 8px;
+    }
+    .snapshot-list li strong { font-weight: 600; color: var(--ink); }
+    .offer-chips { display: flex; flex-direction: column; gap: 10px; }
+    .offer-chip {
+      padding: 16px 20px; border-radius: 12px;
+      background: linear-gradient(90deg, #EEF4FF, #F7F3FF);
+      border: 1px solid #DCE7FD;
+      font-family: 'Fira Sans', sans-serif; font-weight: 500;
+      color: var(--ink); font-size: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .offer-chip::before {
+      content: ""; width: 6px; height: 30px; border-radius: 3px;
+      background: var(--blue); flex-shrink: 0;
+    }
+    .impact {
+      background: var(--ink); color: #fff;
+      padding: 32px; border-radius: 20px;
+      text-align: center; margin-bottom: 28px;
+      position: relative; overflow: hidden;
+    }
+    .impact::before{
+      content:""; position:absolute; inset:0;
+      background: radial-gradient(circle at 20% 20%, rgba(47,117,255,0.35), transparent 50%),
+                  radial-gradient(circle at 80% 100%, rgba(123,97,255,0.25), transparent 50%);
+      pointer-events: none;
+    }
+    .impact > * { position: relative; }
+    .impact__label {
+      font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #A1A1AA; margin-bottom: 12px;
+      font-family: 'Fira Sans', sans-serif; font-weight: 500;
+    }
+    .impact__value {
+      font-family: 'Fira Sans', sans-serif; font-weight: 600;
+      font-size: clamp(32px, 5vw, 48px); letter-spacing: -0.02em; line-height: 1.1;
+    }
+    .impact__sub { color: #E4E4E7; font-size: 14px; margin-top: 10px; }
+
+    .results-cta {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      padding: 32px 0 8px;
+    }
+    .results-cta .tiny {
+      font-size: 13px; color: var(--ink-muted); margin-top: 8px;
+    }
+
+    @media (max-width: 560px) {
+      .app { padding: 16px 16px 60px; }
+      .stats { grid-template-columns: 1fr; }
+      .topbar { margin-bottom: 28px; }
+      .testimonial { padding: 24px; }
+      .results-hero { padding: 28px 24px; }
+      .impact { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="logo"><span class="logo-mark"></span>ProsperStack</div>
+      <div class="progress-wrap" id="progress-wrap" style="display:none">
+        <button class="back-btn" id="back-btn">← Back</button>
+        <div class="progress"><div class="progress__bar" id="progress-bar"></div></div>
+        <div class="progress__text" id="progress-text"></div>
+      </div>
+    </div>
+    <div id="root"></div>
+  </div>
+
+  <script>
+    // ---------- State ----------
+    const state = {
+      stepIndex: 0,
+      answers: {}, // { business: 'saas', churn: '100-1000', testing: '1-2', reason: 'expensive', ... }
+    };
+
+    // ---------- Step definitions ----------
+    // type: 'landing' | 'question' | 'interstitial' | 'email' | 'results'
+    const steps = [
+      { type: 'landing' },
+      {
+        type: 'question', id: 'business',
+        title: 'What type of business do you run?',
+        options: [
+          { value: 'shopify', label: 'Shopify subscriptions' },
+          { value: 'saas', label: 'SaaS' },
+          { value: 'membership', label: 'Membership / content subscription' },
+          { value: 'other', label: 'Other' },
+        ],
+      },
+      {
+        type: 'question', id: 'churn',
+        title: 'What is your monthly churn volume?',
+        subtitle: 'Subscribers who start the cancel flow each month.',
+        options: [
+          { value: '<100', label: 'Fewer than 100 cancels' },
+          { value: '100-1000', label: '100 – 1,000 cancels' },
+          { value: '1000-10000', label: '1,000 – 10,000 cancels' },
+          { value: '10000+', label: '10,000+ cancels' },
+        ],
+      },
+      {
+        type: 'question', id: 'testing',
+        title: 'How many offers are you currently testing?',
+        options: [
+          { value: '0', label: 'None — we just let people cancel' },
+          { value: '1-2', label: '1 – 2 offers' },
+          { value: '3-5', label: '3 – 5 offers' },
+          { value: '5+', label: '5+ offers' },
+        ],
+      },
+      {
+        type: 'interstitial',
+        badge: 'Benchmark',
+        title: 'Most retention strategies plateau after 1 – 2 offers',
+        body: 'We analyzed <em>4.8 million subscription offers</em>. The biggest insight: static offers stop working faster than teams can test them.',
+      },
+      {
+        type: 'question', id: 'reason',
+        title: 'What\u2019s the #1 reason your customers cancel?',
+        options: [
+          { value: 'expensive', label: 'Too expensive' },
+          { value: 'not_using', label: 'Not using enough' },
+          { value: 'break', label: 'Temporary break needed' },
+          { value: 'alternative', label: 'Found an alternative' },
+          { value: 'features', label: 'Missing features' },
+          { value: 'dissatisfaction', label: 'Dissatisfaction with product' },
+          { value: 'other', label: 'Other' },
+        ],
+      },
+      {
+        type: 'question', id: 'today',
+        title: 'What happens when someone tries to cancel today?',
+        options: [
+          { value: 'immediate', label: 'They cancel immediately — no offers' },
+          { value: 'basic', label: 'We show a basic discount' },
+          { value: 'multiple', label: 'We show multiple offers' },
+          { value: 'notsure', label: 'Honestly, not sure' },
+        ],
+      },
+      {
+        type: 'question', id: 'willing', multi: true,
+        title: 'What are you willing to offer?',
+        subtitle: 'Select all that apply.',
+        options: [
+          { value: 'discounts', label: 'Discounts' },
+          { value: 'pauses', label: 'Pauses' },
+          { value: 'downgrades', label: 'Downgrades / plan switches' },
+          { value: 'all', label: 'All of the above', exclusive: true },
+        ],
+      },
+      {
+        type: 'question', id: 'sensitivity',
+        title: 'How sensitive are you to discounting?',
+        options: [
+          { value: 'very', label: 'Very — we have tight margins' },
+          { value: 'moderate', label: 'Moderate' },
+          { value: 'flexible', label: 'Flexible — we\u2019ll trade margin for retention' },
+        ],
+      },
+      {
+        type: 'interstitial',
+        badge: 'Introducing',
+        title: 'Meet your Retention Agent',
+        body: 'Instead of manually testing offers, Retention Agent:',
+        features: [
+          'Generates new offers automatically',
+          'Personalizes them based on cancellation intent',
+          'Improves performance every week',
+        ],
+      },
+      {
+        type: 'question', id: 'platform', dynamic: true,
+        title: 'What is your subscription platform?',
+        // options generated dynamically based on business type
+      },
+      {
+        type: 'question', id: 'importance',
+        title: 'How important is reducing churn right now?',
+        options: [
+          { value: 'critical', label: 'Critical — it\u2019s a top priority' },
+          { value: 'important', label: 'Important but not urgent' },
+          { value: 'exploring', label: 'Just exploring options' },
+        ],
+      },
+      {
+        type: 'interstitial', testimonial: true,
+        badge: 'Social proof',
+        title: 'High-growth teams are already using this',
+        quote: 'We replaced manual A/B testing entirely. Retention Agent keeps improving our offers automatically.',
+        author: 'Ciara Meenan',
+        authorRole: 'Senior Product Manager at SimplyCook',
+        stats: [
+          { value: 'Up to 39%', label: 'of canceling subscribers saved' },
+          { value: '$4M+', label: 'revenue recovered' },
+          { value: '129%', label: 'increase in offer acceptance' },
+        ],
+      },
+      { type: 'email' },
+      { type: 'results' },
+    ];
+
+    // Dynamic platform options
+    const platformOptions = {
+      saas: [
+        { value: 'stripe', label: 'Stripe' },
+        { value: 'chargebee', label: 'Chargebee' },
+        { value: 'recurly', label: 'Recurly' },
+        { value: 'braintree', label: 'Braintree' },
+        { value: 'paddle', label: 'Paddle' },
+        { value: 'other', label: 'Other', freeText: true },
+      ],
+      shopify: [
+        { value: 'recharge', label: 'Recharge' },
+        { value: 'bold', label: 'Bold' },
+        { value: 'stayai', label: 'StayAI' },
+        { value: 'ordergroove', label: 'Ordergroove' },
+        { value: 'maxio', label: 'Maxio' },
+        { value: 'openpay', label: 'OpenPay' },
+        { value: 'naviga', label: 'Naviga' },
+        { value: 'recurlyc', label: 'Recurly Commerce' },
+        { value: 'other', label: 'Other', freeText: true },
+      ],
+      membership: [
+        { value: 'stripe', label: 'Stripe' },
+        { value: 'memberful', label: 'Memberful' },
+        { value: 'patreon', label: 'Patreon' },
+        { value: 'substack', label: 'Substack' },
+        { value: 'other', label: 'Other', freeText: true },
+      ],
+      other: [
+        { value: 'stripe', label: 'Stripe' },
+        { value: 'chargebee', label: 'Chargebee' },
+        { value: 'recurly', label: 'Recurly' },
+        { value: 'recharge', label: 'Recharge' },
+        { value: 'other', label: 'Other', freeText: true },
+      ],
+    };
+
+    // ---------- Helpers: track question numbering for progress ----------
+    const questionIndexes = steps
+      .map((s, i) => s.type === 'question' ? i : null)
+      .filter(v => v !== null);
+    const totalQuestions = questionIndexes.length;
+
+    function currentQuestionNumber() {
+      const idx = questionIndexes.indexOf(state.stepIndex);
+      return idx >= 0 ? idx + 1 : null;
+    }
+
+    function updateChrome() {
+      const s = steps[state.stepIndex];
+      const wrap = document.getElementById('progress-wrap');
+      const bar = document.getElementById('progress-bar');
+      const text = document.getElementById('progress-text');
+      const back = document.getElementById('back-btn');
+      // Show chrome only once we're past landing and before final results
+      const showChrome = s.type !== 'landing' && s.type !== 'results';
+      wrap.style.display = showChrome ? 'flex' : 'none';
+      // Base progress: count completed "real" steps (questions + interstitials + email) before the final results
+      const progressDenom = steps.length - 2; // exclude landing + results
+      const progressNum = Math.max(0, Math.min(state.stepIndex - 1, progressDenom));
+      const pct = (progressNum / progressDenom) * 100;
+      bar.style.width = pct + '%';
+      const qn = currentQuestionNumber();
+      if (qn !== null) {
+        text.textContent = `${qn} / ${totalQuestions}`;
+      } else if (s.type === 'interstitial') {
+        text.textContent = '···';
+      } else if (s.type === 'email') {
+        text.textContent = 'Almost done';
+      } else {
+        text.textContent = '';
+      }
+      back.disabled = state.stepIndex <= 1;
+    }
+
+    // ---------- Render ----------
+    const root = document.getElementById('root');
+
+    function render() {
+      updateChrome();
+      const s = steps[state.stepIndex];
+      root.innerHTML = '';
+      const container = document.createElement('div');
+      container.className = 'step';
+      container.key = state.stepIndex; // for animation reset
+
+      if (s.type === 'landing') renderLanding(container);
+      else if (s.type === 'question') renderQuestion(container, s);
+      else if (s.type === 'interstitial') renderInterstitial(container, s);
+      else if (s.type === 'email') renderEmail(container);
+      else if (s.type === 'results') renderResults(container);
+
+      root.appendChild(container);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderLanding(c) {
+      c.innerHTML = `
+        <div class="hero">
+          <div class="hero__eyebrow">Free · 60-second quiz</div>
+          <h1>Your best-performing offer <span class="accent">probably doesn\u2019t exist yet.</span> Let\u2019s find it.</h1>
+          <p class="hero__body">Answer a few questions. We\u2019ll generate your highest-converting retention strategy instantly.</p>
+          <button class="btn btn--primary btn--large" id="start-btn">
+            Get Started <span class="btn__arrow">→</span>
+          </button>
+          <div class="hero__meta">
+            <span>No signup required</span>
+            <span>Based on 4.8M offers</span>
+            <span>Personalized results</span>
+          </div>
+        </div>
+      `;
+      c.querySelector('#start-btn').onclick = next;
+    }
+
+    function renderQuestion(c, s) {
+      // Resolve dynamic options
+      let options = s.options;
+      if (s.dynamic && s.id === 'platform') {
+        const biz = state.answers.business || 'other';
+        options = platformOptions[biz];
+      }
+      const isMulti = !!s.multi;
+      const currentValue = state.answers[s.id];
+      const qn = currentQuestionNumber();
+      c.innerHTML = `
+        <div class="q">
+          <div class="q__number">Question ${qn} of ${totalQuestions}</div>
+          <h1 class="q__title">${s.title}</h1>
+          ${s.subtitle ? `<div class="q__subtitle">${s.subtitle}</div>` : ''}
+          ${isMulti ? `<div class="multi-hint">Select all that apply. Tap again to deselect.</div>` : ''}
+          <div class="options" id="options"></div>
+          <input type="text" class="text-input" id="free-text" placeholder="Tell us which one..." />
+          <div class="actions">
+            <span></span>
+            <button class="btn btn--primary" id="next-btn" disabled>Continue <span class="btn__arrow">→</span></button>
+          </div>
+        </div>
+      `;
+      const optionsEl = c.querySelector('#options');
+      const freeText = c.querySelector('#free-text');
+      const nextBtn = c.querySelector('#next-btn');
+
+      options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'option' + (isMulti ? ' option--multi' : '');
+        const keyLabel = isMulti ? '' : String.fromCharCode(65 + idx);
+        btn.innerHTML = `<span class="option__key">${keyLabel}</span><span class="option__label">${opt.label}</span>`;
+        // Set selected state
+        if (isMulti) {
+          const arr = Array.isArray(currentValue) ? currentValue : [];
+          if (arr.includes(opt.value)) btn.classList.add('selected');
+        } else {
+          if (currentValue === opt.value) btn.classList.add('selected');
+        }
+        btn.onclick = () => handleOptionClick(s, opt, options, optionsEl, freeText, nextBtn);
+        optionsEl.appendChild(btn);
+      });
+
+      // Show free-text field if needed (for 'other' already selected)
+      updateFreeTextVisibility(s, options, freeText);
+      updateNextEnabled(s, nextBtn);
+
+      freeText.oninput = () => {
+        state.answers[s.id + '_text'] = freeText.value;
+        updateNextEnabled(s, nextBtn);
+      };
+      freeText.value = state.answers[s.id + '_text'] || '';
+
+      nextBtn.onclick = () => { if (!nextBtn.disabled) next(); };
+    }
+
+    function handleOptionClick(s, opt, options, optionsEl, freeText, nextBtn) {
+      if (s.multi) {
+        let arr = Array.isArray(state.answers[s.id]) ? [...state.answers[s.id]] : [];
+        // Handle exclusive (e.g. "All of the above")
+        if (opt.exclusive) {
+          arr = arr.includes(opt.value) ? [] : [opt.value];
+        } else {
+          // Remove any exclusive items
+          arr = arr.filter(v => !options.find(o => o.value === v && o.exclusive));
+          if (arr.includes(opt.value)) arr = arr.filter(v => v !== opt.value);
+          else arr.push(opt.value);
+        }
+        state.answers[s.id] = arr;
+      } else {
+        state.answers[s.id] = opt.value;
+      }
+      // Re-render option selected states
+      optionsEl.querySelectorAll('.option').forEach((el, i) => {
+        const o = options[i];
+        let sel = false;
+        if (s.multi) {
+          sel = (state.answers[s.id] || []).includes(o.value);
+        } else {
+          sel = state.answers[s.id] === o.value;
+        }
+        el.classList.toggle('selected', sel);
+      });
+      updateFreeTextVisibility(s, options, freeText);
+      updateNextEnabled(s, nextBtn);
+      // Auto-advance for single-select (small delay for visual feedback), unless 'other' requires free text
+      if (!s.multi) {
+        const selectedOpt = options.find(o => o.value === state.answers[s.id]);
+        if (!selectedOpt?.freeText && opt.value !== 'other') {
+          setTimeout(() => next(), 280);
+        }
+      }
+    }
+
+    function updateFreeTextVisibility(s, options, freeText) {
+      const val = state.answers[s.id];
+      let show = false;
+      if (s.multi) {
+        show = (Array.isArray(val) ? val : []).some(v => {
+          const o = options.find(x => x.value === v);
+          return o?.freeText;
+        });
+      } else {
+        const o = options.find(x => x.value === val);
+        show = !!o?.freeText;
+      }
+      freeText.classList.toggle('visible', show);
+    }
+
+    function updateNextEnabled(s, nextBtn) {
+      const val = state.answers[s.id];
+      let ok = false;
+      if (s.multi) ok = Array.isArray(val) && val.length > 0;
+      else ok = !!val;
+      // If free text is required, ensure it's filled
+      const options = s.dynamic ? platformOptions[state.answers.business || 'other'] : s.options;
+      const freeTextRequired = (() => {
+        if (!ok) return false;
+        if (s.multi) {
+          return (Array.isArray(val) ? val : []).some(v => {
+            const o = options.find(x => x.value === v);
+            return o?.freeText;
+          });
+        } else {
+          const o = options.find(x => x.value === val);
+          return !!o?.freeText;
+        }
+      })();
+      if (freeTextRequired) {
+        const t = state.answers[s.id + '_text'] || '';
+        ok = ok && t.trim().length > 0;
+      }
+      nextBtn.disabled = !ok;
+    }
+
+    function renderInterstitial(c, s) {
+      if (s.testimonial) {
+        c.innerHTML = `
+          <div class="interstitial">
+            <div class="interstitial__badge">${s.badge}</div>
+            <h2>${s.title}</h2>
+            <div class="testimonial">
+              <div class="testimonial__mark">"</div>
+              <div class="testimonial__quote">${s.quote}</div>
+              <div class="testimonial__author"><strong>${s.author}</strong> · ${s.authorRole}</div>
+            </div>
+            <div class="stats">
+              ${s.stats.map(st => `<div class="stats__item"><div class="stats__value">${st.value}</div><div class="stats__label">${st.label}</div></div>`).join('')}
+            </div>
+            <div class="actions actions--center">
+              <button class="btn btn--primary" id="int-next">Keep going <span class="btn__arrow">→</span></button>
+            </div>
+          </div>
+        `;
+      } else {
+        c.innerHTML = `
+          <div class="interstitial">
+            <div class="interstitial__badge">${s.badge}</div>
+            <h2>${s.title}</h2>
+            <p>${s.body}</p>
+            ${s.features ? `<ul class="feature-list">${s.features.map(f => `<li>${f}</li>`).join('')}</ul>` : ''}
+            <div class="actions actions--center" style="margin-top:36px">
+              <button class="btn btn--primary" id="int-next">Keep going <span class="btn__arrow">→</span></button>
+            </div>
+          </div>
+        `;
+      }
+      c.querySelector('#int-next').onclick = next;
+    }
+
+    function renderEmail(c) {
+      c.innerHTML = `
+        <div class="email-step">
+          <h2>Where should we send your retention plan?</h2>
+          <p class="sub">We\u2019ve generated <strong>6 new offers</strong> based on your answers. Enter your email to unlock them.</p>
+          <div class="unlock-card">
+            <div class="unlock-label">6 offers ready</div>
+            <div class="blurred-offers">
+              <div class="fake-offer">Pause subscription for 1 – 2 months</div>
+              <div class="fake-offer">15% off next 3 months, then resume</div>
+              <div class="fake-offer">Switch to quarterly billing, save 20%</div>
+              <div class="fake-offer">Free month + onboarding check-in</div>
+              <div class="fake-offer">Downgrade to lite plan, keep core features</div>
+              <div class="fake-offer">Loyalty bonus: unlock 2 premium features</div>
+            </div>
+          </div>
+          <form class="email-form" id="email-form" novalidate>
+            <input type="email" class="email-input" id="email" placeholder="you@company.com" autocomplete="email" required />
+            <div class="email-error" id="email-error">Please enter a valid email address.</div>
+            <button class="btn btn--primary btn--large" type="submit">Reveal my retention plan <span class="btn__arrow">→</span></button>
+            <div class="email-privacy">No spam. We\u2019ll only use this to send your plan and a single follow-up.</div>
+          </form>
+        </div>
+      `;
+      const form = c.querySelector('#email-form');
+      const email = c.querySelector('#email');
+      const err = c.querySelector('#email-error');
+      email.value = state.answers.email || '';
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        const v = email.value.trim();
+        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+        if (!valid) { err.classList.add('show'); return; }
+        err.classList.remove('show');
+        state.answers.email = v;
+        // Persist to localStorage for the prototype (same-page, not shared)
+        try {
+          const stored = JSON.parse(localStorage.getItem('ps_quiz_submissions') || '[]');
+          stored.push({ ts: new Date().toISOString(), answers: state.answers });
+          localStorage.setItem('ps_quiz_submissions', JSON.stringify(stored));
+        } catch (_) {}
+        next();
+      };
+    }
+
+    // ---------- Results generation ----------
+    function generateResults(a) {
+      // 1) Lost-save headline range based on current setup
+      const todayMap = {
+        immediate: { lo: 38, hi: 52 },
+        basic:     { lo: 28, hi: 42 },
+        multiple:  { lo: 16, hi: 26 },
+        notsure:   { lo: 30, hi: 45 },
+      };
+      const headlineRange = todayMap[a.today] || todayMap.notsure;
+
+      // 2) Monthly cancels midpoint (geometric-ish midpoints feel more honest)
+      const churnMid = {
+        '<100': 50,
+        '100-1000': 500,
+        '1000-10000': 3000,
+        '10000+': 15000,
+      }[a.churn] || 500;
+
+      // 3) ARPU-ish per-cancel save range ($9 – $21 based on spec's 2000 → $18-42k)
+      // Extra factor from importance/sensitivity: flexible → slightly higher
+      let loPer = 9, hiPer = 21;
+      if (a.sensitivity === 'flexible') { loPer = 10; hiPer = 24; }
+      if (a.sensitivity === 'very') { loPer = 7; hiPer = 16; }
+      const rawLo = churnMid * loPer;
+      const rawHi = churnMid * hiPer;
+      // Nice rounding: nearest 100 for <10k, nearest 1k for 10k-100k, nearest 10k beyond
+      function roundNice(n) {
+        if (n < 10_000) return Math.round(n/100)*100;
+        if (n < 100_000) return Math.round(n/1000)*1000;
+        return Math.round(n/10000)*10000;
+      }
+      const lo = roundNice(rawLo);
+      const hi = roundNice(rawHi);
+      const impactText = `$${fmt(lo)} – $${fmt(hi)}/month`;
+
+      // 4) Snapshot recommendations (3-4)
+      const snapshot = [];
+      if (a.reason === 'break' || a.reason === 'not_using') {
+        snapshot.push(`Prioritize <strong>pause over discount</strong> for "temporary break" users — this alone recovers 18 – 26% more revenue than a flat discount.`);
+      } else if (a.reason === 'expensive') {
+        snapshot.push(`Trigger <strong>escalating offers (10% → 20%)</strong> based on intent signals — price-sensitive users respond 2.3× better to staged offers than a single upfront discount.`);
+      } else if (a.reason === 'alternative') {
+        snapshot.push(`Lead with a <strong>loyalty lock-in</strong> (annual plan + bonus) instead of a discount — users leaving for competitors convert 34% better on long-term value than price cuts.`);
+      } else if (a.reason === 'features') {
+        snapshot.push(`Preview <strong>upcoming features + unlock beta access</strong> before offering a discount — retention lifts 22% without margin loss.`);
+      } else {
+        snapshot.push(`Use <strong>dynamic offer sequencing</strong> — different offers to different users based on their cancel reason, not static A/B tests.`);
+      }
+
+      if (a.today === 'immediate') {
+        snapshot.push(`Add a <strong>save flow</strong> between "Cancel" and confirmation — 22 – 38% of would-be cancels stay with the right offer.`);
+      } else if (a.today === 'basic') {
+        snapshot.push(`Replace your single discount with a <strong>decision tree</strong> by cancel reason. Teams doing this see +41% save rate on average.`);
+      } else if (a.today === 'multiple') {
+        snapshot.push(`Move from static A/B tests to <strong>dynamic offer sequencing</strong> — Retention Agent compounds by auto-retiring underperformers.`);
+      } else {
+        snapshot.push(`Instrument your cancel flow first so you can see which offers convert. You can\u2019t optimize what you can\u2019t measure.`);
+      }
+
+      const willing = Array.isArray(a.willing) ? a.willing : [];
+      if (a.testing === '0' || a.testing === '1-2') {
+        snapshot.push(`You\u2019re under-testing. Teams running <strong>5+ concurrent offers</strong> capture 2.1× more revenue than teams running 0 – 2.`);
+      }
+      if (a.sensitivity === 'very' && !willing.includes('pauses')) {
+        snapshot.push(`Your margins are tight but you\u2019re not offering <strong>pauses</strong> — this is the highest-ROI non-discount lever for your setup.`);
+      }
+
+      // 5) Example offers — tuned to 'willing' and reason
+      const offers = [];
+      const hasAll = willing.includes('all');
+      const hasDisc = hasAll || willing.includes('discounts');
+      const hasPause = hasAll || willing.includes('pauses');
+      const hasDown = hasAll || willing.includes('downgrades');
+
+      if (hasPause && (a.reason === 'break' || a.reason === 'not_using')) {
+        offers.push('"Skip 1 month, keep your perks"');
+      }
+      if (hasDisc && a.reason === 'expensive') {
+        offers.push(a.sensitivity === 'very' ? '"Stay & save 10% for 2 months"' : '"Stay & save 15% for 3 months"');
+      }
+      if (hasDown) {
+        offers.push('"Switch to quarterly & save 20%"');
+      }
+      if (hasPause && offers.length < 3) {
+        offers.push('"Pause for up to 60 days — pick up where you left off"');
+      }
+      if (hasDisc && offers.length < 3) {
+        offers.push('"Escalating offer: 10% → 20% based on intent"');
+      }
+      if (!hasDisc && !hasPause && !hasDown) {
+        offers.push('"Unlock premium features for 30 days — no discount"');
+        offers.push('"Personal onboarding session with our team"');
+        offers.push('"Annual upgrade: get 2 months free + priority support"');
+      }
+      while (offers.length < 3) offers.push('"Dynamic offer tailored by cancellation intent"');
+
+      return {
+        headlineRange,
+        snapshot: snapshot.slice(0, 4),
+        offers: offers.slice(0, 3),
+        impactText,
+        churnMid,
+      };
+    }
+
+    function fmt(n) {
+      if (n >= 1_000_000) return (n/1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1) + 'M';
+      if (n >= 10_000) return (n/1_000).toFixed(0) + 'K';
+      if (n >= 1_000) return (n/1_000).toFixed(1).replace(/\.0$/,'') + 'K';
+      return n.toLocaleString();
+    }
+
+    function renderResults(c) {
+      const a = state.answers;
+      const r = generateResults(a);
+      c.innerHTML = `
+        <div class="results-hero">
+          <div class="results-hero__eyebrow">Your retention plan</div>
+          <h1>You\u2019re likely losing <span style="color:var(--blue)">${r.headlineRange.lo}–${r.headlineRange.hi}%</span> of save opportunities.</h1>
+          <div class="sub">Based on your setup, your current offers are under-performing. Here\u2019s what your Retention Agent would do differently.</div>
+        </div>
+
+        <div class="results-section">
+          <h3>Snapshot — what changes first</h3>
+          <ul class="snapshot-list">
+            ${r.snapshot.map(s => `<li><span>${s}</span></li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="results-section">
+          <h3>Example offers we\u2019d generate for you</h3>
+          <div class="offer-chips">
+            ${r.offers.map(o => `<div class="offer-chip">${o}</div>`).join('')}
+          </div>
+        </div>
+
+        <div class="impact">
+          <div class="impact__label">Estimated monthly impact</div>
+          <div class="impact__value">${r.impactText}</div>
+          <div class="impact__sub">Based on your volume (~${fmt(r.churnMid)} cancels/month) and Retention Agent benchmarks.</div>
+        </div>
+
+        <div class="results-cta">
+          <a class="btn btn--primary btn--large" href="https://prosperstack.com/" target="_blank" rel="noopener">
+            Turn this into live offers with Retention Agent <span class="btn__arrow">→</span>
+          </a>
+          <div class="tiny">We\u2019ll also send this plan to <strong>${(a.email||'').replace(/</g,'&lt;')}</strong>.</div>
+          <button class="back-btn" id="restart" style="margin-top:20px">↺ Retake the quiz</button>
+        </div>
+      `;
+      c.querySelector('#restart').onclick = () => {
+        state.stepIndex = 0;
+        state.answers = {};
+        render();
+      };
+    }
+
+    // ---------- Navigation ----------
+    function next() {
+      if (state.stepIndex < steps.length - 1) {
+        state.stepIndex++;
+        render();
+      }
+    }
+    function back() {
+      if (state.stepIndex > 0) {
+        state.stepIndex--;
+        render();
+      }
+    }
+    document.getElementById('back-btn').onclick = back;
+
+    // Keyboard shortcuts: number keys for single-select options, Enter to continue
+    document.addEventListener('keydown', (e) => {
+      const s = steps[state.stepIndex];
+      if (s.type === 'question' && !s.multi) {
+        const options = s.dynamic ? platformOptions[state.answers.business || 'other'] : s.options;
+        const keyIdx = parseInt(e.key, 10);
+        if (keyIdx >= 1 && keyIdx <= options.length) {
+          const btns = document.querySelectorAll('.option');
+          if (btns[keyIdx - 1]) btns[keyIdx - 1].click();
+        }
+        const letter = e.key.toUpperCase();
+        const letterIdx = letter.charCodeAt(0) - 65;
+        if (letterIdx >= 0 && letterIdx < options.length && /^[A-Z]$/.test(letter)) {
+          const btns = document.querySelectorAll('.option');
+          if (btns[letterIdx]) btns[letterIdx].click();
+        }
+      }
+      if (e.key === 'Enter') {
+        const nb = document.getElementById('next-btn') || document.getElementById('int-next') || document.getElementById('start-btn');
+        if (nb && !nb.disabled) nb.click();
+      }
+    });
+
+    // Initial render
+    render();
+  </script>
+</body>
+</html>
