@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Answer a few questions and generate your highest-converting retention strategy instantly.">
+<meta name="description" content="We analyzed nearly 5 million retention offers. Answer a few questions and generate your highest-converting retention strategy instantly.">
 <title>Find Your Best Retention Offer — ProsperStack</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
@@ -23,7 +23,7 @@
     justify-content: space-between;
     align-items: center;
   }
-  header img { height: 24px; display: block; }
+  header img { height: 28px; display: block; }
   header a { color: #64748b; text-decoration: none; font-size: 14px; }
   header a:hover { color: #0f172a; }
 
@@ -36,14 +36,23 @@
     font-size: 38px;
     font-weight: 700;
     letter-spacing: -0.025em;
-    margin: 0 0 12px;
+    margin: 0 0 14px;
     line-height: 1.15;
   }
   .subtitle {
-    color: #64748b;
+    color: #475569;
     font-size: 17px;
+    margin: 0 0 8px;
+    max-width: 620px;
+  }
+  .subtitle-stat {
+    color: #1e40af;
+    font-weight: 600;
+  }
+  .subtitle-bottom {
+    color: #64748b;
+    font-size: 15px;
     margin: 0 0 40px;
-    max-width: 600px;
   }
 
   .progress {
@@ -124,7 +133,7 @@
   }
 
   .number-row { display: flex; gap: 12px; margin-bottom: 8px; }
-  .number-input {
+  .number-input, .email-input {
     flex: 1;
     padding: 18px 20px;
     font-size: 17px;
@@ -137,9 +146,14 @@
   }
   .number-input::-webkit-outer-spin-button,
   .number-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-  .number-input:focus { outline: none; border-color: #3b82f6; }
+  .number-input:focus, .email-input:focus { outline: none; border-color: #3b82f6; }
+  .email-helper {
+    color: #64748b;
+    font-size: 13px;
+    margin: 8px 0 0;
+  }
 
-  .btn-row { display: flex; gap: 12px; margin-top: 24px; }
+  .btn-row { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
   .btn-primary {
     background: #0f172a;
     color: white;
@@ -167,46 +181,68 @@
   }
   .btn-secondary:hover { background: #f8fafc; }
 
-  /* Results */
+  /* Results — header lede */
+  .results-lede {
+    font-size: 17px;
+    color: #475569;
+    margin: 0 0 24px;
+    line-height: 1.5;
+    max-width: 620px;
+  }
+  .results-lede strong { color: #0f172a; font-weight: 600; }
+
+  /* Impact card — save rate prominent */
   .impact-card {
     background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 40%, #3b82f6 100%);
     color: white;
     border-radius: 16px;
-    padding: 40px 32px;
-    text-align: center;
+    padding: 36px 32px;
     margin-bottom: 28px;
   }
-  .impact-label-top {
-    font-size: 13px;
-    opacity: 0.85;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-    margin-bottom: 8px;
+  .stat-row {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
   }
-  .impact-amount {
-    font-size: 56px;
+  .stat-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .stat-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.18);
+  }
+  .stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    opacity: 0.85;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-size: 48px;
     font-weight: 700;
     letter-spacing: -0.035em;
-    margin: 0 0 6px;
     line-height: 1;
+    margin-bottom: 6px;
   }
-  .impact-period { font-size: 16px; opacity: 0.9; }
+  .stat-sub {
+    font-size: 13px;
+    opacity: 0.85;
+  }
   .impact-math {
-    margin-top: 20px;
-    padding-top: 16px;
+    margin-top: 22px;
+    padding-top: 18px;
     border-top: 1px solid rgba(255,255,255,0.18);
     font-size: 13px;
     opacity: 0.85;
     line-height: 1.6;
   }
-  .impact-annual {
-    margin-top: 6px;
-    font-size: 14px;
-    opacity: 0.95;
-    font-weight: 500;
-  }
 
+  /* Section labels */
   .results-section { margin-top: 32px; }
   .results-section-title {
     font-size: 13px;
@@ -216,58 +252,112 @@
     color: #64748b;
     margin: 0 0 16px;
   }
-  .offer-grid { display: flex; flex-direction: column; gap: 10px; }
+
+  /* Offer cards — new visual */
+  .offer-grid { display: flex; flex-direction: column; gap: 14px; }
   .offer-card {
     background: white;
     border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 20px 22px;
+    border-radius: 14px;
+    padding: 22px 24px;
+    position: relative;
+    transition: border-color 0.15s ease;
   }
-  .offer-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 8px;
+  .offer-card:hover { border-color: #cbd5e1; }
+  .offer-trigger-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: #94a3b8;
+    font-weight: 600;
+    margin-bottom: 6px;
   }
-  .offer-reason {
-    font-size: 14px;
-    color: #64748b;
+  .offer-trigger-quote {
+    font-size: 17px;
+    color: #0f172a;
     font-weight: 500;
+    font-style: italic;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .offer-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 -2px 16px;
+  }
+  .offer-divider-line {
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
   }
   .offer-tag {
     font-size: 11px;
     font-weight: 600;
     background: #eff6ff;
     color: #1e40af;
-    padding: 3px 9px;
+    padding: 4px 11px;
     border-radius: 999px;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     flex-shrink: 0;
   }
-  .offer-tag.pause { background: #ecfdf5; color: #047857; }
-  .offer-tag.skip { background: #fef3c7; color: #92400e; }
+  .offer-tag.pause    { background: #ecfdf5; color: #047857; }
+  .offer-tag.skip     { background: #fef3c7; color: #92400e; }
   .offer-tag.discount { background: #eff6ff; color: #1e40af; }
-  .offer-tag.trial { background: #f3e8ff; color: #6b21a8; }
-  .offer-tag.custom { background: #fce7f3; color: #9d174d; }
+  .offer-tag.trial    { background: #f3e8ff; color: #6b21a8; }
+  .offer-tag.custom   { background: #fce7f3; color: #9d174d; }
   .offer-recommendation {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
-    margin: 0 0 6px;
     color: #0f172a;
+    margin: 0 0 8px;
     letter-spacing: -0.005em;
+    line-height: 1.35;
   }
   .offer-rationale {
     color: #64748b;
     font-size: 14px;
     margin: 0;
+    line-height: 1.55;
   }
 
+  /* Locked / blurred offers — preview only */
+  .locked-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 32px 0 16px;
+    font-size: 13px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .locked-label::before, .locked-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
+  }
+  .locked-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+  }
+  .offer-card.locked {
+    filter: blur(5px);
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  /* Summary + ecom callout + footnote */
   .summary-row {
     display: flex;
     gap: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
   }
   .summary-pill {
@@ -279,17 +369,6 @@
     color: #475569;
   }
   .summary-pill strong { color: #0f172a; font-weight: 600; }
-
-  .footnote {
-    margin-top: 40px;
-    padding: 20px 22px;
-    background: #f1f5f9;
-    border-radius: 12px;
-    color: #475569;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-  .footnote strong { color: #0f172a; }
 
   .ecom-callout {
     background: #fff7ed;
@@ -309,11 +388,24 @@
     color: #431407;
   }
 
+  .footnote {
+    margin-top: 40px;
+    padding: 20px 22px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .footnote strong { color: #0f172a; }
+
   @media (max-width: 640px) {
     main { padding: 32px 16px 64px; }
     h1 { font-size: 30px; }
-    .impact-amount { font-size: 42px; }
-    .impact-card { padding: 32px 22px; }
+    .stat-row { flex-direction: column; gap: 18px; }
+    .stat-divider { display: none; }
+    .stat-value { font-size: 38px; }
+    .impact-card { padding: 28px 22px; }
   }
 </style>
 </head>
@@ -325,13 +417,15 @@
 
 <main>
   <h1>Find your best retention offer</h1>
-  <p class="subtitle">Answer four quick questions and we'll show you the offers most likely to save your cancellations — with an estimate of the monthly revenue you can retain.</p>
+  <p class="subtitle">We analyzed <span class="subtitle-stat">nearly 5 million retention offers</span> from real subscription businesses to surface the ones most likely to save your cancellations.</p>
+  <p class="subtitle-bottom">Answer four quick questions and get your data-backed playbook.</p>
 
   <div class="progress">
     <div class="progress-step" data-progress="1"></div>
     <div class="progress-step" data-progress="2"></div>
     <div class="progress-step" data-progress="3"></div>
     <div class="progress-step" data-progress="4"></div>
+    <div class="progress-step" data-progress="5"></div>
   </div>
 
   <!-- Step 1: Industry -->
@@ -371,34 +465,64 @@
     </div>
     <div class="btn-row">
       <button class="btn-secondary" data-back>← Back</button>
-      <button class="btn-primary" id="seeResults" disabled>See my playbook →</button>
+      <button class="btn-primary" id="toEmailStep" disabled>Continue →</button>
     </div>
   </section>
 
-  <!-- Step 4: Results -->
+  <!-- Step 4: Email capture -->
   <section class="step" data-step="4">
+    <h2>Where should we send your playbook?</h2>
+    <p class="step-hint">We'll show your offers on the next screen and send a copy you can share with your team.</p>
+    <div class="number-row">
+      <input class="email-input" type="email" id="emailInput" placeholder="you@yourcompany.com" autocomplete="email">
+    </div>
+    <p class="email-helper">No spam. You can unsubscribe in one click.</p>
+    <div class="btn-row">
+      <button class="btn-secondary" data-back>← Back</button>
+      <button class="btn-primary" id="seeResults" disabled>Show me my playbook →</button>
+    </div>
+  </section>
+
+  <!-- Step 5: Results -->
+  <section class="step" data-step="5">
+    <p class="results-lede">
+      We analyzed <strong>nearly 5 million offers</strong>. Based on your price, industry and subscriber volume, here's what we recommend.
+    </p>
+
     <div class="summary-row" id="summaryRow"></div>
 
     <div class="ecom-callout" id="ecomCallout" style="display:none">
       <span class="callout-title">Why no percentage-discount tiers for ecommerce?</span>
-      Our 2026 cohort data shows non-discount offers (pause, skip, swap, free shipping) generate <strong>6&ndash;13&times; more revenue per offer presented</strong> than any percentage discount band. We've built your playbook around structural offers first, with discount as a fallback only.
+      Our 2026 cohort data shows non-discount offers (pause, skip, swap, free shipping) generate <strong>6&ndash;13&times; more revenue per offer presented</strong> than any percentage discount band. We've built your playbook around structural offers first.
     </div>
 
     <div class="impact-card">
-      <div class="impact-label-top">Estimated monthly revenue retained</div>
-      <div class="impact-amount" id="impactAmount">$0</div>
-      <div class="impact-period">with the right offer mix</div>
-      <div class="impact-annual" id="impactAnnual">~$0 annualized</div>
+      <div class="stat-row">
+        <div class="stat-block">
+          <div class="stat-label">Estimated save rate</div>
+          <div class="stat-value" id="impactSaveRate">9.5%</div>
+          <div class="stat-sub">of monthly cancellations</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-block">
+          <div class="stat-label">Monthly revenue retained</div>
+          <div class="stat-value" id="impactAmount">$0</div>
+          <div class="stat-sub" id="impactAnnual">~$0 annualized</div>
+        </div>
+      </div>
       <div class="impact-math" id="impactMath"></div>
     </div>
 
     <div class="results-section">
-      <h3 class="results-section-title">Your offers, by cancel reason</h3>
+      <h3 class="results-section-title">Your top 3 offers</h3>
       <div class="offer-grid" id="offerGrid"></div>
     </div>
 
+    <div class="locked-label">+3 more strategies in your playbook</div>
+    <div class="locked-grid" id="lockedGrid"></div>
+
     <div class="footnote">
-      <strong>How we calculated this.</strong> Save rates are blended averages from ProsperStack's 2026 retention cohort, segmented by industry and MRR band. Recommended offers come from the cancel-reason × offer × 90-day revenue-durability cross-tab in our 2026 State of Retention analysis. The ecommerce playbook reflects a specific finding from that data: non-discount offers (pause, skip, swap, free shipping) generate 6&ndash;13&times; more revenue per offer presented than any percentage-discount tier we measured. Your actual results will depend on your offer copy, who you target, and how broadly you deploy each offer.
+      <strong>How we calculated this.</strong> Save rates are blended averages from ProsperStack's 2026 retention cohort, segmented by industry and MRR band. Recommended offers come from the cancel-reason × offer × 90-day revenue-durability cross-tab across nearly 5 million offers. The ecommerce playbook reflects a specific finding: non-discount offers (pause, skip, swap, free shipping) generate 6&ndash;13&times; more revenue per offer presented than any percentage-discount tier we measured. Your actual results will depend on your offer copy, who you target, and how broadly you deploy each offer.
     </div>
 
     <div class="btn-row">
@@ -427,7 +551,6 @@ const MRR_LABEL = {
 
 const INDUSTRY_LABEL = { saas: 'SaaS', ecom: 'Ecommerce', other: 'Membership / Other' };
 
-// Discount tier helper — bigger checks on bigger plans
 function discountTier(mrr) {
   if (['0-9','10-24'].includes(mrr)) return '20%';
   if (mrr === '25-49') return '25%';
@@ -441,45 +564,49 @@ function pauseDuration(mrr) {
   return '90-day pause';
 }
 function pauseDurationLong(mrr) {
-  // One tier longer than pauseDuration — used for "Temporary" reason
   if (['0-9','10-24'].includes(mrr)) return '60-day pause';
   if (['25-49','50-99'].includes(mrr)) return '90-day pause';
   return '120-day pause';
 }
 
-// ---------- Offer playbook ----------
-// Each function returns the recommendation for the given MRR band.
+// ---------- Playbooks: 6 offers per industry (top 3 visible, next 3 locked) ----------
 const PLAYBOOK = {
   saas: [
     {
-      reason: 'Too expensive',
+      reason: "It's too expensive",
       type: 'Discount',
       offer: (mrr) => `${discountTier(mrr)} off for 3 months`,
       rationale: 'Discounts convert price-sensitive cancellers in SaaS where COGS is low. Bigger plans tolerate bigger discounts because each save is more valuable.'
     },
     {
-      reason: 'Not using it / no value yet',
+      reason: "I'm not using it / not getting value yet",
       type: 'Pause',
       offer: (mrr) => pauseDuration(mrr),
       rationale: 'Most "not using" cancellers come back if you give them breathing room. Pause beats discount here — they don\'t need a deal, they need time.'
     },
     {
-      reason: 'Temporary need / I\'ll be back',
+      reason: "I'll be back in a few months",
       type: 'Pause',
       offer: (mrr) => pauseDurationLong(mrr),
       rationale: 'Highest-acceptance offer in the entire SaaS playbook (>20% accept). Cheap to deploy, often results in full resumption.'
     },
     {
-      reason: 'Switching to competitor',
+      reason: "I'm switching to a competitor",
       type: 'Discount',
       offer: (mrr) => `${discountTier(mrr)} off for 3 months + concierge call`,
       rationale: 'These cancellers have already chosen another tool — discount creates a tiebreaker moment. Bigger plans warrant a human in the loop.'
     },
     {
-      reason: 'In a free trial, didn\'t see value',
+      reason: "I'm in a free trial and didn't see value",
       type: 'Trial',
       offer: (mrr) => (['100-249','250+'].includes(mrr) ? '21-day trial extension + onboarding session' : '14-day trial extension'),
       rationale: 'Trial cancellers haven\'t paid yet — a discount is the wrong signal. More time + a nudge to the aha moment is what they need.'
+    },
+    {
+      reason: "You're missing a feature I need",
+      type: 'Custom',
+      offer: (mrr) => (['100-249','250+'].includes(mrr) ? 'Roadmap call + 90-day pause' : 'Roadmap email + 60-day pause'),
+      rationale: 'Don\'t discount away a feature gap — close it. A roadmap commitment plus a pause buys you time to ship and them time to wait.'
     }
   ],
   ecom: [
@@ -490,62 +617,79 @@ const PLAYBOOK = {
       rationale: 'Surplus cancellers don\'t want more product cheaper — they want it later. Skip beats every other offer for this reason; discounting actively backfires.'
     },
     {
-      reason: 'Temporary (I\'ll be back)',
+      reason: "I'll be back in a few months",
       type: 'Pause',
       offer: (mrr) => (['100-249','250+'].includes(mrr) ? '90-day pause' : '60-day pause'),
       rationale: 'Median time to resume in ecom is ~5 months, so generous pause windows pay off. The 90-day window most reports use understates pause by 4–6×.'
     },
     {
-      reason: 'Too expensive',
+      reason: "It's too expensive",
       type: 'Pause',
       offer: () => '60-day pause',
-      rationale: 'Counter-intuitive but data-backed: pause outperforms discount for price-sensitive ecom cancellers on every metric — acceptance, save value, and revenue per offer presented. Hold any discount in reserve for those who explicitly reject pause.'
+      rationale: 'Counter-intuitive but data-backed: pause outperforms discount for price-sensitive ecom cancellers on every metric. Hold any discount in reserve for those who explicitly reject pause.'
     },
     {
-      reason: 'Don\'t like the product / taste',
+      reason: "I don't like the product / taste",
       type: 'Custom',
       offer: () => 'Free product swap',
       rationale: 'These cancellers like the brand, not the SKU. A swap retains them at full price — adding a discount on top dilutes margin without lifting save rate.'
     },
     {
-      reason: 'Already buying elsewhere',
+      reason: "I'm already buying elsewhere",
       type: 'Custom',
       offer: () => 'Free shipping + loyalty perk',
-      rationale: 'You\'re competing on convenience as much as price. Free shipping closes the Amazon gap; a loyalty perk (early-access, member pricing) creates a reason to stay that a one-time discount can\'t.'
+      rationale: 'You\'re competing on convenience as much as price. Free shipping closes the Amazon gap; a loyalty perk creates a reason to stay that a one-time discount can\'t.'
+    },
+    {
+      reason: "I prefer to buy one-time, not subscribe",
+      type: 'Custom',
+      offer: () => 'Subscriber-only pricing on one-time orders',
+      rationale: 'Don\'t fight the preference — accommodate it. Letting them buy ad-hoc at a member rate keeps them in the ecosystem and converts them back to subscription later.'
     }
   ],
   other: [
     {
-      reason: 'Too expensive',
+      reason: "It's too expensive",
       type: 'Discount',
       offer: (mrr) => `${discountTier(mrr)} off for 3 months`,
       rationale: 'Discount is the most universal lever for price objections. Size to the customer\'s revenue value.'
     },
     {
-      reason: 'Not using it',
+      reason: "I'm not using it",
       type: 'Pause',
       offer: (mrr) => pauseDuration(mrr),
       rationale: 'Pause lets disengaged members return without re-signing up. Cheaper than re-acquisition, almost always.'
     },
     {
-      reason: 'Temporary',
+      reason: "I'll be back later",
       type: 'Pause',
       offer: () => '60-day pause',
       rationale: 'Top-converting offer across every subscription category for "I\'ll be back" cancellers.'
     },
     {
-      reason: 'Switching to a competitor',
+      reason: "I'm switching to a competitor",
       type: 'Discount',
       offer: (mrr) => `${discountTier(mrr)} off for 3 months`,
       rationale: 'Lock in the price advantage long enough to re-establish habit.'
+    },
+    {
+      reason: "I lost interest",
+      type: 'Custom',
+      offer: (mrr) => `Re-onboarding email series + ${discountTier(mrr)} off`,
+      rationale: 'Disengagement usually means they forgot why they signed up. A "what\'s new" prompt plus a small carrot wins back more than discount alone.'
+    },
+    {
+      reason: "I only needed it for one event",
+      type: 'Pause',
+      offer: () => '90-day pause',
+      rationale: 'Single-use cancellers often have a next event coming. A pause preserves the account so they don\'t have to re-sign up next time.'
     }
   ]
 };
 
 // ---------- State ----------
-const state = { industry: null, mrr: null, cancelVolume: null, step: 1 };
+const state = { industry: null, mrr: null, cancelVolume: null, email: null, step: 1 };
 
-// ---------- Navigation ----------
 function goTo(step) {
   state.step = step;
   document.querySelectorAll('.step').forEach(s => s.classList.toggle('active', +s.dataset.step === step));
@@ -553,7 +697,7 @@ function goTo(step) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Option selection
+// Option selection (industry / MRR)
 document.querySelectorAll('.options').forEach(group => {
   group.querySelectorAll('.option').forEach(opt => {
     opt.addEventListener('click', () => {
@@ -561,7 +705,6 @@ document.querySelectorAll('.options').forEach(group => {
       opt.classList.add('selected');
       const groupName = group.dataset.group;
       state[groupName] = opt.dataset.value;
-      // Auto-advance from industry & mrr
       setTimeout(() => {
         if (groupName === 'industry') goTo(2);
         else if (groupName === 'mrr') goTo(3);
@@ -575,29 +718,70 @@ document.querySelectorAll('[data-back]').forEach(b => {
   b.addEventListener('click', () => goTo(state.step - 1));
 });
 
-// Cancel volume input
+// Cancel volume
 const volInput = document.getElementById('cancelVolume');
-const seeBtn = document.getElementById('seeResults');
+const toEmailBtn = document.getElementById('toEmailStep');
 volInput.addEventListener('input', () => {
   const v = parseInt(volInput.value, 10);
   state.cancelVolume = Number.isFinite(v) && v > 0 ? v : null;
-  seeBtn.disabled = !state.cancelVolume;
+  toEmailBtn.disabled = !state.cancelVolume;
 });
-volInput.addEventListener('keydown', e => { if (e.key === 'Enter' && state.cancelVolume) seeBtn.click(); });
-seeBtn.addEventListener('click', () => { render(); goTo(4); });
+volInput.addEventListener('keydown', e => { if (e.key === 'Enter' && state.cancelVolume) toEmailBtn.click(); });
+toEmailBtn.addEventListener('click', () => goTo(4));
+
+// Email capture
+const emailInput = document.getElementById('emailInput');
+const seeBtn = document.getElementById('seeResults');
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+emailInput.addEventListener('input', () => {
+  const v = emailInput.value.trim();
+  state.email = EMAIL_RE.test(v) ? v : null;
+  seeBtn.disabled = !state.email;
+});
+emailInput.addEventListener('keydown', e => { if (e.key === 'Enter' && state.email) seeBtn.click(); });
+seeBtn.addEventListener('click', () => {
+  // TODO: wire up to your lead-capture endpoint here.
+  // Example payloads to consider sending: { email, industry, mrr, cancelVolume }
+  console.log('Captured lead:', {
+    email: state.email,
+    industry: state.industry,
+    mrr: state.mrr,
+    cancelVolume: state.cancelVolume,
+    capturedAt: new Date().toISOString()
+  });
+  render();
+  goTo(5);
+});
 
 // Restart
 document.querySelectorAll('[data-restart]').forEach(b => {
   b.addEventListener('click', () => {
-    state.industry = null; state.mrr = null; state.cancelVolume = null;
+    state.industry = null; state.mrr = null; state.cancelVolume = null; state.email = null;
     document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-    volInput.value = ''; seeBtn.disabled = true;
+    volInput.value = ''; emailInput.value = '';
+    toEmailBtn.disabled = true; seeBtn.disabled = true;
     goTo(1);
   });
 });
 
 // ---------- Rendering ----------
 function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+function offerCardHTML(o, mrr, lockedClass = '') {
+  return `
+    <div class="offer-card ${lockedClass}">
+      <div class="offer-trigger-label">When a customer says</div>
+      <div class="offer-trigger-quote">&ldquo;${o.reason}&rdquo;</div>
+      <div class="offer-divider">
+        <span class="offer-divider-line"></span>
+        <span class="offer-tag ${o.type.toLowerCase()}">${o.type}</span>
+        <span class="offer-divider-line"></span>
+      </div>
+      <p class="offer-recommendation">${o.offer(mrr)}</p>
+      <p class="offer-rationale">${o.rationale}</p>
+    </div>
+  `;
+}
 
 function render() {
   const { industry, mrr, cancelVolume } = state;
@@ -614,28 +798,23 @@ function render() {
     <div class="summary-pill"><strong>${cancelVolume.toLocaleString()}</strong> cancels / mo</div>
   `;
 
-  // Ecom callout — explain why no discount tiers for ecom
+  // Ecom callout
   document.getElementById('ecomCallout').style.display = (industry === 'ecom') ? 'block' : 'none';
 
   // Impact card
+  document.getElementById('impactSaveRate').textContent = (saveRate * 100).toFixed(1) + '%';
   document.getElementById('impactAmount').textContent = fmt(monthly);
   document.getElementById('impactAnnual').textContent = `~${fmt(annual)} annualized`;
   document.getElementById('impactMath').innerHTML =
     `${cancelVolume.toLocaleString()} cancels × ${(saveRate*100).toFixed(1)}% save rate × ${fmt(mrrValue)} avg MRR = <strong>${Math.round(saves).toLocaleString()} saves / mo</strong>`;
 
-  // Offer cards
-  const offers = PLAYBOOK[industry];
-  const grid = document.getElementById('offerGrid');
-  grid.innerHTML = offers.map(o => `
-    <div class="offer-card">
-      <div class="offer-card-top">
-        <div class="offer-reason">${o.reason}</div>
-        <div class="offer-tag ${o.type.toLowerCase()}">${o.type}</div>
-      </div>
-      <p class="offer-recommendation">${o.offer(mrr)}</p>
-      <p class="offer-rationale">${o.rationale}</p>
-    </div>
-  `).join('');
+  // Offers — first 3 visible, next 3 blurred
+  const all = PLAYBOOK[industry];
+  const visible = all.slice(0, 3);
+  const locked  = all.slice(3, 6);
+
+  document.getElementById('offerGrid').innerHTML  = visible.map(o => offerCardHTML(o, mrr)).join('');
+  document.getElementById('lockedGrid').innerHTML = locked.map(o  => offerCardHTML(o, mrr, 'locked')).join('');
 }
 </script>
 </body>
