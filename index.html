@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="We analyzed nearly 5 million retention offers. Answer a few questions and generate your highest-converting retention strategy instantly.">
+<meta name="description" content="We analyzed 4.8 million retention offers. Answer a few questions and generate your highest-converting retention strategy instantly.">
 <title>Find Your Best Retention Offer — ProsperStack</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
@@ -322,37 +322,6 @@
     line-height: 1.55;
   }
 
-  /* Locked / blurred offers — preview only */
-  .locked-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 32px 0 16px;
-    font-size: 13px;
-    color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-  }
-  .locked-label::before, .locked-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #e5e7eb;
-  }
-  .locked-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    position: relative;
-  }
-  .offer-card.locked {
-    filter: blur(5px);
-    user-select: none;
-    pointer-events: none;
-    opacity: 0.7;
-  }
-
   /* Summary + ecom callout + footnote */
   .summary-row {
     display: flex;
@@ -417,7 +386,7 @@
 
 <main>
   <h1>Find your best retention offer</h1>
-  <p class="subtitle">We analyzed <span class="subtitle-stat">nearly 5 million retention offers</span> from real subscription businesses to surface the ones most likely to save your cancellations.</p>
+  <p class="subtitle">We <span class="subtitle-stat">analyzed 4.8 million offers</span> to surface the ones most likely to save your cancellations — tailored to your industry, price point, and cancel volume.</p>
   <p class="subtitle-bottom">Answer four quick questions and get your data-backed playbook.</p>
 
   <div class="progress">
@@ -486,7 +455,7 @@
   <!-- Step 5: Results -->
   <section class="step" data-step="5">
     <p class="results-lede">
-      We analyzed <strong>nearly 5 million offers</strong>. Based on your price, industry and subscriber volume, here's what we recommend.
+      Based on your price, industry and subscriber volume, <strong>here's what we recommend</strong>.
     </p>
 
     <div class="summary-row" id="summaryRow"></div>
@@ -518,11 +487,8 @@
       <div class="offer-grid" id="offerGrid"></div>
     </div>
 
-    <div class="locked-label">+3 more strategies in your playbook</div>
-    <div class="locked-grid" id="lockedGrid"></div>
-
     <div class="footnote">
-      <strong>How we calculated this.</strong> Save rates are blended averages from ProsperStack's 2026 retention cohort, segmented by industry and MRR band. Recommended offers come from the cancel-reason × offer × 90-day revenue-durability cross-tab across nearly 5 million offers. The ecommerce playbook reflects a specific finding: non-discount offers (pause, skip, swap, free shipping) generate 6&ndash;13&times; more revenue per offer presented than any percentage-discount tier we measured. Your actual results will depend on your offer copy, who you target, and how broadly you deploy each offer.
+      <strong>How we calculated this.</strong> Save rates are blended averages from ProsperStack's 2026 retention cohort, segmented by industry and MRR band. Recommended offers come from the cancel-reason × offer × 90-day revenue-durability cross-tab in our 2026 State of Retention analysis. The ecommerce playbook reflects a specific finding: non-discount offers (pause, skip, swap, free shipping) generate 6&ndash;13&times; more revenue per offer presented than any percentage-discount tier we measured. Your actual results will depend on your offer copy, who you target, and how broadly you deploy each offer.
     </div>
 
     <div class="btn-row">
@@ -767,9 +733,9 @@ document.querySelectorAll('[data-restart]').forEach(b => {
 // ---------- Rendering ----------
 function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
 
-function offerCardHTML(o, mrr, lockedClass = '') {
+function offerCardHTML(o, mrr) {
   return `
-    <div class="offer-card ${lockedClass}">
+    <div class="offer-card">
       <div class="offer-trigger-label">When a customer says</div>
       <div class="offer-trigger-quote">&ldquo;${o.reason}&rdquo;</div>
       <div class="offer-divider">
@@ -808,13 +774,9 @@ function render() {
   document.getElementById('impactMath').innerHTML =
     `${cancelVolume.toLocaleString()} cancels × ${(saveRate*100).toFixed(1)}% save rate × ${fmt(mrrValue)} avg MRR = <strong>${Math.round(saves).toLocaleString()} saves / mo</strong>`;
 
-  // Offers — first 3 visible, next 3 blurred
-  const all = PLAYBOOK[industry];
-  const visible = all.slice(0, 3);
-  const locked  = all.slice(3, 6);
-
-  document.getElementById('offerGrid').innerHTML  = visible.map(o => offerCardHTML(o, mrr)).join('');
-  document.getElementById('lockedGrid').innerHTML = locked.map(o  => offerCardHTML(o, mrr, 'locked')).join('');
+  // Offers — top 3 only
+  const visible = PLAYBOOK[industry].slice(0, 3);
+  document.getElementById('offerGrid').innerHTML = visible.map(o => offerCardHTML(o, mrr)).join('');
 }
 </script>
 </body>
