@@ -1,1123 +1,616 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Find Your Best Retention Offer — ProsperStack</title>
-  <meta name="description" content="Answer a few questions and generate your highest-converting retention strategy instantly." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="prosperstack_favicon.png" />
-  <style>
-    :root {
-      --blue: #2F75FF;
-      --blue-dark: #1E5FD8;
-      --blue-accent: #3B82F6;
-      --blue-highlight: #DBEAFE;
-      --ink: #09090B;
-      --ink-muted: #6B7280;
-      --ink-soft: #9CA3AF;
-      --bg: #FFFFFF;
-      --bg-soft: #F7F7FB;
-      --bg-card: #EDEDF2;
-      --mint: #D9F2EA;
-      --lavender: #E8E8F5;
-      --sky: #DCE7FD;
-      --border: #E4E4E7;
-      --border-soft: #EEEEF1;
-      --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.04);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      font-family: 'Roboto', system-ui, -apple-system, sans-serif;
-      color: var(--ink);
-      background: var(--bg);
-      min-height: 100vh;
-      font-size: 16px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    body {
-      background: linear-gradient(180deg, #F4F4FB 0%, #FFFFFF 45%);
-      min-height: 100vh;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Answer a few questions and generate your highest-converting retention strategy instantly.">
+<title>Find Your Best Retention Offer — ProsperStack</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #fafbfc;
+    color: #0f172a;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 14px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header img { height: 24px; display: block; }
+  header a { color: #64748b; text-decoration: none; font-size: 14px; }
+  header a:hover { color: #0f172a; }
 
-    .app {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 24px 20px 80px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .topbar {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 40px;
-      padding-top: 4px;
-    }
-    .logo {
-      display: inline-flex; align-items: center; text-decoration: none; flex-shrink: 0;
-    }
-    .logo img {
-      height: 26px; width: auto; display: block;
-    }
-    .progress-wrap {
-      flex: 1;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .progress {
-      flex: 1;
-      height: 6px;
-      background: var(--border);
-      border-radius: 9999px;
-      overflow: hidden;
-    }
-    .progress__bar {
-      height: 100%;
-      background: linear-gradient(90deg, #2F75FF, #6E9BFF);
-      width: 0;
-      transition: width 500ms cubic-bezier(0.22, 1, 0.36, 1);
-      border-radius: 9999px;
-    }
-    .progress__text {
-      font-size: 13px;
-      color: var(--ink-muted);
-      font-variant-numeric: tabular-nums;
-      min-width: 40px;
-      text-align: right;
-      font-family: 'Fira Sans', sans-serif;
-      font-weight: 500;
-    }
-    .back-btn {
-      background: transparent; border: none; color: var(--ink-muted);
-      font-size: 14px; cursor: pointer; padding: 6px 10px;
-      font-family: inherit; border-radius: 8px; transition: all 160ms;
-    }
-    .back-btn:hover { color: var(--ink); background: var(--bg-card); }
-    .back-btn:disabled { visibility: hidden; }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+  h1 {
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 0 0 12px;
+    line-height: 1.15;
+  }
+  .subtitle {
+    color: #64748b;
+    font-size: 17px;
+    margin: 0 0 40px;
+    max-width: 600px;
+  }
 
-    #root { flex: 1; display: flex; flex-direction: column; }
+  .progress {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 36px;
+  }
+  .progress-step {
+    height: 4px;
+    flex: 1;
+    background: #e5e7eb;
+    border-radius: 999px;
+    transition: background 0.3s ease;
+  }
+  .progress-step.done { background: #3b82f6; }
 
-    .step {
-      animation: fadeUp 420ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  .step { display: none; animation: fadeIn 0.25s ease-out; }
+  .step.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-    .hero { text-align: center; padding: 64px 0 0; }
-    .hero h1 {
-      font-family: 'Fira Sans', sans-serif; font-weight: 600;
-      font-size: clamp(34px, 6vw, 58px);
-      line-height: 1.08; letter-spacing: -0.025em;
-      margin-bottom: 20px;
-      color: var(--ink);
-    }
-    .hero h1 .accent {
-      color: var(--blue-accent);
-      background: var(--blue-highlight);
-      padding: 0 0.08em;
-      display: inline-block;
-    }
-    .hero__body {
-      font-size: 18px;
-      color: var(--ink-muted);
-      max-width: 520px;
-      margin: 0 auto 36px;
-      line-height: 1.5;
-    }
+  .step h2 {
+    font-size: 24px;
+    margin: 0 0 8px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .step-hint {
+    color: #64748b;
+    font-size: 14px;
+    margin: 0 0 24px;
+  }
 
-    .q { padding-top: 8px; }
-    .q__number {
-      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--blue); font-weight: 500; margin-bottom: 12px;
-      font-family: 'Fira Sans', sans-serif;
-    }
-    .q__title {
-      font-family: 'Fira Sans', sans-serif; font-weight: 600;
-      font-size: clamp(24px, 3.6vw, 36px);
-      line-height: 1.15; letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      color: var(--ink);
-    }
-    .q__subtitle {
-      color: var(--ink-muted); font-size: 15px; margin-bottom: 28px;
-    }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    background: #ffffff;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.12s ease;
+    font-family: inherit;
+    color: #0f172a;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .option:hover { border-color: #3b82f6; background: #f5f9ff; }
+  .option.selected { border-color: #3b82f6; background: #eff6ff; }
+  .option .check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid #d1d5db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+  .option.selected .check {
+    background: #3b82f6;
+    border-color: #3b82f6;
+  }
+  .option.selected .check::after {
+    content: '';
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) translateY(-1px);
+  }
 
-    .options { display: flex; flex-direction: column; gap: 10px; }
-    .option {
-      display: flex; align-items: center; gap: 14px;
-      padding: 18px 20px;
-      background: #fff;
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      font-family: inherit;
-      font-size: 16px;
-      color: var(--ink);
-      cursor: pointer;
-      text-align: left;
-      transition: all 180ms ease;
-      width: 100%;
-    }
-    .option:hover { border-color: #B3CBFF; background: #FAFBFE; transform: translateY(-1px); }
-    .option.selected {
-      border-color: var(--blue);
-      background: #EEF4FF;
-      box-shadow: 0 0 0 4px rgba(47,117,255,0.12);
-    }
-    .option__key {
-      width: 28px; height: 28px; border-radius: 8px;
-      background: var(--bg-card); color: var(--ink-muted);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 600; flex-shrink: 0;
-      font-family: 'Fira Sans', sans-serif;
-      transition: all 180ms;
-    }
-    .option.selected .option__key { background: var(--blue); color: #fff; }
-    .option__label { flex: 1; }
-    .option--multi .option__key::after { content: ""; }
-    .option--multi.selected .option__key::after { content: "✓"; }
+  .number-row { display: flex; gap: 12px; margin-bottom: 8px; }
+  .number-input {
+    flex: 1;
+    padding: 18px 20px;
+    font-size: 17px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    font-family: inherit;
+    color: #0f172a;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+  }
+  .number-input::-webkit-outer-spin-button,
+  .number-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .number-input:focus { outline: none; border-color: #3b82f6; }
 
-    .multi-hint {
-      font-size: 13px; color: var(--ink-muted); margin-bottom: 14px;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .multi-hint::before { content: "◇"; color: var(--blue); }
+  .btn-row { display: flex; gap: 12px; margin-top: 24px; }
+  .btn-primary {
+    background: #0f172a;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.12s ease;
+    font-family: inherit;
+  }
+  .btn-primary:hover { background: #1e293b; }
+  .btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn-secondary {
+    background: white;
+    border: 1.5px solid #e5e7eb;
+    color: #0f172a;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-secondary:hover { background: #f8fafc; }
 
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 8px; padding: 14px 28px;
-      font-family: 'Fira Sans', sans-serif; font-weight: 500;
-      font-size: 16px;
-      border-radius: 9999px;
-      border: none; cursor: pointer;
-      text-decoration: none;
-      transition: all 200ms ease;
-      line-height: 1;
-    }
-    .btn--primary {
-      background: var(--blue); color: #fff;
-    }
-    .btn--primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(47,117,255,0.32); }
-    .btn--primary:disabled { background: #B5C8E8; cursor: not-allowed; transform: none; box-shadow: none; }
-    .btn--large { padding: 17px 34px; font-size: 17px; }
-    .btn__arrow { transition: transform 200ms; }
-    .btn:hover .btn__arrow { transform: translateX(3px); }
+  /* Results */
+  .impact-card {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 40%, #3b82f6 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .impact-label-top {
+    font-size: 13px;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .impact-amount {
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    margin: 0 0 6px;
+    line-height: 1;
+  }
+  .impact-period { font-size: 16px; opacity: 0.9; }
+  .impact-math {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.6;
+  }
+  .impact-annual {
+    margin-top: 6px;
+    font-size: 14px;
+    opacity: 0.95;
+    font-weight: 500;
+  }
 
-    .actions {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-top: 28px; gap: 16px;
-    }
-    .actions--center { justify-content: center; }
+  .results-section { margin-top: 32px; }
+  .results-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    margin: 0 0 16px;
+  }
+  .offer-grid { display: flex; flex-direction: column; gap: 10px; }
+  .offer-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .offer-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .offer-reason {
+    font-size: 14px;
+    color: #64748b;
+    font-weight: 500;
+  }
+  .offer-tag {
+    font-size: 11px;
+    font-weight: 600;
+    background: #eff6ff;
+    color: #1e40af;
+    padding: 3px 9px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+  .offer-tag.pause { background: #ecfdf5; color: #047857; }
+  .offer-tag.skip { background: #fef3c7; color: #92400e; }
+  .offer-tag.discount { background: #eff6ff; color: #1e40af; }
+  .offer-tag.trial { background: #f3e8ff; color: #6b21a8; }
+  .offer-tag.custom { background: #fce7f3; color: #9d174d; }
+  .offer-recommendation {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: #0f172a;
+    letter-spacing: -0.005em;
+  }
+  .offer-rationale {
+    color: #64748b;
+    font-size: 14px;
+    margin: 0;
+  }
 
-    .text-input {
-      width: 100%; padding: 14px 16px;
-      border: 1.5px solid var(--border); border-radius: 12px;
-      font-family: inherit; font-size: 16px;
-      margin-top: 14px; display: none;
-      transition: border 160ms;
-    }
-    .text-input.visible { display: block; }
-    .text-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(47,117,255,0.12); }
+  .summary-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .summary-pill {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #475569;
+  }
+  .summary-pill strong { color: #0f172a; font-weight: 600; }
 
-    .interstitial { text-align: center; padding: 40px 0 24px; }
-    .interstitial__badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 14px; border-radius: 9999px;
-      background: var(--blue-highlight); color: var(--blue-accent);
-      font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
-      margin-bottom: 24px;
-      font-family: 'Fira Sans', sans-serif;
-    }
-    .interstitial__badge::before { content: "✦"; }
-    .interstitial h2 {
-      font-family: 'Fira Sans', sans-serif; font-weight: 600;
-      font-size: clamp(26px, 4.2vw, 42px);
-      line-height: 1.15; letter-spacing: -0.02em;
-      margin-bottom: 20px; color: var(--ink);
-    }
-    .interstitial p {
-      font-size: 17px; color: var(--ink-muted);
-      max-width: 540px; margin: 0 auto 12px; line-height: 1.55;
-    }
-    .interstitial p em { color: var(--ink); font-style: normal; font-weight: 500; }
-    .feature-list {
-      display: flex; flex-direction: column; gap: 10px;
-      max-width: 460px; margin: 28px auto 0; text-align: left;
-    }
-    .feature-list li {
-      list-style: none;
-      display: flex; gap: 12px; align-items: flex-start;
-      padding: 16px 20px;
-      background: #fff; border-radius: 12px; border: 1px solid var(--border);
-      font-size: 15px; line-height: 1.4;
-    }
-    .feature-list li::before {
-      content: "✦"; color: var(--blue); font-size: 16px; flex-shrink: 0;
-      font-weight: 500;
-    }
+  .footnote {
+    margin-top: 40px;
+    padding: 20px 22px;
+    background: #f1f5f9;
+    border-radius: 12px;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .footnote strong { color: #0f172a; }
 
-    .testimonial {
-      background: linear-gradient(160deg, #F7F8FB 0%, #EEF0F6 100%);
-      padding: 36px; border-radius: 20px;
-      max-width: 580px; margin: 0 auto 24px; text-align: left;
-      border: 1px solid var(--border-soft);
-    }
-    .testimonial__mark { font-family: 'Fira Sans'; font-size: 42px; line-height: 0.6; color: var(--blue); }
-    .testimonial__quote {
-      font-family: 'Fira Sans', sans-serif; font-weight: 500;
-      font-size: 20px; line-height: 1.38; letter-spacing: -0.01em;
-      color: var(--ink); margin: 10px 0 18px;
-    }
-    .testimonial__author {
-      font-size: 14px; color: var(--ink-muted);
-    }
-    .testimonial__author strong { color: var(--ink); font-weight: 500; }
-    .stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
-      max-width: 620px; margin: 0 auto 28px;
-    }
-    .stats__item {
-      padding: 24px 14px; border-radius: 16px;
-      text-align: center;
-    }
-    .stats__item:nth-child(1) { background: linear-gradient(160deg, var(--sky), #F1F6FF); }
-    .stats__item:nth-child(2) { background: linear-gradient(160deg, var(--mint), #F2FBF7); }
-    .stats__item:nth-child(3) { background: linear-gradient(160deg, var(--lavender), #F5F5FC); }
-    .stats__value {
-      font-family: 'Fira Sans', sans-serif; font-weight: 600;
-      font-size: clamp(22px, 3vw, 30px); color: var(--ink);
-      letter-spacing: -0.02em; margin-bottom: 4px; line-height: 1.1;
-    }
-    .stats__label {
-      font-size: 13px; color: var(--ink-muted); line-height: 1.3;
-    }
-
-    .email-step h2 {
-      font-family: 'Fira Sans', sans-serif; font-weight: 600;
-      font-size: clamp(24px, 3.6vw, 34px); line-height: 1.15;
-      letter-spacing: -0.02em; margin-bottom: 8px;
-    }
-    .email-step .sub {
-      color: var(--ink-muted); font-size: 16px; margin-bottom: 24px;
-    }
-    .unlock-card {
-      padding: 20px; border-radius: 16px;
-      background: #F7F8FB;
-      border: 1px solid var(--border-soft);
-      margin-bottom: 24px;
-    }
-    .unlock-label {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 10px; border-radius: 9999px;
-      background: var(--blue); color: #fff;
-      font-size: 12px; font-weight: 500;
-      margin-bottom: 12px; font-family: 'Fira Sans', sans-serif;
-    }
-    .unlock-label::before { content: "✦"; }
-    .blurred-offers {
-      display: flex; flex-direction: column; gap: 8px;
-      position: relative;
-    }
-    .fake-offer {
-      padding: 14px 16px; background: #fff;
-      border: 1px solid var(--border-soft); border-radius: 10px;
-      font-size: 15px; color: var(--ink);
-      filter: blur(5px);
-      user-select: none;
-      font-family: 'Fira Sans', sans-serif; font-weight: 500;
-    }
-    .email-form { display: flex; flex-direction: column; gap: 12px; }
-    .email-input {
-      width: 100%; padding: 16px 18px;
-      border: 1.5px solid var(--border); border-radius: 12px;
-      font-family: inherit; font-size: 16px;
-      transition: all 160ms;
-      background: #fff;
-    }
-    .email-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(47,117,255,0.15); }
-    .email-error {
-      color: #DC2626; font-size: 13px;
-      display: none;
-    }
-    .email-error.show { display: block; }
-    .email-privacy {
-      font-size: 12px; color: var(--ink-soft);
-      margin-top: 10px; text-align: center;
-    }
-
-    .results-hero {
-      background: linear-gradient(160deg, #EEF4FF 0%, #F7F3FF 100%);
-      padding: 36px 32px; border-radius: 24px; margin-bottom: 28px;
-      border: 1px solid var(--border-soft);
-    }
-    .results-hero__eyebrow {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 4px 12px; border-radius: 9999px;
-      background: #fff; color: var(--blue);
-      font-size: 12px; font-weight: 500;
-      margin-bottom: 16px;
-      font-family: 'Fira Sans', sans-serif;
-    }
-    .results-hero__eyebrow::before { content: "✦"; }
-    .results-hero h1 {
-      font-family: 'Fira Sans', sans-serif; font-weight: 600;
-      font-size: clamp(28px, 4.2vw, 40px);
-      line-height: 1.12; letter-spacing: -0.02em;
-      margin-bottom: 14px;
-    }
-    .results-hero .sub {
-      color: var(--ink-muted); font-size: 16px; line-height: 1.5;
-    }
-    .results-section { margin-bottom: 28px; }
-    .results-section h3 {
-      font-family: 'Fira Sans', sans-serif; font-weight: 600;
-      font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--ink-muted); margin-bottom: 14px;
-    }
-    .snapshot-list { display: flex; flex-direction: column; gap: 10px; }
-    .snapshot-list li {
-      list-style: none; padding: 16px 20px;
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 12px; font-size: 15px; line-height: 1.5;
-      display: flex; gap: 12px; align-items: flex-start;
-    }
-    .snapshot-list li::before {
-      content: ""; width: 7px; height: 7px; border-radius: 50%;
-      background: var(--blue); flex-shrink: 0; margin-top: 8px;
-    }
-    .snapshot-list li strong { font-weight: 600; color: var(--ink); }
-    .offer-chips { display: flex; flex-direction: column; gap: 10px; }
-    .offer-chip {
-      padding: 16px 20px; border-radius: 12px;
-      background: linear-gradient(90deg, #EEF4FF, #F7F3FF);
-      border: 1px solid #DCE7FD;
-      font-family: 'Fira Sans', sans-serif; font-weight: 500;
-      color: var(--ink); font-size: 16px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .offer-chip::before {
-      content: ""; width: 6px; height: 30px; border-radius: 3px;
-      background: var(--blue); flex-shrink: 0;
-    }
-    .impact {
-      background: var(--ink); color: #fff;
-      padding: 32px; border-radius: 20px;
-      text-align: center; margin-bottom: 28px;
-      position: relative; overflow: hidden;
-    }
-    .impact::before{
-      content:""; position:absolute; inset:0;
-      background: radial-gradient(circle at 20% 20%, rgba(47,117,255,0.35), transparent 50%),
-                  radial-gradient(circle at 80% 100%, rgba(123,97,255,0.25), transparent 50%);
-      pointer-events: none;
-    }
-    .impact > * { position: relative; }
-    .impact__label {
-      font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: #A1A1AA; margin-bottom: 12px;
-      font-family: 'Fira Sans', sans-serif; font-weight: 500;
-    }
-    .impact__value {
-      font-family: 'Fira Sans', sans-serif; font-weight: 600;
-      font-size: clamp(32px, 5vw, 48px); letter-spacing: -0.02em; line-height: 1.1;
-    }
-    .impact__sub { color: #E4E4E7; font-size: 14px; margin-top: 10px; }
-
-    .results-cta {
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-      padding: 32px 0 8px;
-    }
-    .results-cta .tiny {
-      font-size: 13px; color: var(--ink-muted); margin-top: 8px;
-    }
-
-    @media (max-width: 560px) {
-      .app { padding: 16px 16px 60px; }
-      .stats { grid-template-columns: 1fr; }
-      .topbar { margin-bottom: 28px; }
-      .testimonial { padding: 24px; }
-      .results-hero { padding: 28px 24px; }
-      .impact { padding: 24px; }
-    }
-  </style>
+  @media (max-width: 640px) {
+    main { padding: 32px 16px 64px; }
+    h1 { font-size: 30px; }
+    .impact-amount { font-size: 42px; }
+    .impact-card { padding: 32px 22px; }
+  }
+</style>
 </head>
 <body>
-  <div class="app">
-    <div class="topbar">
-      <a class="logo" href="https://prosperstack.com/" target="_blank" rel="noopener">
-        <img src="prosperstack.png" alt="ProsperStack" />
-      </a>
-      <div class="progress-wrap" id="progress-wrap" style="display:none">
-        <button class="back-btn" id="back-btn">← Back</button>
-        <div class="progress"><div class="progress__bar" id="progress-bar"></div></div>
-        <div class="progress__text" id="progress-text"></div>
-      </div>
-    </div>
-    <div id="root"></div>
+<header>
+  <a href="https://prosperstack.com/"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iMTIwIiBmaWxsPSJub25lIiB2aWV3Qm94PSIwIDAgNzAwIDEyMCI+PHBhdGggZmlsbD0iIzIzMmUzYiIgZD0iTTIwNi41NTUgNTQuMTIzYzAgNi42NDEtMS45NjggMTEuNTYtNi4xNDkgMTUuMjVxLTYuMjczIDUuMTY2LTE3LjcxMSA1LjE2NmgtNS42NTh2MjEuODkzSDE2NFYzNC45MzZoMTkuNjc5YzcuMzc5IDAgMTMuMDM3IDEuNzIyIDE2Ljk3MyA0LjkyczUuOTAzIDcuODcgNS45MDMgMTQuMjY3bS0yOS41MTggOS44MzloNC4xODJjMy45MzYgMCA2Ljg4Ny0uNzM4IDkuMTAxLTIuNDYgMS45NjgtMS40NzYgMi45NTItMy45MzYgMi45NTItNi44ODhzLS43MzgtNS40MTEtMi40Ni02Ljg4Ny00LjE4MS0yLjIxNC03Ljg3MS0yLjIxNGgtNS45MDR6TTIzOS43NjMgNDguNDY1YzEuNzIyIDAgMy4xOTguMjQ2IDQuNDI4LjQ5MmwtLjk4NCAxMi4wNTNjLS45ODQtLjI0Ni0yLjIxNC0uNDkyLTMuNjktLjQ5Mi00LjE4MSAwLTcuMzc5Ljk4NC05LjU5MyAzLjE5OHMtMy40NDQgNS4xNjYtMy40NDQgOC44NTV2MjMuODZoLTEyLjc5MVY0OS40NWg5LjU5M2wxLjk2OCA3Ljg3MWguNzM4YzEuNDc2LTIuNzA2IDMuNDQ0LTQuNjczIDUuOTA0LTYuMzk1IDIuMjE0LTEuNDc2IDQuOTE5LTIuNDYgNy44NzEtMi40Nk0yOTIuNjUgNzIuODE3YzAgNy42MjYtMS45NjggMTMuNTMtNi4xNSAxNy45NTctMy45MzUgNC40MjgtOS41OTMgNi4zOTYtMTYuOTczIDYuMzk2LTQuNDI3IDAtOC42MDktLjk4NC0xMi4wNTMtMi45NTJzLTYuMTQ5LTQuOTItNy44NzEtOC42MWMtMS45NjgtMy42OS0yLjcwNi04LjExNy0yLjcwNi0xMy4wMzcgMC03LjYyNSAxLjk2OC0xMy43NzUgNS45MDMtMTcuOTU2IDQuNDI4LTMuOTM2IDEwLjA4Ni02LjE1IDE3LjIxOS02LjE1IDQuNDI4IDAgOC42MS45ODQgMTIuMDU0IDIuOTUyIDMuNDQzIDEuOTY4IDYuMTQ5IDQuNjczIDcuODcxIDguMzYzIDEuOTY4IDMuNjkgMi43MDYgOC4xMTggMi43MDYgMTMuMDM3bS0zMi40NyAwYzAgNC42NzQuNzM4IDguMTE4IDIuMjE0IDEwLjU3OHEyLjIxNCAzLjY5IDcuMzc5IDMuNjljMy40NDQgMCA1LjkwNC0xLjIzIDcuMzgtMy40NDQgMS40NzYtMi40NiAyLjIxNC01LjkwNCAyLjIxNC0xMC41NzhzLS43MzgtOC4xMTctMi4yMTQtMTAuNTc3Yy0xLjQ3Ni0yLjIxNC0zLjkzNi0zLjQ0NC03LjM4LTMuNDQ0cy01LjkwMyAxLjIzLTcuMzc5IDMuNDQ0cS0yLjIxNCAzLjMyMS0yLjIxNCAxMC4zMzFNMzM0LjIyMSA4Mi40MWMwIDQuOTItMS43MjIgOC42MS00LjkxOSAxMS4wNy0zLjQ0NCAyLjQ2LTguMzY0IDMuNjktMTUuMDA2IDMuNjlxLTUuMTY1IDAtOC44NTUtLjczOGMtMi40Ni0uNDkyLTQuNjc0LTEuMjMtNi44ODgtMS45NjhWODMuODg3YzIuNDYgMS4yMyA1LjE2NiAxLjk2OCA4LjExOCAyLjcwNiAyLjk1Mi43MzcgNS42NTggMS4yMyA3Ljg3MSAxLjIzIDQuNjc0IDAgNi44ODgtMS4yMyA2Ljg4OC0zLjkzNiAwLS45ODQtLjI0Ni0xLjcyMi0uOTg0LTIuNDZzLTEuNzIyLTEuMjMtMy4xOTgtMi4yMTRjLTEuNDc2LS43MzgtMy40NDMtMS43MjItNi4xNDktMi43MDYtMy42OS0xLjQ3Ni02LjM5Ni0yLjk1Mi03Ljg3Mi00LjE4MnEtMi41ODMtMS44NDUtMy42OS00LjQyN2MtLjczOC0xLjcyMi0xLjIzLTMuNjktMS4yMy02LjE1IDAtNC4xODIgMS43MjItNy4zOCA0LjkyLTkuNTkzczcuODcyLTMuNDQ0IDEzLjc3NS0zLjQ0NGM1LjY1OCAwIDExLjA3IDEuMjMgMTYuNDgxIDMuNjlsLTMuOTM1IDkuMzQ3Yy0yLjQ2LS45ODQtNC42NzQtMS43MjItNi42NDItMi40Ni0xLjcyMi0uOTg0LTMuNjktMS4yMy01LjkwNC0xLjIzLTMuNjg5IDAtNS42NTcuOTg0LTUuNjU3IDIuOTUyIDAgMS4yMy40OTIgMi4yMTQgMS43MjIgMi45NTJxMS44NDQgMS4xMDcgOC4xMTcgMy42OWMzLjY5IDEuNDc2IDYuMzk2IDIuOTUxIDguMTE4IDQuMTgycTIuNTgyIDEuODQ0IDMuNjg5IDQuNDI3Yy45ODQgMS45NjggMS4yMyAzLjkzNiAxLjIzIDYuMTVNMzY3LjQyOSA5Ny4xN2MtNS40MTIgMC05LjgzOS0xLjk2OC0xMy4wMzctNS45MDRoLS43MzhjLjQ5MiAzLjkzNi43MzggNi4xNS43MzggNi44ODh2MTguOTQxaC0xMi43OTFWNDkuNDQ5aDEwLjMzMWwxLjcyMiA2LjE1aC40OTJjMi45NTItNC42NzQgNy4zOC02Ljg4OCAxMy4yODMtNi44ODggNS42NTggMCA5LjgzOSAyLjIxNCAxMy4wMzcgNi4zOTUgMy4xOTggNC4xODIgNC42NzQgMTAuMzMyIDQuNjc0IDE3Ljk1NyAwIDQuOTItLjczOCA5LjM0OC0yLjIxNCAxMy4wMzhzLTMuNjkgNi42NDEtNi4zOTUgOC4zNjNjLTIuMjE0IDEuNzIyLTUuNDEyIDIuNzA2LTkuMTAyIDIuNzA2bS0zLjkzNi0zOC4zNzRjLTMuMTk3IDAtNS40MTEuOTg0LTYuODg3IDIuOTUycS0yLjIxNCAyLjk1Mi0yLjIxNCA5LjU5M3YxLjQ3NmMwIDUuMTY2LjczOCA4LjYxIDIuMjE0IDEwLjgyNHMzLjkzNiAzLjE5NyA3LjEzMyAzLjE5N2M1LjY1OCAwIDguNjEtNC42NzMgOC42MS0xNC4yNjdxMC03LjAxLTIuMjE0LTEwLjMzYy0xLjIzLTIuMjE1LTMuNDQ0LTMuNDQ1LTYuNjQyLTMuNDQ1TTQxNi4xMzQgOTcuMTdjLTcuNjI1IDAtMTMuNTI5LTEuOTY4LTE3LjcxMS02LjE1LTQuMTgyLTQuMTgxLTYuMzk1LTEwLjA4NS02LjM5NS0xNy43MSAwLTcuODcyIDEuOTY3LTE0LjAyMiA1LjkwMy0xOC4yMDQgMy45MzYtNC4xODEgOS4zNDgtNi4zOTUgMTYuMjM1LTYuMzk1IDYuNjQyIDAgMTEuODA3IDEuOTY4IDE1LjQ5NyA1LjY1OHM1LjY1OCA5LjEwMSA1LjY1OCAxNS43NDN2Ni4xNWgtMzAuNTAyYy4yNDYgMy42ODkgMS4yMyA2LjM5NSAzLjE5OCA4LjYwOSAxLjk2NyAxLjk2OCA0LjkxOSAyLjk1MiA4LjYwOSAyLjk1MiAyLjk1MiAwIDUuNDEyLS4yNDYgOC4xMTgtLjk4NCAyLjQ1OS0uNDkyIDUuMTY1LTEuNDc2IDcuODcxLTIuNzA2djkuODRjLTIuMjE0IDEuMjI5LTQuNjc0IDEuOTY3LTcuMTM0IDIuNDU5LTIuNzA1LjQ5Mi01LjY1Ny43MzgtOS4zNDcuNzM4bS0xLjk2OC0zOS42MDRjLTIuNzA2IDAtNC45Mi45ODQtNi4zOTUgMi43MDYtMS40NzYgMS43MjItMi40NiA0LjE4Mi0yLjcwNiA3LjM4aDE3Ljk1N2MwLTMuMTk4LS45ODQtNS42NTgtMi40Ni03LjM4cy0zLjY5LTIuNzA2LTYuMzk2LTIuNzA2TTQ2OS4wMjEgNDguNDY1YzEuNzIyIDAgMy4xOTcuMjQ2IDQuNDI3LjQ5MmwtLjk4NCAxMi4wNTNjLS45ODQtLjI0Ni0yLjIxMy0uNDkyLTMuNjg5LS40OTItNC4xODIgMC03LjM4Ljk4NC05LjU5NCAzLjE5OHMtMy40NDQgNS4xNjYtMy40NDQgOC44NTV2MjMuODZoLTEyLjc5MVY0OS40NWg5LjU5NGwxLjk2OCA3Ljg3MWguNzM4YzEuNDc1LTIuNzA2IDMuNDQzLTQuNjczIDUuOTAzLTYuMzk1IDIuMjE0LTEuNDc2IDQuOTItMi40NiA3Ljg3Mi0yLjQ2TTUxOC43MDkgNzkuNDU5YzAgNS42NTgtMS45NjcgOS44NC01LjkwMyAxMy4wMzdzLTkuNTk0IDQuNjc0LTE2LjcyNyA0LjY3NGMtNi42NDIgMC0xMi4yOTktMS4yMy0xNy40NjUtMy42OVY4MS40MjdjNC4xODIgMS45NjggNy42MjYgMy4xOTggMTAuNTc3IDMuOTM2IDIuOTUyLjczNyA1LjQxMiAxLjIzIDcuODcyIDEuMjMgMi45NTIgMCA1LjE2Ni0uNDkzIDYuNjQxLTEuNzIyIDEuNDc2LS45ODQgMi4yMTQtMi43MDYgMi4yMTQtNC45MiAwLTEuMjMtLjI0Ni0yLjIxNC0uOTg0LTMuMTk4cy0xLjcyMi0xLjcyMi0yLjk1MS0yLjcwNi0zLjkzNi0yLjIxNC03Ljg3Mi00LjE4MWMtMy42OS0xLjcyMi02LjY0Mi0zLjQ0NC04LjM2My01LjE2Ni0xLjk2OC0xLjcyMi0zLjQ0NC0zLjQ0NC00LjQyOC01LjY1OC0xLjIzLTIuMjE0LTEuNzIyLTQuNjczLTEuNzIyLTcuNjI1IDAtNS40MTIgMS43MjItOS44NCA1LjQxMi0xMi43OTEgMy42ODktMy4xOTggOC44NTUtNC42NzQgMTUuMjUxLTQuNjc0IDMuMTk3IDAgNi4xNDkuNDkyIDkuMTAxIDEuMjNhNTAuNSA1MC41IDAgMCAxIDkuMTAxIDMuMTk4bC00LjE4MSAxMC4wODVjLTMuMTk4LTEuMjMtNS45MDQtMi4yMTQtOC4xMTgtMi43MDZzLTQuMTgxLS43MzgtNi4zOTUtLjczOGMtMi40NiAwLTQuNDI4LjQ5Mi01LjY1OCAxLjcyMnMtMS45NjggMi43MDYtMS45NjggNC40MjhxMCAxLjg0NS43MzggMi45NTJjLjQ5Mi43MzggMS40NzYgMS43MjEgMi40NiAyLjQ2IDEuMjMuNzM3IDMuOTM2IDIuMjEzIDguMzYzIDQuNDI3IDUuNjU4IDIuNzA2IDkuNTk0IDUuNDEyIDExLjgwOCA4LjM2NCAxLjk2OCAyLjQ2IDMuMTk3IDUuOTAzIDMuMTk3IDEwLjA4NU01NDYuMjYgODcuMDg0cTMuMzIgMCA4LjExNy0xLjQ3NXY5LjU5M3EtNC43OTcgMi4yMTQtMTEuODA3IDIuMjE0Yy01LjE2NiAwLTguODU2LTEuMjMtMTEuMzE1LTMuOTM2LTIuNDYtMi43MDYtMy40NDQtNi4zOTYtMy40NDQtMTEuNTYxdi0yMi42M2gtNi4xNXYtNS40MTJsNy4xMzQtNC4xODIgMy42OS05Ljg0aDguMTE3djEwLjA4NmgxMy4yODN2OS41OTNoLTEzLjI4M3YyMi42M2MwIDEuNzIzLjQ5MiAzLjE5OSAxLjQ3NiAzLjkzNiAxLjIzLjQ5MyAyLjcwNi45ODQgNC4xODIuOTg0TTU5Mi43NTEgOTYuNDMybC0yLjQ2LTYuMzk2aC0uMjQ2Yy0yLjIxNCAyLjcwNi00LjQyOCA0LjY3NC02LjY0MiA1LjY1OHEtMy4zMiAxLjQ3Ni04Ljg1NSAxLjQ3NmMtNC40MjggMC04LjExOC0xLjIzLTEwLjU3Ny0zLjkzNi0yLjcwNi0yLjQ2LTMuOTM2LTYuMTUtMy45MzYtMTEuMDdxMC03LjM3OSA1LjE2Ni0xMS4wNjhjMy40NDMtMi40NiA4Ljg1NS0zLjY5IDE1Ljc0My0zLjkzNmw4LjExNy0uMjQ2di0xLjk2OGMwLTQuNjc0LTIuNDYtNy4xMzQtNy4zNzktNy4xMzQtMy42OSAwLTguMTE4IDEuMjMtMTMuMjg0IDMuNDQ0bC00LjE4MS04LjYxYzUuNDExLTIuOTUxIDExLjMxNS00LjE4MSAxNy45NTctNC4xODEgNi4zOTUgMCAxMS4wNjkgMS40NzYgMTQuNTEzIDQuMTgycTUuMTY1IDQuMDU5IDUuMTY1IDEyLjU0NXYzMS4yNHptLTMuNjktMjEuODkzLTQuOTIuMjQ2Yy0zLjY4OSAwLTYuMzk1LjczOC04LjM2MyAxLjk2OC0xLjcyMiAxLjIzLTIuNzA2IDMuMTk4LTIuNzA2IDUuNjU4IDAgMy42OSAxLjk2OCA1LjQxMSA2LjE1IDUuNDExIDIuOTUxIDAgNS40MTEtLjczNyA3LjEzMy0yLjQ2IDEuNzIyLTEuNzIxIDIuNzA2LTMuOTM1IDIuNzA2LTYuODg3ek02MzAuNjMyIDk3LjE3Yy0xNC43NTkgMC0yMS44OTItOC4xMTgtMjEuODkyLTI0LjEwNyAwLTcuODcxIDEuOTY4LTE0LjAyIDUuOTAzLTE4LjIwMiAzLjkzNi00LjE4MiA5LjU5NC02LjM5NiAxNy4yMTktNi4zOTYgNS40MTIgMCAxMC4zMzIuOTg0IDE0LjUxMyAzLjE5OGwtMy42ODkgOS44NGMtMS45NjgtLjczOS0zLjkzNi0xLjQ3Ny01LjY1OC0xLjk2OWExOC43IDE4LjcgMCAwIDAtNS4xNjYtLjczOGMtNi42NDEgMC0xMC4wODUgNC42NzQtMTAuMDg1IDE0LjI2NyAwIDkuMTAyIDMuNDQ0IDEzLjc3NSAxMC4wODUgMTMuNzc1IDIuNDYgMCA0LjY3NC0uMjQ1IDYuODg4LS45ODNzNC4xODItMS43MjIgNi4zOTUtMy4xOTh2MTEuMDY5Yy0xLjk2NyAxLjIzLTQuMTgxIDIuMjE0LTYuMzk1IDIuNzA2cy00LjY3NC43MzgtOC4xMTguNzM4TTY2NS4zMTYgNzAuODVsNS42NTgtNy4xMzQgMTMuMjgzLTE0LjI2N2gxNC41MTNsLTE4LjY5NSAyMC40MTdMNzAwIDk2LjQzMmgtMTQuNzU5bC0xMy41MjktMTguOTQtNS40MTIgNC40Mjd2MTQuNTEzaC0xMi43OTFWMzFINjY2LjN2MjkuMjcyeiIvPjxwYXRoIGZpbGw9IiMyZjc1ZmYiIGQ9Im0xMjUuNTc4IDU5Ljk4NS02NS43Ni0xMy45OWMtLjQ3Mi0uMTM1LTEuMDEzLS4xMzUtMS41NTQtLjEzNS0xLjc1NyAwLTMuNDQ2LjYwOC00LjU5NSAxLjY5TDI1LjgyNCA3My45MDhjLTEuNjkgMS41NTQtMS45NiAzLjg1Mi0uNzQ0IDUuNjc3IDEuMDgyIDEuNjIyIDMuMTEgMi41NjggNS4zNCAyLjU2OC4zMzggMCAuNjc1IDAgLjk0Ni0uMDY4bDkzLjY3Mi0xMi4zNjhjMi44MzgtLjQwNSA1LjAwMS0yLjM2NSA1LjEzNi00LjY2My4xMzUtMi4zNjYtMS43NTctNC40Ni00LjU5Ni01LjA2OU00LjUzNSAxMDUuODc1bDY1LjgyNyAxMy45OWMuNDczLjEzNSAxLjAxNC4xMzUgMS41NTUuMTM1IDEuNzU3IDAgMy40NDYtLjYwOCA0LjU5NS0xLjY5bDI3Ljg0NS0yNi4zNTdjMS42OS0xLjU1NSAxLjk2LTMuODUzLjc0My01LjY3OC0xLjA4MS0xLjYyMi0zLjEwOC0yLjU2OC01LjMzOS0yLjU2OC0uMzM4IDAtLjY3NiAwLS45NDYuMDY4TDUuMTQzIDk2LjE0M2MtMi44MzguNDA1LTUuMDAxIDIuMzY1LTUuMTM2IDQuNjYzLS4xMzUgMi4zNjYgMS43NTcgNC41MjggNC41MjggNS4wNjkiLz48cGF0aCBmaWxsPSIjMmZhYWZmIiBkPSJNNzMuMzM2LjU3OCAxMS45MDIgMjcuOTVhOC43IDguNyAwIDAgMC0xLjM1Mi43NDRjLTEuNDIgMS4wMTMtMi40MzMgMi41LTIuNzA0IDQuMTIyTC43NSA3MC41MjhjLS40MDUgMi4yOTguNjc2IDQuMjU4IDIuNzcxIDUuMDAxIDEuODI1LjY3NiA0LjA1NS4yMDMgNS44MTItMS4wOC4yNy0uMjA0LjU0MS0uNDA2Ljc0NC0uNjFsNjguNTMtNjUuMDE1YzIuMDk1LTEuOTYgMi42MzYtNC43OTkgMS4zNTItNi44MjZDNzguNzQyLjAzOCA3NS45MDQtLjU3IDczLjMzNi41NzgiLz48L3N2Zz4=" alt="ProsperStack" style="height:28px;display:block"></a>
+  <a href="https://prosperstack.com/">← Back</a>
+</header>
+
+<main>
+  <h1>Find your best retention offer</h1>
+  <p class="subtitle">Answer four quick questions and we'll show you the offers most likely to save your cancellations — with an estimate of the monthly revenue you can retain.</p>
+
+  <div class="progress">
+    <div class="progress-step" data-progress="1"></div>
+    <div class="progress-step" data-progress="2"></div>
+    <div class="progress-step" data-progress="3"></div>
+    <div class="progress-step" data-progress="4"></div>
   </div>
 
-  <script>
-    // ---------- State ----------
-    const state = {
-      stepIndex: 0,
-      answers: {}, // { business: 'saas', churn: '100-1000', testing: '1-2', reason: 'expensive', ... }
-    };
+  <!-- Step 1: Industry -->
+  <section class="step active" data-step="1">
+    <h2>What industry are you in?</h2>
+    <p class="step-hint">This shapes which offers tend to work best.</p>
+    <div class="options" data-group="industry">
+      <button class="option" data-value="saas">SaaS / Software <span class="check"></span></button>
+      <button class="option" data-value="ecom">Ecommerce / Subscription box <span class="check"></span></button>
+      <button class="option" data-value="other">Membership / Other <span class="check"></span></button>
+    </div>
+  </section>
 
-    // ---------- Step definitions ----------
-    // type: 'landing' | 'question' | 'interstitial' | 'email' | 'results'
-    const steps = [
-      { type: 'landing' },
-      {
-        type: 'question', id: 'business',
-        title: 'What type of business do you run?',
-        options: [
-          { value: 'shopify', label: 'Shopify subscriptions' },
-          { value: 'saas', label: 'SaaS' },
-          { value: 'membership', label: 'Membership / content subscription' },
-          { value: 'other', label: 'Other' },
-        ],
-      },
-      {
-        type: 'question', id: 'churn',
-        title: 'What is your monthly churn volume?',
-        subtitle: 'Subscribers who start the cancel flow each month.',
-        options: [
-          { value: '<100', label: 'Fewer than 100 cancels' },
-          { value: '100-1000', label: '100 – 1,000 cancels' },
-          { value: '1000-10000', label: '1,000 – 10,000 cancels' },
-          { value: '10000+', label: '10,000+ cancels' },
-        ],
-      },
-      {
-        type: 'question', id: 'testing',
-        title: 'How many offers are you currently testing?',
-        options: [
-          { value: '0', label: 'None — we just let people cancel' },
-          { value: '1-2', label: '1 – 2 offers' },
-          { value: '3-5', label: '3 – 5 offers' },
-          { value: '5+', label: '5+ offers' },
-        ],
-      },
-      {
-        type: 'interstitial',
-        badge: 'Benchmark',
-        title: 'Most retention strategies plateau after 1 – 2 offers',
-        body: 'We analyzed <em>4.8 million subscription offers</em>. The biggest insight: static offers stop working faster than teams can test them.',
-      },
-      {
-        type: 'question', id: 'reason',
-        title: 'What\u2019s the #1 reason your customers cancel?',
-        options: [
-          { value: 'expensive', label: 'Too expensive' },
-          { value: 'not_using', label: 'Not using enough' },
-          { value: 'break', label: 'Temporary break needed' },
-          { value: 'alternative', label: 'Found an alternative' },
-          { value: 'features', label: 'Missing features' },
-          { value: 'dissatisfaction', label: 'Dissatisfaction with product' },
-          { value: 'other', label: 'Other' },
-        ],
-      },
-      {
-        type: 'question', id: 'today',
-        title: 'What happens when someone tries to cancel today?',
-        options: [
-          { value: 'immediate', label: 'They cancel immediately — no offers' },
-          { value: 'basic', label: 'We show a basic discount' },
-          { value: 'multiple', label: 'We show multiple offers' },
-          { value: 'notsure', label: 'Honestly, not sure' },
-        ],
-      },
-      {
-        type: 'question', id: 'willing', multi: true,
-        title: 'What are you willing to offer?',
-        subtitle: 'Select all that apply.',
-        options: [
-          { value: 'discounts', label: 'Discounts' },
-          { value: 'pauses', label: 'Pauses' },
-          { value: 'downgrades', label: 'Downgrades / plan switches' },
-          { value: 'all', label: 'All of the above', exclusive: true },
-        ],
-      },
-      {
-        type: 'question', id: 'sensitivity',
-        title: 'How sensitive are you to discounting?',
-        options: [
-          { value: 'very', label: 'Very — we have tight margins' },
-          { value: 'moderate', label: 'Moderate' },
-          { value: 'flexible', label: 'Flexible — we\u2019ll trade margin for retention' },
-        ],
-      },
-      {
-        type: 'interstitial',
-        badge: 'Introducing',
-        title: 'Meet your Retention Agent',
-        body: 'Instead of manually testing offers, Retention Agent:',
-        features: [
-          'Generates new offers automatically',
-          'Personalizes them based on cancellation intent',
-          'Improves performance every week',
-        ],
-      },
-      {
-        type: 'question', id: 'platform', dynamic: true,
-        title: 'What is your subscription platform?',
-        // options generated dynamically based on business type
-      },
-      {
-        type: 'question', id: 'importance',
-        title: 'How important is reducing churn right now?',
-        options: [
-          { value: 'critical', label: 'Critical — it\u2019s a top priority' },
-          { value: 'important', label: 'Important but not urgent' },
-          { value: 'exploring', label: 'Just exploring options' },
-        ],
-      },
-      {
-        type: 'interstitial', testimonial: true,
-        badge: 'Social proof',
-        title: 'High-growth teams are already using this',
-        quote: 'We replaced manual A/B testing entirely. Retention Agent keeps improving our offers automatically.',
-        author: 'Ciara Meenan',
-        authorRole: 'Senior Product Manager at SimplyCook',
-        stats: [
-          { value: 'Up to 39%', label: 'of canceling subscribers saved' },
-          { value: '$4M+', label: 'revenue recovered' },
-          { value: '129%', label: 'increase in offer acceptance' },
-        ],
-      },
-      { type: 'email' },
-      { type: 'results' },
-    ];
+  <!-- Step 2: MRR -->
+  <section class="step" data-step="2">
+    <h2>What's your average MRR per subscriber?</h2>
+    <p class="step-hint">Pick the band closest to your average revenue per subscriber.</p>
+    <div class="options" data-group="mrr">
+      <button class="option" data-value="0-9">$0 – $9 <span class="check"></span></button>
+      <button class="option" data-value="10-24">$10 – $24 <span class="check"></span></button>
+      <button class="option" data-value="25-49">$25 – $49 <span class="check"></span></button>
+      <button class="option" data-value="50-99">$50 – $99 <span class="check"></span></button>
+      <button class="option" data-value="100-249">$100 – $249 <span class="check"></span></button>
+      <button class="option" data-value="250+">$250+ <span class="check"></span></button>
+    </div>
+    <div class="btn-row">
+      <button class="btn-secondary" data-back>← Back</button>
+    </div>
+  </section>
 
-    // Dynamic platform options
-    const platformOptions = {
-      saas: [
-        { value: 'stripe', label: 'Stripe' },
-        { value: 'chargebee', label: 'Chargebee' },
-        { value: 'recurly', label: 'Recurly' },
-        { value: 'braintree', label: 'Braintree' },
-        { value: 'paddle', label: 'Paddle' },
-        { value: 'other', label: 'Other', freeText: true },
-      ],
-      shopify: [
-        { value: 'recharge', label: 'Recharge' },
-        { value: 'bold', label: 'Bold' },
-        { value: 'stayai', label: 'StayAI' },
-        { value: 'ordergroove', label: 'Ordergroove' },
-        { value: 'maxio', label: 'Maxio' },
-        { value: 'openpay', label: 'OpenPay' },
-        { value: 'naviga', label: 'Naviga' },
-        { value: 'recurlyc', label: 'Recurly Commerce' },
-        { value: 'other', label: 'Other', freeText: true },
-      ],
-      membership: [
-        { value: 'stripe', label: 'Stripe' },
-        { value: 'memberful', label: 'Memberful' },
-        { value: 'patreon', label: 'Patreon' },
-        { value: 'substack', label: 'Substack' },
-        { value: 'other', label: 'Other', freeText: true },
-      ],
-      other: [
-        { value: 'stripe', label: 'Stripe' },
-        { value: 'chargebee', label: 'Chargebee' },
-        { value: 'recurly', label: 'Recurly' },
-        { value: 'recharge', label: 'Recharge' },
-        { value: 'other', label: 'Other', freeText: true },
-      ],
-    };
+  <!-- Step 3: Cancel volume -->
+  <section class="step" data-step="3">
+    <h2>How many subscribers cancel each month?</h2>
+    <p class="step-hint">A rough monthly average is fine — we use this to size the opportunity.</p>
+    <div class="number-row">
+      <input class="number-input" type="number" id="cancelVolume" placeholder="e.g., 500" min="1">
+    </div>
+    <div class="btn-row">
+      <button class="btn-secondary" data-back>← Back</button>
+      <button class="btn-primary" id="seeResults" disabled>See my playbook →</button>
+    </div>
+  </section>
 
-    // ---------- Helpers: track question numbering for progress ----------
-    const questionIndexes = steps
-      .map((s, i) => s.type === 'question' ? i : null)
-      .filter(v => v !== null);
-    const totalQuestions = questionIndexes.length;
+  <!-- Step 4: Results -->
+  <section class="step" data-step="4">
+    <div class="summary-row" id="summaryRow"></div>
 
-    function currentQuestionNumber() {
-      const idx = questionIndexes.indexOf(state.stepIndex);
-      return idx >= 0 ? idx + 1 : null;
+    <div class="impact-card">
+      <div class="impact-label-top">Estimated monthly revenue retained</div>
+      <div class="impact-amount" id="impactAmount">$0</div>
+      <div class="impact-period">with the right offer mix</div>
+      <div class="impact-annual" id="impactAnnual">~$0 annualized</div>
+      <div class="impact-math" id="impactMath"></div>
+    </div>
+
+    <div class="results-section">
+      <h3 class="results-section-title">Your offers, by cancel reason</h3>
+      <div class="offer-grid" id="offerGrid"></div>
+    </div>
+
+    <div class="footnote">
+      <strong>How we calculated this.</strong> Save rates are blended averages from ProsperStack's 2026 retention cohort, segmented by industry and MRR band. Recommended offers come from the cancel-reason × offer × 90-day revenue-durability cross-tab in our 2026 State of Retention analysis. Your actual results will depend on your offer copy, who you target, and how broadly you deploy each offer.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-secondary" data-restart>Start over</button>
+      <a class="btn-primary" href="https://prosperstack.com/get-started/" style="text-decoration:none;display:inline-flex;align-items:center;">Build these offers in ProsperStack →</a>
+    </div>
+  </section>
+</main>
+
+<script>
+// ---------- Save-rate matrix (industry x MRR band) ----------
+const SAVE_RATES = {
+  saas:  { '0-9': 0.105, '10-24': 0.095, '25-49': 0.090, '50-99': 0.085, '100-249': 0.075, '250+': 0.060 },
+  ecom:  { '0-9': 0.070, '10-24': 0.068, '25-49': 0.065, '50-99': 0.060, '100-249': 0.055, '250+': 0.050 },
+  other: { '0-9': 0.085, '10-24': 0.080, '25-49': 0.075, '50-99': 0.070, '100-249': 0.065, '250+': 0.055 }
+};
+
+const MRR_MIDPOINT = {
+  '0-9': 5, '10-24': 17, '25-49': 37, '50-99': 75, '100-249': 175, '250+': 350
+};
+
+const MRR_LABEL = {
+  '0-9': '$0–$9', '10-24': '$10–$24', '25-49': '$25–$49',
+  '50-99': '$50–$99', '100-249': '$100–$249', '250+': '$250+'
+};
+
+const INDUSTRY_LABEL = { saas: 'SaaS', ecom: 'Ecommerce', other: 'Membership / Other' };
+
+// Discount tier helper — bigger checks on bigger plans
+function discountTier(mrr) {
+  if (['0-9','10-24'].includes(mrr)) return '20%';
+  if (mrr === '25-49') return '25%';
+  if (mrr === '50-99') return '30%';
+  if (mrr === '100-249') return '40%';
+  return '50%';
+}
+function pauseDuration(mrr) {
+  if (['0-9','10-24'].includes(mrr)) return '30-day pause';
+  if (['25-49','50-99'].includes(mrr)) return '60-day pause';
+  return '90-day pause';
+}
+function pauseDurationLong(mrr) {
+  // One tier longer than pauseDuration — used for "Temporary" reason
+  if (['0-9','10-24'].includes(mrr)) return '60-day pause';
+  if (['25-49','50-99'].includes(mrr)) return '90-day pause';
+  return '120-day pause';
+}
+
+// ---------- Offer playbook ----------
+// Each function returns the recommendation for the given MRR band.
+const PLAYBOOK = {
+  saas: [
+    {
+      reason: 'Too expensive',
+      type: 'Discount',
+      offer: (mrr) => `${discountTier(mrr)} off for 3 months`,
+      rationale: 'Discounts convert price-sensitive cancellers in SaaS where COGS is low. Bigger plans tolerate bigger discounts because each save is more valuable.'
+    },
+    {
+      reason: 'Not using it / no value yet',
+      type: 'Pause',
+      offer: (mrr) => pauseDuration(mrr),
+      rationale: 'Most "not using" cancellers come back if you give them breathing room. Pause beats discount here — they don\'t need a deal, they need time.'
+    },
+    {
+      reason: 'Temporary need / I\'ll be back',
+      type: 'Pause',
+      offer: (mrr) => pauseDurationLong(mrr),
+      rationale: 'Highest-acceptance offer in the entire SaaS playbook (>20% accept). Cheap to deploy, often results in full resumption.'
+    },
+    {
+      reason: 'Switching to competitor',
+      type: 'Discount',
+      offer: (mrr) => `${discountTier(mrr)} off for 3 months + concierge call`,
+      rationale: 'These cancellers have already chosen another tool — discount creates a tiebreaker moment. Bigger plans warrant a human in the loop.'
+    },
+    {
+      reason: 'In a free trial, didn\'t see value',
+      type: 'Trial',
+      offer: (mrr) => (['100-249','250+'].includes(mrr) ? '21-day trial extension + onboarding session' : '14-day trial extension'),
+      rationale: 'Trial cancellers haven\'t paid yet — a discount is the wrong signal. More time + a nudge to the aha moment is what they need.'
     }
-
-    function updateChrome() {
-      const s = steps[state.stepIndex];
-      const wrap = document.getElementById('progress-wrap');
-      const bar = document.getElementById('progress-bar');
-      const text = document.getElementById('progress-text');
-      const back = document.getElementById('back-btn');
-      // Show chrome only once we're past landing and before final results
-      const showChrome = s.type !== 'landing' && s.type !== 'results';
-      wrap.style.display = showChrome ? 'flex' : 'none';
-      // Base progress: count completed "real" steps (questions + interstitials + email) before the final results
-      const progressDenom = steps.length - 2; // exclude landing + results
-      const progressNum = Math.max(0, Math.min(state.stepIndex - 1, progressDenom));
-      const pct = (progressNum / progressDenom) * 100;
-      bar.style.width = pct + '%';
-      const qn = currentQuestionNumber();
-      if (qn !== null) {
-        text.textContent = `${qn} / ${totalQuestions}`;
-      } else if (s.type === 'interstitial') {
-        text.textContent = '···';
-      } else if (s.type === 'email') {
-        text.textContent = 'Almost done';
-      } else {
-        text.textContent = '';
-      }
-      back.disabled = state.stepIndex <= 1;
+  ],
+  ecom: [
+    {
+      reason: 'I have too much product / surplus',
+      type: 'Skip',
+      offer: () => 'Skip next 1–2 shipments',
+      rationale: 'Surplus cancellers don\'t want more product cheaper — they want it later. Skip beats every other offer for this reason.'
+    },
+    {
+      reason: 'Temporary (I\'ll be back)',
+      type: 'Pause',
+      offer: (mrr) => (['100-249','250+'].includes(mrr) ? '90-day pause' : '60-day pause'),
+      rationale: 'Median time to resume in ecom is ~5 months, so generous pause windows pay off. The 90-day window most reports use understates pause by 4–6x.'
+    },
+    {
+      reason: 'Too expensive',
+      type: 'Pause',
+      offer: (mrr) => `60-day pause (or ${discountTier(mrr)} off as fallback)`,
+      rationale: 'In ecom, pause beats discount on $/offer-presented for price-sensitive cancellers — higher acceptance, no margin sacrifice. Hold discount in reserve for those who decline pause.'
+    },
+    {
+      reason: 'Don\'t like the product / taste',
+      type: 'Custom',
+      offer: (mrr) => (['0-9','10-24','25-49'].includes(mrr) ? 'Free swap to another product' : `Free swap + ${discountTier(mrr)} off next shipment`),
+      rationale: 'These cancellers like the brand, not the SKU. A swap retains them at full price; adding a discount on bigger orders softens the friction.'
+    },
+    {
+      reason: 'Already buying elsewhere',
+      type: 'Discount',
+      offer: (mrr) => `${discountTier(mrr)} off + free shipping`,
+      rationale: 'You\'re competing on price + convenience. Free shipping closes the Amazon gap; discount answers the price gap.'
     }
-
-    // ---------- Render ----------
-    const root = document.getElementById('root');
-
-    function render() {
-      updateChrome();
-      const s = steps[state.stepIndex];
-      root.innerHTML = '';
-      const container = document.createElement('div');
-      container.className = 'step';
-      container.key = state.stepIndex; // for animation reset
-
-      if (s.type === 'landing') renderLanding(container);
-      else if (s.type === 'question') renderQuestion(container, s);
-      else if (s.type === 'interstitial') renderInterstitial(container, s);
-      else if (s.type === 'email') renderEmail(container);
-      else if (s.type === 'results') renderResults(container);
-
-      root.appendChild(container);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  ],
+  other: [
+    {
+      reason: 'Too expensive',
+      type: 'Discount',
+      offer: (mrr) => `${discountTier(mrr)} off for 3 months`,
+      rationale: 'Discount is the most universal lever for price objections. Size to the customer\'s revenue value.'
+    },
+    {
+      reason: 'Not using it',
+      type: 'Pause',
+      offer: (mrr) => pauseDuration(mrr),
+      rationale: 'Pause lets disengaged members return without re-signing up. Cheaper than re-acquisition, almost always.'
+    },
+    {
+      reason: 'Temporary',
+      type: 'Pause',
+      offer: () => '60-day pause',
+      rationale: 'Top-converting offer across every subscription category for "I\'ll be back" cancellers.'
+    },
+    {
+      reason: 'Switching to a competitor',
+      type: 'Discount',
+      offer: (mrr) => `${discountTier(mrr)} off for 3 months`,
+      rationale: 'Lock in the price advantage long enough to re-establish habit.'
     }
+  ]
+};
 
-    function renderLanding(c) {
-      c.innerHTML = `
-        <div class="hero">
-          <h1>Your best-performing offer <span class="accent">probably doesn\u2019t exist yet.</span> Let\u2019s find it.</h1>
-          <p class="hero__body">Answer a few questions. We\u2019ll generate your highest-converting retention strategy instantly.</p>
-          <button class="btn btn--primary btn--large" id="start-btn">
-            Get Started <span class="btn__arrow">→</span>
-          </button>
-        </div>
-      `;
-      c.querySelector('#start-btn').onclick = next;
-    }
+// ---------- State ----------
+const state = { industry: null, mrr: null, cancelVolume: null, step: 1 };
 
-    function renderQuestion(c, s) {
-      // Resolve dynamic options
-      let options = s.options;
-      if (s.dynamic && s.id === 'platform') {
-        const biz = state.answers.business || 'other';
-        options = platformOptions[biz];
-      }
-      const isMulti = !!s.multi;
-      const currentValue = state.answers[s.id];
-      const qn = currentQuestionNumber();
-      c.innerHTML = `
-        <div class="q">
-          <div class="q__number">Question ${qn} of ${totalQuestions}</div>
-          <h1 class="q__title">${s.title}</h1>
-          ${s.subtitle ? `<div class="q__subtitle">${s.subtitle}</div>` : ''}
-          ${isMulti ? `<div class="multi-hint">Select all that apply. Tap again to deselect.</div>` : ''}
-          <div class="options" id="options"></div>
-          <input type="text" class="text-input" id="free-text" placeholder="Tell us which one..." />
-          <div class="actions">
-            <span></span>
-            <button class="btn btn--primary" id="next-btn" disabled>Continue <span class="btn__arrow">→</span></button>
-          </div>
-        </div>
-      `;
-      const optionsEl = c.querySelector('#options');
-      const freeText = c.querySelector('#free-text');
-      const nextBtn = c.querySelector('#next-btn');
+// ---------- Navigation ----------
+function goTo(step) {
+  state.step = step;
+  document.querySelectorAll('.step').forEach(s => s.classList.toggle('active', +s.dataset.step === step));
+  document.querySelectorAll('.progress-step').forEach(p => p.classList.toggle('done', +p.dataset.progress <= step));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-      options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'option' + (isMulti ? ' option--multi' : '');
-        const keyLabel = isMulti ? '' : String.fromCharCode(65 + idx);
-        btn.innerHTML = `<span class="option__key">${keyLabel}</span><span class="option__label">${opt.label}</span>`;
-        // Set selected state
-        if (isMulti) {
-          const arr = Array.isArray(currentValue) ? currentValue : [];
-          if (arr.includes(opt.value)) btn.classList.add('selected');
-        } else {
-          if (currentValue === opt.value) btn.classList.add('selected');
-        }
-        btn.onclick = () => handleOptionClick(s, opt, options, optionsEl, freeText, nextBtn);
-        optionsEl.appendChild(btn);
-      });
-
-      // Show free-text field if needed (for 'other' already selected)
-      updateFreeTextVisibility(s, options, freeText);
-      updateNextEnabled(s, nextBtn);
-
-      freeText.oninput = () => {
-        state.answers[s.id + '_text'] = freeText.value;
-        updateNextEnabled(s, nextBtn);
-      };
-      freeText.value = state.answers[s.id + '_text'] || '';
-
-      nextBtn.onclick = () => { if (!nextBtn.disabled) next(); };
-    }
-
-    function handleOptionClick(s, opt, options, optionsEl, freeText, nextBtn) {
-      if (s.multi) {
-        let arr = Array.isArray(state.answers[s.id]) ? [...state.answers[s.id]] : [];
-        // Handle exclusive (e.g. "All of the above")
-        if (opt.exclusive) {
-          arr = arr.includes(opt.value) ? [] : [opt.value];
-        } else {
-          // Remove any exclusive items
-          arr = arr.filter(v => !options.find(o => o.value === v && o.exclusive));
-          if (arr.includes(opt.value)) arr = arr.filter(v => v !== opt.value);
-          else arr.push(opt.value);
-        }
-        state.answers[s.id] = arr;
-      } else {
-        state.answers[s.id] = opt.value;
-      }
-      // Re-render option selected states
-      optionsEl.querySelectorAll('.option').forEach((el, i) => {
-        const o = options[i];
-        let sel = false;
-        if (s.multi) {
-          sel = (state.answers[s.id] || []).includes(o.value);
-        } else {
-          sel = state.answers[s.id] === o.value;
-        }
-        el.classList.toggle('selected', sel);
-      });
-      updateFreeTextVisibility(s, options, freeText);
-      updateNextEnabled(s, nextBtn);
-      // Auto-advance for single-select (small delay for visual feedback), unless 'other' requires free text
-      if (!s.multi) {
-        const selectedOpt = options.find(o => o.value === state.answers[s.id]);
-        if (!selectedOpt?.freeText && opt.value !== 'other') {
-          setTimeout(() => next(), 280);
-        }
-      }
-    }
-
-    function updateFreeTextVisibility(s, options, freeText) {
-      const val = state.answers[s.id];
-      let show = false;
-      if (s.multi) {
-        show = (Array.isArray(val) ? val : []).some(v => {
-          const o = options.find(x => x.value === v);
-          return o?.freeText;
-        });
-      } else {
-        const o = options.find(x => x.value === val);
-        show = !!o?.freeText;
-      }
-      freeText.classList.toggle('visible', show);
-    }
-
-    function updateNextEnabled(s, nextBtn) {
-      const val = state.answers[s.id];
-      let ok = false;
-      if (s.multi) ok = Array.isArray(val) && val.length > 0;
-      else ok = !!val;
-      // If free text is required, ensure it's filled
-      const options = s.dynamic ? platformOptions[state.answers.business || 'other'] : s.options;
-      const freeTextRequired = (() => {
-        if (!ok) return false;
-        if (s.multi) {
-          return (Array.isArray(val) ? val : []).some(v => {
-            const o = options.find(x => x.value === v);
-            return o?.freeText;
-          });
-        } else {
-          const o = options.find(x => x.value === val);
-          return !!o?.freeText;
-        }
-      })();
-      if (freeTextRequired) {
-        const t = state.answers[s.id + '_text'] || '';
-        ok = ok && t.trim().length > 0;
-      }
-      nextBtn.disabled = !ok;
-    }
-
-    function renderInterstitial(c, s) {
-      if (s.testimonial) {
-        c.innerHTML = `
-          <div class="interstitial">
-            <div class="interstitial__badge">${s.badge}</div>
-            <h2>${s.title}</h2>
-            <div class="testimonial">
-              <div class="testimonial__mark">"</div>
-              <div class="testimonial__quote">${s.quote}</div>
-              <div class="testimonial__author"><strong>${s.author}</strong> · ${s.authorRole}</div>
-            </div>
-            <div class="stats">
-              ${s.stats.map(st => `<div class="stats__item"><div class="stats__value">${st.value}</div><div class="stats__label">${st.label}</div></div>`).join('')}
-            </div>
-            <div class="actions actions--center">
-              <button class="btn btn--primary" id="int-next">Keep going <span class="btn__arrow">→</span></button>
-            </div>
-          </div>
-        `;
-      } else {
-        c.innerHTML = `
-          <div class="interstitial">
-            <div class="interstitial__badge">${s.badge}</div>
-            <h2>${s.title}</h2>
-            <p>${s.body}</p>
-            ${s.features ? `<ul class="feature-list">${s.features.map(f => `<li>${f}</li>`).join('')}</ul>` : ''}
-            <div class="actions actions--center" style="margin-top:36px">
-              <button class="btn btn--primary" id="int-next">Keep going <span class="btn__arrow">→</span></button>
-            </div>
-          </div>
-        `;
-      }
-      c.querySelector('#int-next').onclick = next;
-    }
-
-    function renderEmail(c) {
-      c.innerHTML = `
-        <div class="email-step">
-          <h2>Where should we send your retention plan?</h2>
-          <p class="sub">We\u2019ve generated <strong>6 new offers</strong> based on your answers. Enter your email to unlock them.</p>
-          <div class="unlock-card">
-            <div class="unlock-label">6 offers ready</div>
-            <div class="blurred-offers">
-              <div class="fake-offer">Pause subscription for 1 – 2 months</div>
-              <div class="fake-offer">15% off next 3 months, then resume</div>
-              <div class="fake-offer">Switch to quarterly billing, save 20%</div>
-              <div class="fake-offer">Free month + onboarding check-in</div>
-              <div class="fake-offer">Downgrade to lite plan, keep core features</div>
-              <div class="fake-offer">Loyalty bonus: unlock 2 premium features</div>
-            </div>
-          </div>
-          <form class="email-form" id="email-form" novalidate>
-            <input type="email" class="email-input" id="email" placeholder="you@company.com" autocomplete="email" required />
-            <div class="email-error" id="email-error">Please enter a valid email address.</div>
-            <button class="btn btn--primary btn--large" type="submit">Reveal my retention plan <span class="btn__arrow">→</span></button>
-            <div class="email-privacy">No spam. We\u2019ll only use this to send your plan and a single follow-up.</div>
-          </form>
-        </div>
-      `;
-      const form = c.querySelector('#email-form');
-      const email = c.querySelector('#email');
-      const err = c.querySelector('#email-error');
-      email.value = state.answers.email || '';
-      form.onsubmit = (e) => {
-        e.preventDefault();
-        const v = email.value.trim();
-        const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-        if (!valid) { err.classList.add('show'); return; }
-        err.classList.remove('show');
-        state.answers.email = v;
-        // Persist to localStorage for the prototype (same-page, not shared)
-        try {
-          const stored = JSON.parse(localStorage.getItem('ps_quiz_submissions') || '[]');
-          stored.push({ ts: new Date().toISOString(), answers: state.answers });
-          localStorage.setItem('ps_quiz_submissions', JSON.stringify(stored));
-        } catch (_) {}
-        next();
-      };
-    }
-
-    // ---------- Results generation ----------
-    function generateResults(a) {
-      // 1) Lost-save headline range based on current setup
-      const todayMap = {
-        immediate: { lo: 38, hi: 52 },
-        basic:     { lo: 28, hi: 42 },
-        multiple:  { lo: 16, hi: 26 },
-        notsure:   { lo: 30, hi: 45 },
-      };
-      const headlineRange = todayMap[a.today] || todayMap.notsure;
-
-      // 2) Monthly cancels midpoint (geometric-ish midpoints feel more honest)
-      const churnMid = {
-        '<100': 50,
-        '100-1000': 500,
-        '1000-10000': 3000,
-        '10000+': 15000,
-      }[a.churn] || 500;
-
-      // 3) ARPU-ish per-cancel save range ($9 – $21 based on spec's 2000 → $18-42k)
-      // Extra factor from importance/sensitivity: flexible → slightly higher
-      let loPer = 9, hiPer = 21;
-      if (a.sensitivity === 'flexible') { loPer = 10; hiPer = 24; }
-      if (a.sensitivity === 'very') { loPer = 7; hiPer = 16; }
-      const rawLo = churnMid * loPer;
-      const rawHi = churnMid * hiPer;
-      // Nice rounding: nearest 100 for <10k, nearest 1k for 10k-100k, nearest 10k beyond
-      function roundNice(n) {
-        if (n < 10_000) return Math.round(n/100)*100;
-        if (n < 100_000) return Math.round(n/1000)*1000;
-        return Math.round(n/10000)*10000;
-      }
-      const lo = roundNice(rawLo);
-      const hi = roundNice(rawHi);
-      const impactText = `$${fmt(lo)} – $${fmt(hi)}/month`;
-
-      // 4) Snapshot recommendations (3-4)
-      const snapshot = [];
-      if (a.reason === 'break' || a.reason === 'not_using') {
-        snapshot.push(`Prioritize <strong>pause over discount</strong> for "temporary break" users — this alone recovers 18 – 26% more revenue than a flat discount.`);
-      } else if (a.reason === 'expensive') {
-        snapshot.push(`Trigger <strong>escalating offers (10% → 20%)</strong> based on intent signals — price-sensitive users respond 2.3× better to staged offers than a single upfront discount.`);
-      } else if (a.reason === 'alternative') {
-        snapshot.push(`Lead with a <strong>loyalty lock-in</strong> (annual plan + bonus) instead of a discount — users leaving for competitors convert 34% better on long-term value than price cuts.`);
-      } else if (a.reason === 'features') {
-        snapshot.push(`Preview <strong>upcoming features + unlock beta access</strong> before offering a discount — retention lifts 22% without margin loss.`);
-      } else {
-        snapshot.push(`Use <strong>dynamic offer sequencing</strong> — different offers to different users based on their cancel reason, not static A/B tests.`);
-      }
-
-      if (a.today === 'immediate') {
-        snapshot.push(`Add a <strong>save flow</strong> between "Cancel" and confirmation — 22 – 38% of would-be cancels stay with the right offer.`);
-      } else if (a.today === 'basic') {
-        snapshot.push(`Replace your single discount with a <strong>decision tree</strong> by cancel reason. Teams doing this see +41% save rate on average.`);
-      } else if (a.today === 'multiple') {
-        snapshot.push(`Move from static A/B tests to <strong>dynamic offer sequencing</strong> — Retention Agent compounds by auto-retiring underperformers.`);
-      } else {
-        snapshot.push(`Instrument your cancel flow first so you can see which offers convert. You can\u2019t optimize what you can\u2019t measure.`);
-      }
-
-      const willing = Array.isArray(a.willing) ? a.willing : [];
-      if (a.testing === '0' || a.testing === '1-2') {
-        snapshot.push(`You\u2019re under-testing. Teams running <strong>5+ concurrent offers</strong> capture 2.1× more revenue than teams running 0 – 2.`);
-      }
-      if (a.sensitivity === 'very' && !willing.includes('pauses')) {
-        snapshot.push(`Your margins are tight but you\u2019re not offering <strong>pauses</strong> — this is the highest-ROI non-discount lever for your setup.`);
-      }
-
-      // 5) Example offers — tuned to 'willing' and reason
-      const offers = [];
-      const hasAll = willing.includes('all');
-      const hasDisc = hasAll || willing.includes('discounts');
-      const hasPause = hasAll || willing.includes('pauses');
-      const hasDown = hasAll || willing.includes('downgrades');
-
-      if (hasPause && (a.reason === 'break' || a.reason === 'not_using')) {
-        offers.push('"Skip 1 month, keep your perks"');
-      }
-      if (hasDisc && a.reason === 'expensive') {
-        offers.push(a.sensitivity === 'very' ? '"Stay & save 10% for 2 months"' : '"Stay & save 15% for 3 months"');
-      }
-      if (hasDown) {
-        offers.push('"Switch to quarterly & save 20%"');
-      }
-      if (hasPause && offers.length < 3) {
-        offers.push('"Pause for up to 60 days — pick up where you left off"');
-      }
-      if (hasDisc && offers.length < 3) {
-        offers.push('"Escalating offer: 10% → 20% based on intent"');
-      }
-      if (!hasDisc && !hasPause && !hasDown) {
-        offers.push('"Unlock premium features for 30 days — no discount"');
-        offers.push('"Personal onboarding session with our team"');
-        offers.push('"Annual upgrade: get 2 months free + priority support"');
-      }
-      while (offers.length < 3) offers.push('"Dynamic offer tailored by cancellation intent"');
-
-      return {
-        headlineRange,
-        snapshot: snapshot.slice(0, 4),
-        offers: offers.slice(0, 3),
-        impactText,
-        churnMid,
-      };
-    }
-
-    function fmt(n) {
-      if (n >= 1_000_000) return (n/1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1) + 'M';
-      if (n >= 10_000) return (n/1_000).toFixed(0) + 'K';
-      if (n >= 1_000) return (n/1_000).toFixed(1).replace(/\.0$/,'') + 'K';
-      return n.toLocaleString();
-    }
-
-    function renderResults(c) {
-      const a = state.answers;
-      const r = generateResults(a);
-      c.innerHTML = `
-        <div class="results-hero">
-          <div class="results-hero__eyebrow">Your retention plan</div>
-          <h1>You\u2019re likely losing <span style="color:var(--blue)">${r.headlineRange.lo}–${r.headlineRange.hi}%</span> of save opportunities.</h1>
-          <div class="sub">Based on your setup, your current offers are under-performing. Here\u2019s what your Retention Agent would do differently.</div>
-        </div>
-
-        <div class="results-section">
-          <h3>Snapshot — what changes first</h3>
-          <ul class="snapshot-list">
-            ${r.snapshot.map(s => `<li><span>${s}</span></li>`).join('')}
-          </ul>
-        </div>
-
-        <div class="results-section">
-          <h3>Example offers we\u2019d generate for you</h3>
-          <div class="offer-chips">
-            ${r.offers.map(o => `<div class="offer-chip">${o}</div>`).join('')}
-          </div>
-        </div>
-
-        <div class="impact">
-          <div class="impact__label">Estimated monthly impact</div>
-          <div class="impact__value">${r.impactText}</div>
-          <div class="impact__sub">Based on your volume (~${fmt(r.churnMid)} cancels/month) and Retention Agent benchmarks.</div>
-        </div>
-
-        <div class="results-cta">
-          <a class="btn btn--primary btn--large" href="https://prosperstack.com/" target="_blank" rel="noopener">
-            Turn this into live offers with Retention Agent <span class="btn__arrow">→</span>
-          </a>
-          <div class="tiny">We\u2019ll also send this plan to <strong>${(a.email||'').replace(/</g,'&lt;')}</strong>.</div>
-          <button class="back-btn" id="restart" style="margin-top:20px">↺ Retake the quiz</button>
-        </div>
-      `;
-      c.querySelector('#restart').onclick = () => {
-        state.stepIndex = 0;
-        state.answers = {};
-        render();
-      };
-    }
-
-    // ---------- Navigation ----------
-    function next() {
-      if (state.stepIndex < steps.length - 1) {
-        state.stepIndex++;
-        render();
-      }
-    }
-    function back() {
-      if (state.stepIndex > 0) {
-        state.stepIndex--;
-        render();
-      }
-    }
-    document.getElementById('back-btn').onclick = back;
-
-    // Keyboard shortcuts: number keys for single-select options, Enter to continue
-    document.addEventListener('keydown', (e) => {
-      const s = steps[state.stepIndex];
-      if (s.type === 'question' && !s.multi) {
-        const options = s.dynamic ? platformOptions[state.answers.business || 'other'] : s.options;
-        const keyIdx = parseInt(e.key, 10);
-        if (keyIdx >= 1 && keyIdx <= options.length) {
-          const btns = document.querySelectorAll('.option');
-          if (btns[keyIdx - 1]) btns[keyIdx - 1].click();
-        }
-        const letter = e.key.toUpperCase();
-        const letterIdx = letter.charCodeAt(0) - 65;
-        if (letterIdx >= 0 && letterIdx < options.length && /^[A-Z]$/.test(letter)) {
-          const btns = document.querySelectorAll('.option');
-          if (btns[letterIdx]) btns[letterIdx].click();
-        }
-      }
-      if (e.key === 'Enter') {
-        const nb = document.getElementById('next-btn') || document.getElementById('int-next') || document.getElementById('start-btn');
-        if (nb && !nb.disabled) nb.click();
-      }
+// Option selection
+document.querySelectorAll('.options').forEach(group => {
+  group.querySelectorAll('.option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      group.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      const groupName = group.dataset.group;
+      state[groupName] = opt.dataset.value;
+      // Auto-advance from industry & mrr
+      setTimeout(() => {
+        if (groupName === 'industry') goTo(2);
+        else if (groupName === 'mrr') goTo(3);
+      }, 200);
     });
+  });
+});
 
-    // Initial render
-    render();
-  </script>
+// Back buttons
+document.querySelectorAll('[data-back]').forEach(b => {
+  b.addEventListener('click', () => goTo(state.step - 1));
+});
+
+// Cancel volume input
+const volInput = document.getElementById('cancelVolume');
+const seeBtn = document.getElementById('seeResults');
+volInput.addEventListener('input', () => {
+  const v = parseInt(volInput.value, 10);
+  state.cancelVolume = Number.isFinite(v) && v > 0 ? v : null;
+  seeBtn.disabled = !state.cancelVolume;
+});
+volInput.addEventListener('keydown', e => { if (e.key === 'Enter' && state.cancelVolume) seeBtn.click(); });
+seeBtn.addEventListener('click', () => { render(); goTo(4); });
+
+// Restart
+document.querySelectorAll('[data-restart]').forEach(b => {
+  b.addEventListener('click', () => {
+    state.industry = null; state.mrr = null; state.cancelVolume = null;
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    volInput.value = ''; seeBtn.disabled = true;
+    goTo(1);
+  });
+});
+
+// ---------- Rendering ----------
+function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+function render() {
+  const { industry, mrr, cancelVolume } = state;
+  const saveRate = SAVE_RATES[industry][mrr];
+  const mrrValue = MRR_MIDPOINT[mrr];
+  const saves = cancelVolume * saveRate;
+  const monthly = saves * mrrValue;
+  const annual = monthly * 12;
+
+  // Summary pills
+  document.getElementById('summaryRow').innerHTML = `
+    <div class="summary-pill"><strong>${INDUSTRY_LABEL[industry]}</strong></div>
+    <div class="summary-pill"><strong>${MRR_LABEL[mrr]}</strong> MRR</div>
+    <div class="summary-pill"><strong>${cancelVolume.toLocaleString()}</strong> cancels / mo</div>
+  `;
+
+  // Impact card
+  document.getElementById('impactAmount').textContent = fmt(monthly);
+  document.getElementById('impactAnnual').textContent = `~${fmt(annual)} annualized`;
+  document.getElementById('impactMath').innerHTML =
+    `${cancelVolume.toLocaleString()} cancels × ${(saveRate*100).toFixed(1)}% save rate × ${fmt(mrrValue)} avg MRR = <strong>${Math.round(saves).toLocaleString()} saves / mo</strong>`;
+
+  // Offer cards
+  const offers = PLAYBOOK[industry];
+  const grid = document.getElementById('offerGrid');
+  grid.innerHTML = offers.map(o => `
+    <div class="offer-card">
+      <div class="offer-card-top">
+        <div class="offer-reason">${o.reason}</div>
+        <div class="offer-tag ${o.type.toLowerCase()}">${o.type}</div>
+      </div>
+      <p class="offer-recommendation">${o.offer(mrr)}</p>
+      <p class="offer-rationale">${o.rationale}</p>
+    </div>
+  `).join('');
+}
+</script>
 </body>
 </html>
