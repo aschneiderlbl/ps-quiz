@@ -291,6 +291,24 @@
   }
   .footnote strong { color: #0f172a; }
 
+  .ecom-callout {
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+    color: #7c2d12;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .ecom-callout strong { color: #431407; font-weight: 600; }
+  .ecom-callout .callout-title {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #431407;
+  }
+
   @media (max-width: 640px) {
     main { padding: 32px 16px 64px; }
     h1 { font-size: 30px; }
@@ -361,6 +379,11 @@
   <section class="step" data-step="4">
     <div class="summary-row" id="summaryRow"></div>
 
+    <div class="ecom-callout" id="ecomCallout" style="display:none">
+      <span class="callout-title">Why no percentage-discount tiers for ecommerce?</span>
+      Our 2026 cohort data shows non-discount offers (pause, skip, swap, free shipping) generate <strong>6&ndash;13&times; more revenue per offer presented</strong> than any percentage discount band. We've built your playbook around structural offers first, with discount as a fallback only.
+    </div>
+
     <div class="impact-card">
       <div class="impact-label-top">Estimated monthly revenue retained</div>
       <div class="impact-amount" id="impactAmount">$0</div>
@@ -375,7 +398,7 @@
     </div>
 
     <div class="footnote">
-      <strong>How we calculated this.</strong> Save rates are blended averages from ProsperStack's 2026 retention cohort, segmented by industry and MRR band. Recommended offers come from the cancel-reason × offer × 90-day revenue-durability cross-tab in our 2026 State of Retention analysis. Your actual results will depend on your offer copy, who you target, and how broadly you deploy each offer.
+      <strong>How we calculated this.</strong> Save rates are blended averages from ProsperStack's 2026 retention cohort, segmented by industry and MRR band. Recommended offers come from the cancel-reason × offer × 90-day revenue-durability cross-tab in our 2026 State of Retention analysis. The ecommerce playbook reflects a specific finding from that data: non-discount offers (pause, skip, swap, free shipping) generate 6&ndash;13&times; more revenue per offer presented than any percentage-discount tier we measured. Your actual results will depend on your offer copy, who you target, and how broadly you deploy each offer.
     </div>
 
     <div class="btn-row">
@@ -464,31 +487,31 @@ const PLAYBOOK = {
       reason: 'I have too much product / surplus',
       type: 'Skip',
       offer: () => 'Skip next 1–2 shipments',
-      rationale: 'Surplus cancellers don\'t want more product cheaper — they want it later. Skip beats every other offer for this reason.'
+      rationale: 'Surplus cancellers don\'t want more product cheaper — they want it later. Skip beats every other offer for this reason; discounting actively backfires.'
     },
     {
       reason: 'Temporary (I\'ll be back)',
       type: 'Pause',
       offer: (mrr) => (['100-249','250+'].includes(mrr) ? '90-day pause' : '60-day pause'),
-      rationale: 'Median time to resume in ecom is ~5 months, so generous pause windows pay off. The 90-day window most reports use understates pause by 4–6x.'
+      rationale: 'Median time to resume in ecom is ~5 months, so generous pause windows pay off. The 90-day window most reports use understates pause by 4–6×.'
     },
     {
       reason: 'Too expensive',
       type: 'Pause',
-      offer: (mrr) => `60-day pause (or ${discountTier(mrr)} off as fallback)`,
-      rationale: 'In ecom, pause beats discount on $/offer-presented for price-sensitive cancellers — higher acceptance, no margin sacrifice. Hold discount in reserve for those who decline pause.'
+      offer: () => '60-day pause',
+      rationale: 'Counter-intuitive but data-backed: pause outperforms discount for price-sensitive ecom cancellers on every metric — acceptance, save value, and revenue per offer presented. Hold any discount in reserve for those who explicitly reject pause.'
     },
     {
       reason: 'Don\'t like the product / taste',
       type: 'Custom',
-      offer: (mrr) => (['0-9','10-24','25-49'].includes(mrr) ? 'Free swap to another product' : `Free swap + ${discountTier(mrr)} off next shipment`),
-      rationale: 'These cancellers like the brand, not the SKU. A swap retains them at full price; adding a discount on bigger orders softens the friction.'
+      offer: () => 'Free product swap',
+      rationale: 'These cancellers like the brand, not the SKU. A swap retains them at full price — adding a discount on top dilutes margin without lifting save rate.'
     },
     {
       reason: 'Already buying elsewhere',
-      type: 'Discount',
-      offer: (mrr) => `${discountTier(mrr)} off + free shipping`,
-      rationale: 'You\'re competing on price + convenience. Free shipping closes the Amazon gap; discount answers the price gap.'
+      type: 'Custom',
+      offer: () => 'Free shipping + loyalty perk',
+      rationale: 'You\'re competing on convenience as much as price. Free shipping closes the Amazon gap; a loyalty perk (early-access, member pricing) creates a reason to stay that a one-time discount can\'t.'
     }
   ],
   other: [
@@ -590,6 +613,9 @@ function render() {
     <div class="summary-pill"><strong>${MRR_LABEL[mrr]}</strong> MRR</div>
     <div class="summary-pill"><strong>${cancelVolume.toLocaleString()}</strong> cancels / mo</div>
   `;
+
+  // Ecom callout — explain why no discount tiers for ecom
+  document.getElementById('ecomCallout').style.display = (industry === 'ecom') ? 'block' : 'none';
 
   // Impact card
   document.getElementById('impactAmount').textContent = fmt(monthly);
