@@ -432,7 +432,8 @@
         breakdowns &mdash; company size, monthly vs. annual cadence, vertical, ACV band &mdash; are
         out of scope here. We&rsquo;ll publish those separately. Pause-resume data is in aggregate too;
         pause-length distributions and time-to-resumption curves by segment are planned for the
-        follow-up.
+        follow-up. While you wait, take our quiz to find the best-performing offer for your specific
+        subscription business: <a href="https://discover.prosperstack.com/quiz" target="_blank" rel="noopener" style="color: var(--brand); font-weight: 600; text-decoration: underline;">discover.prosperstack.com/quiz</a>.
       </p>
     </div>
   </div>
@@ -449,17 +450,16 @@
     </div>
 
     <div class="two-col">
-      <div class="chart-card">
-        <div class="chart-head">
-          <div>
-            <span class="pill"><span class="dot"></span>Cancellation volume &middot; YoY</span>
-            <h3>2025 &rarr; 2026 cohort sessions.</h3>
-            <div class="chart-sub">Cancellation sessions across the SaaS cohort, indexed to 2025.</div>
-          </div>
-          <span class="badge" style="background: #eef2f7; color: var(--muted);">&asymp; 0%</span>
+      <div class="card" style="text-align: center; padding: 48px 28px; display: flex; flex-direction: column; justify-content: center;">
+        <div class="label"><span class="dot"></span>Cancellation volume &middot; YoY</div>
+        <div class="stat" style="font-size: clamp(72px, 10vw, 120px); margin: 28px 0 10px; line-height: 1;">
+          <span class="delta-flat">0</span><span class="unit">%</span>
         </div>
-        <div class="chart-wrap" style="height: 220px;">
-          <canvas id="volumeChart"></canvas>
+        <div style="font-size: 22px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
+          Volume is flat.
+        </div>
+        <div class="stat-sub" style="margin-top: 10px;">
+          2025 &rarr; 2026, normalized by account.
         </div>
       </div>
       <div class="prose">
@@ -487,21 +487,19 @@
       </div>
     </div>
 
-    <div class="chart-card" style="margin-bottom: 24px;">
-      <div class="chart-head">
-        <div>
-          <span class="pill ok-pill" style="background: var(--ok-soft); color: var(--ok); border: none;">
-            <span class="dot" style="background: var(--ok);"></span>Headline finding
-          </span>
-          <h3>Mean account-level acceptance rate, 2025 &rarr; 2026.</h3>
-          <div class="chart-sub">2025 baseline indexed to 100. Each account weighted equally in the mean.</div>
-        </div>
-        <span class="badge ok">+36%</span>
+    <div class="card" style="text-align: center; padding: 60px 32px; margin-bottom: 24px;">
+      <div class="label ok"><span class="dot"></span>Headline finding &middot; Year-over-year</div>
+      <div class="stat" style="font-size: clamp(96px, 14vw, 168px); margin: 28px 0 8px; line-height: 1;">
+        <span class="delta-up">36</span><span class="unit">%</span>
       </div>
-      <div class="chart-wrap" style="height: 280px;">
-        <canvas id="acceptanceHeroChart"></canvas>
+      <div style="font-size: 26px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
+        Acceptance is surging.
       </div>
-      <div style="margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border-strong); font-size: 13px; color: var(--muted); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+      <div class="stat-sub" style="max-width: 540px; margin: 12px auto 0;">
+        The biggest YoY shift in the cohort isn&rsquo;t in volume &mdash; it&rsquo;s in how often
+        subscribers say yes to a save offer when it actually fits the situation.
+      </div>
+      <div style="margin: 32px auto 0; padding-top: 20px; border-top: 1px dashed var(--border-strong); font-size: 13px; color: var(--muted); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 720px;">
         <div><strong style="color: var(--ink);">What it measures:</strong> Offers accepted &divide; offers shown</div>
         <div><strong style="color: var(--ink);">Reading:</strong> Relative YoY change in the mean</div>
         <div><strong style="color: var(--ink);">Normalization:</strong> Account-level; equal weighting</div>
@@ -534,13 +532,6 @@
     </div>
 
     <div class="two-col">
-      <div class="chart-card">
-        <div class="chart-head">
-          <div>
-            <span class="pill"><span class="dot"></span>Cancellation reasons</span>
-            <h3>Rank order across the SaaS cohort.</h3>
-            <div class="chart-sub">Reasons selected by subscribers in the cancellation flow&rsquo;s reason picker.</div>
-          </div>
         </div>
         <div class="chart-wrap" style="height: 240px;">
           <canvas id="reasonsChart"></canvas>
@@ -575,17 +566,17 @@
       </div>
     </div>
 
-    <div class="chart-card" style="margin-bottom: 24px;">
-      <div class="chart-head">
-        <div>
-          <span class="pill"><span class="dot"></span>Discount size sensitivity</span>
-          <h3>Retained revenue at 90 days, by discount tier.</h3>
-          <div class="chart-sub">For subscribers citing price as their cancellation reason. Retained revenue measured net of the discount applied.</div>
-        </div>
-        <span class="badge ok">30&ndash;50% wins</span>
+    <div class="card" style="text-align: center; padding: 56px 32px; margin-bottom: 24px;">
+      <div class="label ok"><span class="dot"></span>Best offer &middot; Price-sensitive segment</div>
+      <div class="stat" style="font-size: clamp(72px, 11vw, 128px); margin: 26px 0 8px; line-height: 1;">
+        30&ndash;50<span class="unit">% off</span>
       </div>
-      <div class="chart-wrap" style="height: 280px;">
-        <canvas id="discountChart"></canvas>
+      <div style="font-size: 24px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
+        Bigger discounts retain the most revenue.
+      </div>
+      <div class="stat-sub" style="max-width: 540px; margin: 12px auto 0;">
+        Smaller offers &mdash; the classic 10% or 15% off &mdash; didn&rsquo;t move the needle. The
+        90-day retained-revenue winner for price-driven cancellations sits in the 30&ndash;50% band.
       </div>
     </div>
 
@@ -616,17 +607,16 @@
     </div>
 
     <div class="two-col">
-      <div class="chart-card">
-        <div class="chart-head">
-          <div>
-            <span class="pill"><span class="dot"></span>Activation segment &middot; Offer comparison</span>
-            <h3>Retention by offer type.</h3>
-            <div class="chart-sub">For subscribers citing failure to begin using the product. Relative effectiveness; precise magnitudes are not reported in this release.</div>
-          </div>
-          <span class="badge ok">Extension wins</span>
+      <div class="card" style="text-align: center; padding: 48px 28px; display: flex; flex-direction: column; justify-content: center;">
+        <div class="label ok"><span class="dot"></span>Best offer &middot; Activation segment</div>
+        <div class="stat" style="font-size: clamp(40px, 6vw, 64px); margin: 26px 0 10px; line-height: 1.05;">
+          Trial<br/>extension
         </div>
-        <div class="chart-wrap" style="height: 240px;">
-          <canvas id="trialExtensionChart"></canvas>
+        <div style="font-size: 22px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
+          Beats every discount tier here.
+        </div>
+        <div class="stat-sub" style="margin-top: 10px;">
+          For subscribers citing failure to begin using the product.
         </div>
       </div>
       <div class="prose">
@@ -971,7 +961,9 @@
   }
 
   // ===== Discount sensitivity bar chart =====
-  const dctx = document.getElementById('discountChart').getContext('2d');
+  const dEl = document.getElementById('discountChart');
+  if (dEl) {
+  const dctx = dEl.getContext('2d');
   new Chart(dctx, {
     type: 'bar',
     data: {
@@ -1019,6 +1011,7 @@
       }
     }
   });
+  }
 
   // ===== Pause donut =====
   const pctx = document.getElementById('pauseChart').getContext('2d');
