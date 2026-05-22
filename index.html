@@ -4,7 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="We analyzed 4.8 million retention offers. Answer a few questions and generate your highest-converting retention strategy instantly.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMzAgMTMwIiBmaWxsPSJub25lIj48cGF0aCBmaWxsPSIjMmY3NWZmIiBkPSJtMTI1LjU3OCA1OS45ODUtNjUuNzYtMTMuOTljLS40NzItLjEzNS0xLjAxMy0uMTM1LTEuNTU0LS4xMzUtMS43NTcgMC0zLjQ0Ni42MDgtNC41OTUgMS42OUwyNS44MjQgNzMuOTA4Yy0xLjY5IDEuNTU0LTEuOTYgMy44NTItLjc0NCA1LjY3NyAxLjA4MiAxLjYyMiAzLjExIDIuNTY4IDUuMzQgMi41NjguMzM4IDAgLjY3NSAwIC45NDYtLjA2OGw5My42NzItMTIuMzY4YzIuODM4LS40MDUgNS4wMDEtMi4zNjUgNS4xMzYtNC42NjMuMTM1LTIuMzY2LTEuNzU3LTQuNDYtNC41OTYtNS4wNjlNNC41MzUgMTA1Ljg3NWw2NS44MjcgMTMuOTljLjQ3My4xMzUgMS4wMTQuMTM1IDEuNTU1LjEzNSAxLjc1NyAwIDMuNDQ2LS42MDggNC41OTUtMS42OWwyNy44NDUtMjYuMzU3YzEuNjktMS41NTUgMS45Ni0zLjg1My43NDMtNS42NzgtMS4wODEtMS42MjItMy4xMDgtMi41NjgtNS4zMzktMi41NjgtLjMzOCAwLS42NzYgMC0uOTQ2LjA2OEw1LjE0MyA5Ni4xNDNjLTIuODM4LjQwNS01LjAwMSAyLjM2NS01LjEzNiA0LjY2My0uMTM1IDIuMzY2IDEuNzU3IDQuNTI4IDQuNTI4IDUuMDY5Ii8+PHBhdGggZmlsbD0iIzJmYWFmZiIgZD0iTTczLjMzNi41NzggMTEuOTAyIDI3Ljk1YTguNyA4LjcgMCAwIDAtMS4zNTIuNzQ0Yy0xLjQyIDEuMDEzLTIuNDMzIDIuNS0yLjcwNCA0LjEyMkwuNzUgNzAuNTI4Yy0uNDA1IDIuMjk4LjY3NiA0LjI1OCAyLjc3MSA1LjAwMSAxLjgyNS42NzYgNC4wNTUuMjAzIDUuODEyLTEuMDguMjctLjIwNC41NDEtLjQwNi43NDQtLjYxbDY4LjUzLTY1LjAxNWMyLjA5NS0xLjk2IDIuNjM2LTQuNzk5IDEuMzUyLTYuODI2Qzc4Ljc0Mi4wMzggNzUuOTA0LS41NyA3My4zMzYuNTc4Ii8+PC9zdmc+Cg==">
 <title>Find Your Best Retention Offer — ProsperStack</title>
+
+<!-- PostHog analytics + session recording.
+     Confirm region: api_host is set to US Cloud. Change to https://eu.i.posthog.com
+     if your project is EU-hosted. Enable session recording in PostHog Project
+     Settings → Recordings → "Record user sessions" toggle. -->
+<script>
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init('phc_ob6Yori2SYGcZJa5VJaud4hD7kfd8qe5FXqLvHmdSf7A', {
+    api_host: 'https://us.i.posthog.com',
+    person_profiles: 'identified_only',
+    session_recording: {
+      maskAllInputs: false  // cancel volume / industry / mrr clicks captured; email masked via class="ph-mask" on the input
+    }
+  });
+</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   body {
@@ -357,6 +373,79 @@
     color: #431407;
   }
 
+  /* Autopilot callout — sits between offers and footnote */
+  .autopilot-callout {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+    border: 1px solid #c7d2fe;
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin: 32px 0 8px;
+    color: #1e1b4b;
+  }
+  .autopilot-stat {
+    flex-shrink: 0;
+    text-align: center;
+    padding-right: 22px;
+    border-right: 1px solid #c7d2fe;
+  }
+  .autopilot-stat-value {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
+    color: #4338ca;
+    letter-spacing: -0.02em;
+  }
+  .autopilot-stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #4338ca;
+    margin-top: 6px;
+  }
+  .autopilot-body { flex: 1; min-width: 0; }
+  .autopilot-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #4338ca;
+    background: #e0e7ff;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .autopilot-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 6px;
+    letter-spacing: -0.005em;
+    line-height: 1.35;
+  }
+  .autopilot-copy {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #475569;
+    margin: 0 0 10px;
+  }
+  .autopilot-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4338ca;
+    text-decoration: none;
+  }
+  .autopilot-link:hover { text-decoration: underline; }
+  @media (max-width: 640px) {
+    .autopilot-callout { flex-direction: column; align-items: flex-start; gap: 16px; padding: 22px; }
+    .autopilot-stat { padding-right: 0; padding-bottom: 16px; border-right: none; border-bottom: 1px solid #c7d2fe; width: 100%; text-align: left; }
+    .autopilot-stat-value { font-size: 38px; }
+  }
+
   .footnote {
     margin-top: 40px;
     padding: 20px 22px;
@@ -379,6 +468,17 @@
 </style>
 </head>
 <body>
+
+<!-- Netlify form definition — hidden, used only so Netlify detects the form at
+     build time. Real submission happens via fetch() on the email step. -->
+<form name="quiz-email" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="email"  name="email" />
+  <input type="text"   name="industry" />
+  <input type="text"   name="mrr" />
+  <input type="number" name="cancelVolume" />
+  <input type="text"   name="bot-field" />
+</form>
+
 <header>
   <a href="https://prosperstack.com/"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MDAiIGhlaWdodD0iMTIwIiBmaWxsPSJub25lIiB2aWV3Qm94PSIwIDAgNzAwIDEyMCI+PHBhdGggZmlsbD0iIzIzMmUzYiIgZD0iTTIwNi41NTUgNTQuMTIzYzAgNi42NDEtMS45NjggMTEuNTYtNi4xNDkgMTUuMjVxLTYuMjczIDUuMTY2LTE3LjcxMSA1LjE2NmgtNS42NTh2MjEuODkzSDE2NFYzNC45MzZoMTkuNjc5YzcuMzc5IDAgMTMuMDM3IDEuNzIyIDE2Ljk3MyA0LjkyczUuOTAzIDcuODcgNS45MDMgMTQuMjY3bS0yOS41MTggOS44MzloNC4xODJjMy45MzYgMCA2Ljg4Ny0uNzM4IDkuMTAxLTIuNDYgMS45NjgtMS40NzYgMi45NTItMy45MzYgMi45NTItNi44ODhzLS43MzgtNS40MTEtMi40Ni02Ljg4Ny00LjE4MS0yLjIxNC03Ljg3MS0yLjIxNGgtNS45MDR6TTIzOS43NjMgNDguNDY1YzEuNzIyIDAgMy4xOTguMjQ2IDQuNDI4LjQ5MmwtLjk4NCAxMi4wNTNjLS45ODQtLjI0Ni0yLjIxNC0uNDkyLTMuNjktLjQ5Mi00LjE4MSAwLTcuMzc5Ljk4NC05LjU5MyAzLjE5OHMtMy40NDQgNS4xNjYtMy40NDQgOC44NTV2MjMuODZoLTEyLjc5MVY0OS40NWg5LjU5M2wxLjk2OCA3Ljg3MWguNzM4YzEuNDc2LTIuNzA2IDMuNDQ0LTQuNjczIDUuOTA0LTYuMzk1IDIuMjE0LTEuNDc2IDQuOTE5LTIuNDYgNy44NzEtMi40Nk0yOTIuNjUgNzIuODE3YzAgNy42MjYtMS45NjggMTMuNTMtNi4xNSAxNy45NTctMy45MzUgNC40MjgtOS41OTMgNi4zOTYtMTYuOTczIDYuMzk2LTQuNDI3IDAtOC42MDktLjk4NC0xMi4wNTMtMi45NTJzLTYuMTQ5LTQuOTItNy44NzEtOC42MWMtMS45NjgtMy42OS0yLjcwNi04LjExNy0yLjcwNi0xMy4wMzcgMC03LjYyNSAxLjk2OC0xMy43NzUgNS45MDMtMTcuOTU2IDQuNDI4LTMuOTM2IDEwLjA4Ni02LjE1IDE3LjIxOS02LjE1IDQuNDI4IDAgOC42MS45ODQgMTIuMDU0IDIuOTUyIDMuNDQzIDEuOTY4IDYuMTQ5IDQuNjczIDcuODcxIDguMzYzIDEuOTY4IDMuNjkgMi43MDYgOC4xMTggMi43MDYgMTMuMDM3bS0zMi40NyAwYzAgNC42NzQuNzM4IDguMTE4IDIuMjE0IDEwLjU3OHEyLjIxNCAzLjY5IDcuMzc5IDMuNjljMy40NDQgMCA1LjkwNC0xLjIzIDcuMzgtMy40NDQgMS40NzYtMi40NiAyLjIxNC01LjkwNCAyLjIxNC0xMC41NzhzLS43MzgtOC4xMTctMi4yMTQtMTAuNTc3Yy0xLjQ3Ni0yLjIxNC0zLjkzNi0zLjQ0NC03LjM4LTMuNDQ0cy01LjkwMyAxLjIzLTcuMzc5IDMuNDQ0cS0yLjIxNCAzLjMyMS0yLjIxNCAxMC4zMzFNMzM0LjIyMSA4Mi40MWMwIDQuOTItMS43MjIgOC42MS00LjkxOSAxMS4wNy0zLjQ0NCAyLjQ2LTguMzY0IDMuNjktMTUuMDA2IDMuNjlxLTUuMTY1IDAtOC44NTUtLjczOGMtMi40Ni0uNDkyLTQuNjc0LTEuMjMtNi44ODgtMS45NjhWODMuODg3YzIuNDYgMS4yMyA1LjE2NiAxLjk2OCA4LjExOCAyLjcwNiAyLjk1Mi43MzcgNS42NTggMS4yMyA3Ljg3MSAxLjIzIDQuNjc0IDAgNi44ODgtMS4yMyA2Ljg4OC0zLjkzNiAwLS45ODQtLjI0Ni0xLjcyMi0uOTg0LTIuNDZzLTEuNzIyLTEuMjMtMy4xOTgtMi4yMTRjLTEuNDc2LS43MzgtMy40NDMtMS43MjItNi4xNDktMi43MDYtMy42OS0xLjQ3Ni02LjM5Ni0yLjk1Mi03Ljg3Mi00LjE4MnEtMi41ODMtMS44NDUtMy42OS00LjQyN2MtLjczOC0xLjcyMi0xLjIzLTMuNjktMS4yMy02LjE1IDAtNC4xODIgMS43MjItNy4zOCA0LjkyLTkuNTkzczcuODcyLTMuNDQ0IDEzLjc3NS0zLjQ0NGM1LjY1OCAwIDExLjA3IDEuMjMgMTYuNDgxIDMuNjlsLTMuOTM1IDkuMzQ3Yy0yLjQ2LS45ODQtNC42NzQtMS43MjItNi42NDItMi40Ni0xLjcyMi0uOTg0LTMuNjktMS4yMy01LjkwNC0xLjIzLTMuNjg5IDAtNS42NTcuOTg0LTUuNjU3IDIuOTUyIDAgMS4yMy40OTIgMi4yMTQgMS43MjIgMi45NTJxMS44NDQgMS4xMDcgOC4xMTcgMy42OWMzLjY5IDEuNDc2IDYuMzk2IDIuOTUxIDguMTE4IDQuMTgycTIuNTgyIDEuODQ0IDMuNjg5IDQuNDI3Yy45ODQgMS45NjggMS4yMyAzLjkzNiAxLjIzIDYuMTVNMzY3LjQyOSA5Ny4xN2MtNS40MTIgMC05LjgzOS0xLjk2OC0xMy4wMzctNS45MDRoLS43MzhjLjQ5MiAzLjkzNi43MzggNi4xNS43MzggNi44ODh2MTguOTQxaC0xMi43OTFWNDkuNDQ5aDEwLjMzMWwxLjcyMiA2LjE1aC40OTJjMi45NTItNC42NzQgNy4zOC02Ljg4OCAxMy4yODMtNi44ODggNS42NTggMCA5LjgzOSAyLjIxNCAxMy4wMzcgNi4zOTUgMy4xOTggNC4xODIgNC42NzQgMTAuMzMyIDQuNjc0IDE3Ljk1NyAwIDQuOTItLjczOCA5LjM0OC0yLjIxNCAxMy4wMzhzLTMuNjkgNi42NDEtNi4zOTUgOC4zNjNjLTIuMjE0IDEuNzIyLTUuNDEyIDIuNzA2LTkuMTAyIDIuNzA2bS0zLjkzNi0zOC4zNzRjLTMuMTk3IDAtNS40MTEuOTg0LTYuODg3IDIuOTUycS0yLjIxNCAyLjk1Mi0yLjIxNCA5LjU5M3YxLjQ3NmMwIDUuMTY2LjczOCA4LjYxIDIuMjE0IDEwLjgyNHMzLjkzNiAzLjE5NyA3LjEzMyAzLjE5N2M1LjY1OCAwIDguNjEtNC42NzMgOC42MS0xNC4yNjdxMC03LjAxLTIuMjE0LTEwLjMzYy0xLjIzLTIuMjE1LTMuNDQ0LTMuNDQ1LTYuNjQyLTMuNDQ1TTQxNi4xMzQgOTcuMTdjLTcuNjI1IDAtMTMuNTI5LTEuOTY4LTE3LjcxMS02LjE1LTQuMTgyLTQuMTgxLTYuMzk1LTEwLjA4NS02LjM5NS0xNy43MSAwLTcuODcyIDEuOTY3LTE0LjAyMiA1LjkwMy0xOC4yMDQgMy45MzYtNC4xODEgOS4zNDgtNi4zOTUgMTYuMjM1LTYuMzk1IDYuNjQyIDAgMTEuODA3IDEuOTY4IDE1LjQ5NyA1LjY1OHM1LjY1OCA5LjEwMSA1LjY1OCAxNS43NDN2Ni4xNWgtMzAuNTAyYy4yNDYgMy42ODkgMS4yMyA2LjM5NSAzLjE5OCA4LjYwOSAxLjk2NyAxLjk2OCA0LjkxOSAyLjk1MiA4LjYwOSAyLjk1MiAyLjk1MiAwIDUuNDEyLS4yNDYgOC4xMTgtLjk4NCAyLjQ1OS0uNDkyIDUuMTY1LTEuNDc2IDcuODcxLTIuNzA2djkuODRjLTIuMjE0IDEuMjI5LTQuNjc0IDEuOTY3LTcuMTM0IDIuNDU5LTIuNzA1LjQ5Mi01LjY1Ny43MzgtOS4zNDcuNzM4bS0xLjk2OC0zOS42MDRjLTIuNzA2IDAtNC45Mi45ODQtNi4zOTUgMi43MDYtMS40NzYgMS43MjItMi40NiA0LjE4Mi0yLjcwNiA3LjM4aDE3Ljk1N2MwLTMuMTk4LS45ODQtNS42NTgtMi40Ni03LjM4cy0zLjY5LTIuNzA2LTYuMzk2LTIuNzA2TTQ2OS4wMjEgNDguNDY1YzEuNzIyIDAgMy4xOTcuMjQ2IDQuNDI3LjQ5MmwtLjk4NCAxMi4wNTNjLS45ODQtLjI0Ni0yLjIxMy0uNDkyLTMuNjg5LS40OTItNC4xODIgMC03LjM4Ljk4NC05LjU5NCAzLjE5OHMtMy40NDQgNS4xNjYtMy40NDQgOC44NTV2MjMuODZoLTEyLjc5MVY0OS40NWg5LjU5NGwxLjk2OCA3Ljg3MWguNzM4YzEuNDc1LTIuNzA2IDMuNDQzLTQuNjczIDUuOTAzLTYuMzk1IDIuMjE0LTEuNDc2IDQuOTItMi40NiA3Ljg3Mi0yLjQ2TTUxOC43MDkgNzkuNDU5YzAgNS42NTgtMS45NjcgOS44NC01LjkwMyAxMy4wMzdzLTkuNTk0IDQuNjc0LTE2LjcyNyA0LjY3NGMtNi42NDIgMC0xMi4yOTktMS4yMy0xNy40NjUtMy42OVY4MS40MjdjNC4xODIgMS45NjggNy42MjYgMy4xOTggMTAuNTc3IDMuOTM2IDIuOTUyLjczNyA1LjQxMiAxLjIzIDcuODcyIDEuMjMgMi45NTIgMCA1LjE2Ni0uNDkzIDYuNjQxLTEuNzIyIDEuNDc2LS45ODQgMi4yMTQtMi43MDYgMi4yMTQtNC45MiAwLTEuMjMtLjI0Ni0yLjIxNC0uOTg0LTMuMTk4cy0xLjcyMi0xLjcyMi0yLjk1MS0yLjcwNi0zLjkzNi0yLjIxNC03Ljg3Mi00LjE4MWMtMy42OS0xLjcyMi02LjY0Mi0zLjQ0NC04LjM2My01LjE2Ni0xLjk2OC0xLjcyMi0zLjQ0NC0zLjQ0NC00LjQyOC01LjY1OC0xLjIzLTIuMjE0LTEuNzIyLTQuNjczLTEuNzIyLTcuNjI1IDAtNS40MTIgMS43MjItOS44NCA1LjQxMi0xMi43OTEgMy42ODktMy4xOTggOC44NTUtNC42NzQgMTUuMjUxLTQuNjc0IDMuMTk3IDAgNi4xNDkuNDkyIDkuMTAxIDEuMjNhNTAuNSA1MC41IDAgMCAxIDkuMTAxIDMuMTk4bC00LjE4MSAxMC4wODVjLTMuMTk4LTEuMjMtNS45MDQtMi4yMTQtOC4xMTgtMi43MDZzLTQuMTgxLS43MzgtNi4zOTUtLjczOGMtMi40NiAwLTQuNDI4LjQ5Mi01LjY1OCAxLjcyMnMtMS45NjggMi43MDYtMS45NjggNC40MjhxMCAxLjg0NS43MzggMi45NTJjLjQ5Mi43MzggMS40NzYgMS43MjEgMi40NiAyLjQ2IDEuMjMuNzM3IDMuOTM2IDIuMjEzIDguMzYzIDQuNDI3IDUuNjU4IDIuNzA2IDkuNTk0IDUuNDEyIDExLjgwOCA4LjM2NCAxLjk2OCAyLjQ2IDMuMTk3IDUuOTAzIDMuMTk3IDEwLjA4NU01NDYuMjYgODcuMDg0cTMuMzIgMCA4LjExNy0xLjQ3NXY5LjU5M3EtNC43OTcgMi4yMTQtMTEuODA3IDIuMjE0Yy01LjE2NiAwLTguODU2LTEuMjMtMTEuMzE1LTMuOTM2LTIuNDYtMi43MDYtMy40NDQtNi4zOTYtMy40NDQtMTEuNTYxdi0yMi42M2gtNi4xNXYtNS40MTJsNy4xMzQtNC4xODIgMy42OS05Ljg0aDguMTE3djEwLjA4NmgxMy4yODN2OS41OTNoLTEzLjI4M3YyMi42M2MwIDEuNzIzLjQ5MiAzLjE5OSAxLjQ3NiAzLjkzNiAxLjIzLjQ5MyAyLjcwNi45ODQgNC4xODIuOTg0TTU5Mi43NTEgOTYuNDMybC0yLjQ2LTYuMzk2aC0uMjQ2Yy0yLjIxNCAyLjcwNi00LjQyOCA0LjY3NC02LjY0MiA1LjY1OHEtMy4zMiAxLjQ3Ni04Ljg1NSAxLjQ3NmMtNC40MjggMC04LjExOC0xLjIzLTEwLjU3Ny0zLjkzNi0yLjcwNi0yLjQ2LTMuOTM2LTYuMTUtMy45MzYtMTEuMDdxMC03LjM3OSA1LjE2Ni0xMS4wNjhjMy40NDMtMi40NiA4Ljg1NS0zLjY5IDE1Ljc0My0zLjkzNmw4LjExNy0uMjQ2di0xLjk2OGMwLTQuNjc0LTIuNDYtNy4xMzQtNy4zNzktNy4xMzQtMy42OSAwLTguMTE4IDEuMjMtMTMuMjg0IDMuNDQ0bC00LjE4MS04LjYxYzUuNDExLTIuOTUxIDExLjMxNS00LjE4MSAxNy45NTctNC4xODEgNi4zOTUgMCAxMS4wNjkgMS40NzYgMTQuNTEzIDQuMTgycTUuMTY1IDQuMDU5IDUuMTY1IDEyLjU0NXYzMS4yNHptLTMuNjktMjEuODkzLTQuOTIuMjQ2Yy0zLjY4OSAwLTYuMzk1LjczOC04LjM2MyAxLjk2OC0xLjcyMiAxLjIzLTIuNzA2IDMuMTk4LTIuNzA2IDUuNjU4IDAgMy42OSAxLjk2OCA1LjQxMSA2LjE1IDUuNDExIDIuOTUxIDAgNS40MTEtLjczNyA3LjEzMy0yLjQ2IDEuNzIyLTEuNzIxIDIuNzA2LTMuOTM1IDIuNzA2LTYuODg3ek02MzAuNjMyIDk3LjE3Yy0xNC43NTkgMC0yMS44OTItOC4xMTgtMjEuODkyLTI0LjEwNyAwLTcuODcxIDEuOTY4LTE0LjAyIDUuOTAzLTE4LjIwMiAzLjkzNi00LjE4MiA5LjU5NC02LjM5NiAxNy4yMTktNi4zOTYgNS40MTIgMCAxMC4zMzIuOTg0IDE0LjUxMyAzLjE5OGwtMy42ODkgOS44NGMtMS45NjgtLjczOS0zLjkzNi0xLjQ3Ny01LjY1OC0xLjk2OWExOC43IDE4LjcgMCAwIDAtNS4xNjYtLjczOGMtNi42NDEgMC0xMC4wODUgNC42NzQtMTAuMDg1IDE0LjI2NyAwIDkuMTAyIDMuNDQ0IDEzLjc3NSAxMC4wODUgMTMuNzc1IDIuNDYgMCA0LjY3NC0uMjQ1IDYuODg4LS45ODNzNC4xODItMS43MjIgNi4zOTUtMy4xOTh2MTEuMDY5Yy0xLjk2NyAxLjIzLTQuMTgxIDIuMjE0LTYuMzk1IDIuNzA2cy00LjY3NC43MzgtOC4xMTguNzM4TTY2NS4zMTYgNzAuODVsNS42NTgtNy4xMzQgMTMuMjgzLTE0LjI2N2gxNC41MTNsLTE4LjY5NSAyMC40MTdMNzAwIDk2LjQzMmgtMTQuNzU5bC0xMy41MjktMTguOTQtNS40MTIgNC40Mjd2MTQuNTEzaC0xMi43OTFWMzFINjY2LjN2MjkuMjcyeiIvPjxwYXRoIGZpbGw9IiMyZjc1ZmYiIGQ9Im0xMjUuNTc4IDU5Ljk4NS02NS43Ni0xMy45OWMtLjQ3Mi0uMTM1LTEuMDEzLS4xMzUtMS41NTQtLjEzNS0xLjc1NyAwLTMuNDQ2LjYwOC00LjU5NSAxLjY5TDI1LjgyNCA3My45MDhjLTEuNjkgMS41NTQtMS45NiAzLjg1Mi0uNzQ0IDUuNjc3IDEuMDgyIDEuNjIyIDMuMTEgMi41NjggNS4zNCAyLjU2OC4zMzggMCAuNjc1IDAgLjk0Ni0uMDY4bDkzLjY3Mi0xMi4zNjhjMi44MzgtLjQwNSA1LjAwMS0yLjM2NSA1LjEzNi00LjY2My4xMzUtMi4zNjYtMS43NTctNC40Ni00LjU5Ni01LjA2OU00LjUzNSAxMDUuODc1bDY1LjgyNyAxMy45OWMuNDczLjEzNSAxLjAxNC4xMzUgMS41NTUuMTM1IDEuNzU3IDAgMy40NDYtLjYwOCA0LjU5NS0xLjY5bDI3Ljg0NS0yNi4zNTdjMS42OS0xLjU1NSAxLjk2LTMuODUzLjc0My01LjY3OC0xLjA4MS0xLjYyMi0zLjEwOC0yLjU2OC01LjMzOS0yLjU2OC0uMzM4IDAtLjY3NiAwLS45NDYuMDY4TDUuMTQzIDk2LjE0M2MtMi44MzguNDA1LTUuMDAxIDIuMzY1LTUuMTM2IDQuNjYzLS4xMzUgMi4zNjYgMS43NTcgNC41MjggNC41MjggNS4wNjkiLz48cGF0aCBmaWxsPSIjMmZhYWZmIiBkPSJNNzMuMzM2LjU3OCAxMS45MDIgMjcuOTVhOC43IDguNyAwIDAgMC0xLjM1Mi43NDRjLTEuNDIgMS4wMTMtMi40MzMgMi41LTIuNzA0IDQuMTIyTC43NSA3MC41MjhjLS40MDUgMi4yOTguNjc2IDQuMjU4IDIuNzcxIDUuMDAxIDEuODI1LjY3NiA0LjA1NS4yMDMgNS44MTItMS4wOC4yNy0uMjA0LjU0MS0uNDA2Ljc0NC0uNjFsNjguNTMtNjUuMDE1YzIuMDk1LTEuOTYgMi42MzYtNC43OTkgMS4zNTItNi44MjZDNzguNzQyLjAzOCA3NS45MDQtLjU3IDczLjMzNi41NzgiLz48L3N2Zz4=" alt="ProsperStack" style="height:28px;display:block"></a>
   <a href="https://prosperstack.com/">← Back</a>
@@ -443,7 +543,7 @@
     <h2>Where should we send your playbook?</h2>
     <p class="step-hint">We'll show your offers on the next screen and send a copy you can share with your team.</p>
     <div class="number-row">
-      <input class="email-input" type="email" id="emailInput" placeholder="you@yourcompany.com" autocomplete="email">
+      <input class="email-input ph-mask" type="email" id="emailInput" placeholder="you@yourcompany.com" autocomplete="email">
     </div>
     <p class="email-helper">No spam. You can unsubscribe in one click.</p>
     <div class="btn-row">
@@ -455,7 +555,7 @@
   <!-- Step 5: Results -->
   <section class="step" data-step="5">
     <p class="results-lede">
-      Based on your price, industry and subscriber volume, <strong>here's what we recommend</strong>.
+      Based on your price, industry and subscriber volume, here's what we recommend.
     </p>
 
     <div class="summary-row" id="summaryRow"></div>
@@ -487,6 +587,19 @@
       <div class="offer-grid" id="offerGrid"></div>
     </div>
 
+    <aside class="autopilot-callout" aria-label="Autopilot offers">
+      <div class="autopilot-stat">
+        <div class="autopilot-stat-value">+272%</div>
+        <div class="autopilot-stat-label">Acceptance rate</div>
+      </div>
+      <div class="autopilot-body">
+        <span class="autopilot-eyebrow">Autopilot</span>
+        <p class="autopilot-title">Let AI test variations of these offers and lift acceptance by up to 272%.</p>
+        <p class="autopilot-copy">Autopilot experiments with discounts, durations, and copy within your guardrails — then shifts traffic to the variants that win.</p>
+        <a class="autopilot-link" href="https://prosperstack.com/features/autopilot-offers/" target="_blank" rel="noopener">See how Autopilot works →</a>
+      </div>
+    </aside>
+
     <div class="footnote">
       <strong>How we calculated this.</strong> Save rates are blended averages from ProsperStack's 2026 retention cohort, segmented by industry and MRR band. Recommended offers come from the cancel-reason × offer × 90-day revenue-durability cross-tab in our 2026 State of Retention analysis. The ecommerce playbook reflects a specific finding: non-discount offers (pause, skip, swap, free shipping) generate 6&ndash;13&times; more revenue per offer presented than any percentage-discount tier we measured. Your actual results will depend on your offer copy, who you target, and how broadly you deploy each offer.
     </div>
@@ -500,10 +613,13 @@
 
 <script>
 // ---------- Save-rate matrix (industry x MRR band) ----------
+// Measured from March 2026 cohort data (audit_query_a_save_rate.sql).
+// "other" is a midpoint between saas and ecom — we don't have a direct
+// measurement for it.
 const SAVE_RATES = {
-  saas:  { '0-9': 0.105, '10-24': 0.095, '25-49': 0.090, '50-99': 0.085, '100-249': 0.075, '250+': 0.060 },
-  ecom:  { '0-9': 0.070, '10-24': 0.068, '25-49': 0.065, '50-99': 0.060, '100-249': 0.055, '250+': 0.050 },
-  other: { '0-9': 0.085, '10-24': 0.080, '25-49': 0.075, '50-99': 0.070, '100-249': 0.065, '250+': 0.055 }
+  saas:  { '0-9': 0.070, '10-24': 0.107, '25-49': 0.081, '50-99': 0.072, '100-249': 0.073, '250+': 0.041 },
+  ecom:  { '0-9': 0.168, '10-24': 0.125, '25-49': 0.079, '50-99': 0.062, '100-249': 0.056, '250+': 0.073 },
+  other: { '0-9': 0.085, '10-24': 0.105, '25-49': 0.080, '50-99': 0.070, '100-249': 0.070, '250+': 0.050 }
 };
 
 const MRR_MIDPOINT = {
@@ -535,7 +651,7 @@ function pauseDurationLong(mrr) {
   return '120-day pause';
 }
 
-// ---------- Playbooks: 6 offers per industry (top 3 visible, next 3 locked) ----------
+// ---------- Playbooks: top 3 offers per industry ----------
 const PLAYBOOK = {
   saas: [
     {
@@ -554,25 +670,7 @@ const PLAYBOOK = {
       reason: "I'll be back in a few months",
       type: 'Pause',
       offer: (mrr) => pauseDurationLong(mrr),
-      rationale: 'Highest-acceptance offer in the entire SaaS playbook (>20% accept). Cheap to deploy, often results in full resumption.'
-    },
-    {
-      reason: "I'm switching to a competitor",
-      type: 'Discount',
-      offer: (mrr) => `${discountTier(mrr)} off for 3 months + concierge call`,
-      rationale: 'These cancellers have already chosen another tool — discount creates a tiebreaker moment. Bigger plans warrant a human in the loop.'
-    },
-    {
-      reason: "I'm in a free trial and didn't see value",
-      type: 'Trial',
-      offer: (mrr) => (['100-249','250+'].includes(mrr) ? '21-day trial extension + onboarding session' : '14-day trial extension'),
-      rationale: 'Trial cancellers haven\'t paid yet — a discount is the wrong signal. More time + a nudge to the aha moment is what they need.'
-    },
-    {
-      reason: "You're missing a feature I need",
-      type: 'Custom',
-      offer: (mrr) => (['100-249','250+'].includes(mrr) ? 'Roadmap call + 90-day pause' : 'Roadmap email + 60-day pause'),
-      rationale: 'Don\'t discount away a feature gap — close it. A roadmap commitment plus a pause buys you time to ship and them time to wait.'
+      rationale: 'For SaaS cancellers citing a temporary need, pause is the top-converting save offer we measured (21.5% accept). About 34% of paused SaaS subscribers resume within 90 days, and 43% eventually return — cheap to deploy, with the math working out even at modest resumption rates.'
     }
   ],
   ecom: [
@@ -586,31 +684,13 @@ const PLAYBOOK = {
       reason: "I'll be back in a few months",
       type: 'Pause',
       offer: (mrr) => (['100-249','250+'].includes(mrr) ? '90-day pause' : '60-day pause'),
-      rationale: 'Median time to resume in ecom is ~5 months, so generous pause windows pay off. The 90-day window most reports use understates pause by 4–6×.'
+      rationale: 'Most ecom resumes happen between months 3 and 6 — only 7% return within 90 days, but 28% return by month 6 and 32% within a year. Generous pause windows pay off; the 90-day measurement window most reports use understates pause by ~4.5×.'
     },
     {
       reason: "It's too expensive",
       type: 'Pause',
       offer: () => '60-day pause',
       rationale: 'Counter-intuitive but data-backed: pause outperforms discount for price-sensitive ecom cancellers on every metric. Hold any discount in reserve for those who explicitly reject pause.'
-    },
-    {
-      reason: "I don't like the product / taste",
-      type: 'Custom',
-      offer: () => 'Free product swap',
-      rationale: 'These cancellers like the brand, not the SKU. A swap retains them at full price — adding a discount on top dilutes margin without lifting save rate.'
-    },
-    {
-      reason: "I'm already buying elsewhere",
-      type: 'Custom',
-      offer: () => 'Free shipping + loyalty perk',
-      rationale: 'You\'re competing on convenience as much as price. Free shipping closes the Amazon gap; a loyalty perk creates a reason to stay that a one-time discount can\'t.'
-    },
-    {
-      reason: "I prefer to buy one-time, not subscribe",
-      type: 'Custom',
-      offer: () => 'Subscriber-only pricing on one-time orders',
-      rationale: 'Don\'t fight the preference — accommodate it. Letting them buy ad-hoc at a member rate keeps them in the ecosystem and converts them back to subscription later.'
     }
   ],
   other: [
@@ -631,24 +711,6 @@ const PLAYBOOK = {
       type: 'Pause',
       offer: () => '60-day pause',
       rationale: 'Top-converting offer across every subscription category for "I\'ll be back" cancellers.'
-    },
-    {
-      reason: "I'm switching to a competitor",
-      type: 'Discount',
-      offer: (mrr) => `${discountTier(mrr)} off for 3 months`,
-      rationale: 'Lock in the price advantage long enough to re-establish habit.'
-    },
-    {
-      reason: "I lost interest",
-      type: 'Custom',
-      offer: (mrr) => `Re-onboarding email series + ${discountTier(mrr)} off`,
-      rationale: 'Disengagement usually means they forgot why they signed up. A "what\'s new" prompt plus a small carrot wins back more than discount alone.'
-    },
-    {
-      reason: "I only needed it for one event",
-      type: 'Pause',
-      offer: () => '90-day pause',
-      rationale: 'Single-use cancellers often have a next event coming. A pause preserves the account so they don\'t have to re-sign up next time.'
     }
   ]
 };
@@ -671,6 +733,12 @@ document.querySelectorAll('.options').forEach(group => {
       opt.classList.add('selected');
       const groupName = group.dataset.group;
       state[groupName] = opt.dataset.value;
+      // Analytics
+      if (groupName === 'industry') {
+        posthog.capture('ps_quiz_started', { industry: state.industry });
+      } else if (groupName === 'mrr') {
+        posthog.capture('ps_mrr_band_selected', { industry: state.industry, mrr: state.mrr });
+      }
       setTimeout(() => {
         if (groupName === 'industry') goTo(2);
         else if (groupName === 'mrr') goTo(3);
@@ -693,7 +761,14 @@ volInput.addEventListener('input', () => {
   toEmailBtn.disabled = !state.cancelVolume;
 });
 volInput.addEventListener('keydown', e => { if (e.key === 'Enter' && state.cancelVolume) toEmailBtn.click(); });
-toEmailBtn.addEventListener('click', () => goTo(4));
+toEmailBtn.addEventListener('click', () => {
+  posthog.capture('ps_cancel_volume_entered', {
+    industry:     state.industry,
+    mrr:          state.mrr,
+    cancelVolume: state.cancelVolume
+  });
+  goTo(4);
+});
 
 // Email capture
 const emailInput = document.getElementById('emailInput');
@@ -705,28 +780,74 @@ emailInput.addEventListener('input', () => {
   seeBtn.disabled = !state.email;
 });
 emailInput.addEventListener('keydown', e => { if (e.key === 'Enter' && state.email) seeBtn.click(); });
-seeBtn.addEventListener('click', () => {
-  // TODO: wire up to your lead-capture endpoint here.
-  // Example payloads to consider sending: { email, industry, mrr, cancelVolume }
-  console.log('Captured lead:', {
-    email: state.email,
+// URL-encode a flat object for Netlify form submission.
+function encodeFormData(data) {
+  return Object.keys(data)
+    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
+    .join('&');
+}
+
+seeBtn.addEventListener('click', async () => {
+  // Identify the user in PostHog and capture the submission event.
+  posthog.identify(state.email, {
+    email:    state.email,
     industry: state.industry,
-    mrr: state.mrr,
-    cancelVolume: state.cancelVolume,
-    capturedAt: new Date().toISOString()
+    mrr:      state.mrr
   });
+  posthog.capture('ps_email_submitted', {
+    industry:     state.industry,
+    mrr:          state.mrr,
+    cancelVolume: state.cancelVolume
+  });
+
+  // Submit to Netlify Forms in the background. The matching form
+  // definition lives near the top of <body> so Netlify detects it at build.
+  // Submissions show up under the "quiz-email" form in the Netlify dashboard.
+  try {
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeFormData({
+        'form-name': 'quiz-email',
+        email:        state.email,
+        industry:     state.industry,
+        mrr:          state.mrr,
+        cancelVolume: state.cancelVolume
+      })
+    });
+  } catch (err) {
+    // Don't block the user from seeing results if the submission fails.
+    console.error('Netlify form submission failed:', err);
+  }
   render();
   goTo(5);
+  posthog.capture('ps_results_viewed', {
+    industry:     state.industry,
+    mrr:          state.mrr,
+    cancelVolume: state.cancelVolume
+  });
 });
 
 // Restart
 document.querySelectorAll('[data-restart]').forEach(b => {
   b.addEventListener('click', () => {
+    posthog.capture('ps_quiz_restarted');
     state.industry = null; state.mrr = null; state.cancelVolume = null; state.email = null;
     document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
     volInput.value = ''; emailInput.value = '';
     toEmailBtn.disabled = true; seeBtn.disabled = true;
     goTo(1);
+  });
+});
+
+// Demo CTA — track when users click through to ProsperStack.
+document.querySelectorAll('a[href*="prosperstack.com/get-started"]').forEach(a => {
+  a.addEventListener('click', () => {
+    posthog.capture('ps_demo_cta_clicked', {
+      industry:     state.industry,
+      mrr:          state.mrr,
+      cancelVolume: state.cancelVolume
+    });
   });
 });
 
