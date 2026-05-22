@@ -460,7 +460,8 @@
         breakdowns (consumables vs. supplements vs. beauty), cadence breakdowns (monthly vs. quarterly),
         and AOV-band breakdowns are out of scope here. We&rsquo;ll publish those separately. The
         pause-resume curve is cohort-wide; pause-length distributions and category-level resumption
-        rates are coming in the follow-up.
+        rates are coming in the follow-up. While you wait, take our quiz to find the best-performing
+        offer for your specific subscription business: <a href="https://discover.prosperstack.com/quiz" target="_blank" rel="noopener" style="color: var(--brand); font-weight: 600; text-decoration: underline;">discover.prosperstack.com/quiz</a>.
       </p>
     </div>
   </div>
@@ -477,17 +478,16 @@
     </div>
 
     <div class="two-col">
-      <div class="chart-card">
-        <div class="chart-head">
-          <div>
-            <span class="pill amber"><span class="dot"></span>Cancellation volume &middot; YoY</span>
-            <h3>2025 &rarr; 2026 cohort sessions.</h3>
-            <div class="chart-sub">Cancellation sessions across the ecommerce cohort, indexed to 2025.</div>
-          </div>
-          <span class="badge warn">Rising</span>
+      <div class="card" style="text-align: center; padding: 48px 28px; display: flex; flex-direction: column; justify-content: center;">
+        <div class="label warn"><span class="dot"></span>Cancellation volume &middot; YoY</div>
+        <div class="stat" style="font-size: clamp(56px, 8vw, 92px); margin: 26px 0 10px; line-height: 1; color: var(--warn);">
+          <span class="delta-rising">Rising</span>
         </div>
-        <div class="chart-wrap" style="height: 220px;">
-          <canvas id="volumeChart"></canvas>
+        <div style="font-size: 22px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
+          Volume is up across categories.
+        </div>
+        <div class="stat-sub" style="margin-top: 10px;">
+          Broad-based increase across every category in our cohort, 2025 &rarr; 2026.
         </div>
       </div>
       <div class="prose">
@@ -516,21 +516,19 @@
       </div>
     </div>
 
-    <div class="chart-card" style="margin-bottom: 24px;">
-      <div class="chart-head">
-        <div>
-          <span class="pill ok-pill" style="background: var(--ok-soft); color: var(--ok); border: none;">
-            <span class="dot" style="background: var(--ok);"></span>Headline finding
-          </span>
-          <h3>Mean account-level acceptance rate, 2025 &rarr; 2026.</h3>
-          <div class="chart-sub">2025 baseline indexed to 100. Each account weighted equally in the mean.</div>
-        </div>
-        <span class="badge ok">+16%</span>
+    <div class="card" style="text-align: center; padding: 60px 32px; margin-bottom: 24px;">
+      <div class="label ok"><span class="dot"></span>Headline finding &middot; Year-over-year</div>
+      <div class="stat" style="font-size: clamp(96px, 14vw, 168px); margin: 28px 0 8px; line-height: 1;">
+        <span class="delta-up">16</span><span class="unit">%</span>
       </div>
-      <div class="chart-wrap" style="height: 280px;">
-        <canvas id="acceptanceHeroChart"></canvas>
+      <div style="font-size: 26px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
+        Acceptance is up YoY.
       </div>
-      <div style="margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--border-strong); font-size: 13px; color: var(--muted); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+      <div class="stat-sub" style="max-width: 540px; margin: 12px auto 0;">
+        Subscribers are more willing to stay in 2026 than they were a year ago &mdash; but only when
+        the offer fits the reason they want to leave.
+      </div>
+      <div style="margin: 32px auto 0; padding-top: 20px; border-top: 1px dashed var(--border-strong); font-size: 13px; color: var(--muted); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 720px;">
         <div><strong style="color: var(--ink);">What it measures:</strong> Offers accepted &divide; offers shown</div>
         <div><strong style="color: var(--ink);">Reading:</strong> Relative YoY change in the mean</div>
         <div><strong style="color: var(--ink);">Normalization:</strong> Account-level; equal weighting</div>
@@ -563,21 +561,15 @@
     </div>
 
     <div class="two-col">
-      <div class="chart-card">
-        <div class="chart-head">
-          <div>
-            <span class="pill"><span class="dot"></span>Cancellation reasons</span>
-            <h3>Rank order across the ecommerce cohort.</h3>
-            <div class="chart-sub">Reasons selected by subscribers in the cancellation flow&rsquo;s reason picker.</div>
-          </div>
+      <div class="card" style="padding: 28px 26px;">
+        <div class="label"><span class="dot"></span>Cancellation reasons &middot; Distribution</div>
+        <div style="font-size: 20px; font-weight: 700; letter-spacing: -.01em; margin: 14px 0 8px;">
+          The top two reasons drive the majority of cancellations.
         </div>
-        <div class="chart-wrap" style="height: 240px;">
-          <canvas id="reasonsChart"></canvas>
-        </div>
-        <div style="margin-top: 12px; font-size: 13px; color: var(--muted); border-top: 1px dashed var(--border-strong); padding-top: 12px;">
-          Chart shows relative magnitudes; precise percentages are not reported in this release. &ldquo;All
-          other reasons&rdquo; includes product fit, delivery issues, account changes, switched-to-alternative,
-          and uncategorized.
+        <div class="stat-sub">
+          The long tail &mdash; product fit, delivery issues, account changes,
+          switched-to-alternative, uncategorized &mdash; is meaningful but distributed. We focus this
+          report on the two reasons large enough to design distinct save mechanics against.
         </div>
       </div>
       <div class="prose">
@@ -657,17 +649,35 @@
       </div>
     </div>
 
-    <div class="chart-card" style="margin-bottom: 24px;">
-      <div class="chart-head">
-        <div>
-          <span class="pill"><span class="dot"></span>Pause resume timeline</span>
-          <h3>Cumulative pause-resume rate over 12 months.</h3>
-          <div class="chart-sub">Of customers who accept a pause offer, share that have resumed payment by 90 and 365 days.</div>
-        </div>
-        <span class="badge ok">Patience pays</span>
+    <div class="card" style="padding: 40px 36px; margin-bottom: 24px;">
+      <div class="label"><span class="dot"></span>Pause resume cohort</div>
+      <div style="font-size: 22px; font-weight: 700; letter-spacing: -.01em; margin: 14px 0 26px;">
+        Most paused subscribers come back &mdash; just not fast.
       </div>
-      <div class="chart-wrap tall" style="height: 360px;">
-        <canvas id="resumeChart"></canvas>
+
+      <div style="margin-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+          <span style="font-weight: 600; color: var(--ink);">Resumed within 90 days</span>
+          <span style="font-weight: 800; font-size: 40px; color: var(--brand); line-height: 1;">8%</span>
+        </div>
+        <div style="height: 12px; border-radius: 999px; background: #eef2f7; overflow: hidden;">
+          <div style="height: 100%; width: 8%; background: linear-gradient(90deg, var(--brand-grad-1), var(--brand));"></div>
+        </div>
+      </div>
+
+      <div style="margin-top: 28px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+          <span style="font-weight: 600; color: var(--ink);">Resumed within 365 days</span>
+          <span style="font-weight: 800; font-size: 40px; color: var(--brand); line-height: 1;">46%</span>
+        </div>
+        <div style="height: 12px; border-radius: 999px; background: #eef2f7; overflow: hidden;">
+          <div style="height: 100%; width: 46%; background: linear-gradient(90deg, var(--brand-grad-1), var(--brand));"></div>
+        </div>
+      </div>
+
+      <div class="stat-sub" style="margin-top: 28px; padding-top: 16px; border-top: 1px dashed var(--border-strong); font-size: 13px;">
+        Share of paused subscribers active and paying at each window endpoint. Most of the
+        recovery happens after the first quarter &mdash; not inside it.
       </div>
     </div>
 
@@ -1003,88 +1013,6 @@
     });
   }
 
-// ===== Pause resume cumulative chart =====
-  const rctx = document.getElementById('resumeChart').getContext('2d');
-  new Chart(rctx, {
-    type: 'line',
-    data: {
-      labels: ['Day 0', '30d', '60d', '90d', '120d', '180d', '240d', '300d', '365d'],
-      datasets: [{
-        label: 'Cumulative resume rate',
-        data: [0, 3, 6, 8, 14, 22, 31, 39, 46],
-        borderColor: brand,
-        backgroundColor: (ctx) => {
-          const chart = ctx.chart;
-          const {ctx: c, chartArea} = chart;
-          if (!chartArea) return 'rgba(37, 99, 235, .15)';
-          const g = c.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
-          g.addColorStop(0, 'rgba(37, 99, 235, .25)');
-          g.addColorStop(1, 'rgba(37, 99, 235, 0)');
-          return g;
-        },
-        borderWidth: 3,
-        fill: true,
-        tension: 0.35,
-        pointRadius: (c) => {
-          const v = c.dataIndex;
-          return (v === 3 || v === 8) ? 6 : 0;
-        },
-        pointBackgroundColor: brand,
-        pointBorderColor: '#fff',
-        pointBorderWidth: 2,
-        pointHoverRadius: 6
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: ink, padding: 12, cornerRadius: 8,
-          callbacks: { label: c => ' Cumulative resume rate: ' + c.parsed.y + '%' }
-        },
-        annotation: false
-      },
-      scales: {
-        y: {
-          beginAtZero: true, suggestedMax: 55,
-          grid: { color: '#eef2f7', drawBorder: false },
-          ticks: { callback: v => v + '%' },
-          title: { display: true, text: 'Cumulative resume rate', font: { size: 12, weight: 600 }, color: '#8590a2' }
-        },
-        x: {
-          grid: { display: false },
-          ticks: { font: { size: 12, weight: 600 }, color: ink }
-        }
-      }
-    },
-    plugins: [{
-      id: 'milestoneLabels',
-      afterDatasetsDraw(chart) {
-        const {ctx, chartArea, scales: {x, y}} = chart;
-        const points = [
-          { idx: 3, label: '8%', sub: 'at 90 days', dy: -22 },
-          { idx: 8, label: '46%', sub: 'at 365 days', dy: -22 }
-        ];
-        points.forEach(p => {
-          const meta = chart.getDatasetMeta(0);
-          const el = meta.data[p.idx];
-          if (!el) return;
-          const px = el.x;
-          const py = el.y;
-          ctx.save();
-          ctx.fillStyle = ink;
-          ctx.font = '800 18px Inter, system-ui, sans-serif';
-          ctx.textAlign = 'center';
-          ctx.fillText(p.label, px, py + p.dy);
-          ctx.fillStyle = '#5b6675';
-          ctx.font = '500 11px Inter, system-ui, sans-serif';
-          ctx.fillText(p.sub, px, py + p.dy + 14);
-          ctx.restore();
-        });
-      }
-    }]
-  });
 </script>
 
 </body>
