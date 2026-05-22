@@ -256,8 +256,8 @@
     margin: 6px 0 4px; font-size: 20px; letter-spacing: -.01em; font-weight: 700;
   }
   .chart-card .chart-sub { color: var(--muted); font-size: 14px; max-width: 520px; }
-  .chart-wrap { position: relative; height: 320px; }
-  .chart-wrap.donut { height: 260px; }
+  .chart-wrap { position: relative; height: 240px; max-width: 240px; margin: 0; }
+  .chart-wrap.donut { height: 240px; max-width: 240px; margin: 0 auto; }
 
   /* ===== Two-column layout ===== */
   .two-col {
@@ -427,14 +427,6 @@
         Every year-over-year figure in this report is a 2025-to-2026 comparison, normalized by account.
         Every number is traceable to a saved query in our internal data warehouse.
       </p>
-      <p style="font-size: 14px; color: var(--muted);">
-        <strong style="color: var(--ink);">What&rsquo;s not in this release.</strong> Segment-level
-        breakdowns &mdash; company size, monthly vs. annual cadence, vertical, ACV band &mdash; are
-        out of scope here. We&rsquo;ll publish those separately. Pause-resume data is in aggregate too;
-        pause-length distributions and time-to-resumption curves by segment are planned for the
-        follow-up. While you wait, take our quiz to find the best-performing offer for your specific
-        subscription business: <a href="https://discover.prosperstack.com/quiz" target="_blank" rel="noopener" style="color: var(--brand); font-weight: 600; text-decoration: underline;">discover.prosperstack.com/quiz</a>.
-      </p>
     </div>
   </div>
 </section>
@@ -451,7 +443,7 @@
 
     <div class="two-col">
       <div class="card" style="text-align: center; padding: 48px 28px; display: flex; flex-direction: column; justify-content: center;">
-        <div class="label"><span class="dot"></span>Cancellation volume &middot; YoY</div>
+        <div class="label"><span class="dot"></span>Cancellation volume &middot; Year over Year</div>
         <div class="stat" style="font-size: clamp(72px, 10vw, 120px); margin: 28px 0 10px; line-height: 1;">
           <span class="delta-flat">0</span><span class="unit">%</span>
         </div>
@@ -487,36 +479,28 @@
       </div>
     </div>
 
-    <div class="card" style="text-align: center; padding: 60px 32px; margin-bottom: 24px;">
-      <div class="label ok"><span class="dot"></span>Headline finding &middot; Year-over-year</div>
-      <div class="stat" style="font-size: clamp(96px, 14vw, 168px); margin: 28px 0 8px; line-height: 1;">
-        <span class="delta-up">36</span><span class="unit">%</span>
+    <div class="two-col">
+      <div class="card" style="text-align: center; padding: 48px 28px; display: flex; flex-direction: column; justify-content: center;">
+        <div class="label ok"><span class="dot"></span>Headline finding &middot; Year over Year</div>
+        <div class="stat" style="font-size: clamp(72px, 10vw, 120px); margin: 28px 0 10px; line-height: 1;">
+          <span class="delta-up">36</span><span class="unit">%</span>
+        </div>
+        <div style="font-size: 22px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
+          Acceptance is surging.
+        </div>
       </div>
-      <div style="font-size: 26px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
-        Acceptance is surging.
+      <div class="prose">
+        <p><strong>Finding.</strong> Offer acceptance jumped 36% from 2025 to 2026. That&rsquo;s a
+        meaningful lift &mdash; subscribers in the cancel flow are more willing to stay than they were a
+        year ago, when the offer actually matches the situation they&rsquo;re in.</p>
+        <p><strong>Evidence.</strong> We only count an acceptance when a subscriber takes the offer and
+        stays active and paying at the close of the cancellation session. A click-through alone
+        doesn&rsquo;t count, and neither does an acceptance that lapses before the session ends.</p>
+        <p><strong>Operational takeaway.</strong> Here&rsquo;s the thing: that lift isn&rsquo;t evenly
+        distributed. It shows up in accounts that route offers by stated cancellation reason. The
+        accounts running one-size-fits-all save logic didn&rsquo;t see the same gains. Segmentation is
+        doing the heavy lifting here, not the offers themselves.</p>
       </div>
-      <div class="stat-sub" style="max-width: 540px; margin: 12px auto 0;">
-        The biggest YoY shift in the cohort isn&rsquo;t in volume &mdash; it&rsquo;s in how often
-        subscribers say yes to a save offer when it actually fits the situation.
-      </div>
-      <div style="margin: 32px auto 0; padding-top: 20px; border-top: 1px dashed var(--border-strong); font-size: 13px; color: var(--muted); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 720px;">
-        <div><strong style="color: var(--ink);">What it measures:</strong> Offers accepted &divide; offers shown</div>
-        <div><strong style="color: var(--ink);">Reading:</strong> Relative YoY change in the mean</div>
-        <div><strong style="color: var(--ink);">Normalization:</strong> Account-level; equal weighting</div>
-      </div>
-    </div>
-
-    <div class="prose" style="max-width: 820px;">
-      <p><strong>Finding.</strong> Offer acceptance jumped 36% from 2025 to 2026. That&rsquo;s a
-      meaningful lift &mdash; subscribers in the cancel flow are more willing to stay than they were a
-      year ago, when the offer actually matches the situation they&rsquo;re in.</p>
-      <p><strong>Evidence.</strong> We only count an acceptance when a subscriber takes the offer and
-      stays active and paying at the close of the cancellation session. A click-through alone
-      doesn&rsquo;t count, and neither does an acceptance that lapses before the session ends.</p>
-      <p><strong>Operational takeaway.</strong> Here&rsquo;s the thing: that lift isn&rsquo;t evenly
-      distributed. It shows up in accounts that route offers by stated cancellation reason. The
-      accounts running one-size-fits-all save logic didn&rsquo;t see the same gains. Segmentation is
-      doing the heavy lifting here, not the offers themselves.</p>
     </div>
   </div>
 </section>
@@ -531,116 +515,107 @@
       </div>
     </div>
 
-    <div class="two-col">
-        </div>
-        <div class="chart-wrap" style="height: 240px;">
-          <canvas id="reasonsChart"></canvas>
-        </div>
-        <div style="margin-top: 12px; font-size: 13px; color: var(--muted); border-top: 1px dashed var(--border-strong); padding-top: 12px;">
-          Chart shows relative magnitudes; precise percentages are not reported in this release. &ldquo;All
-          other reasons&rdquo; includes feature gaps, switched-to-alternative, team changes, and uncategorized.
+    <div class="grid-2" style="margin-bottom: 32px;">
+      <div class="card" style="padding: 28px 32px; min-height: 180px;">
+        <div class="label"><span class="dot"></span>#1 Cancel Reason</div>
+        <div class="reason" style="margin: 18px 0;">&ldquo;This is too expensive.&rdquo;</div>
+        <div style="font-size: 14px; color: var(--muted);">
+          <strong style="color: var(--ink);">Type:</strong> Pricing &amp; value problem
         </div>
       </div>
-      <div class="prose">
-        <p><strong>Finding.</strong> The top two cancellation reasons in 2026 are the same ones
-        you&rsquo;ve been seeing for years: &ldquo;this is too expensive&rdquo; at #1 and &ldquo;we
-        never really used it&rdquo; at #2. The lineup hasn&rsquo;t shifted.</p>
-        <p><strong>Evidence.</strong> These reflect what subscribers actually pick in your cancellation
-        flow&rsquo;s reason picker. We map free-text reasons back into the same taxonomy.</p>
-        <p><strong>Operational takeaway.</strong> Here&rsquo;s the catch: those two reasons are totally
-        different problems. The first is a value conversation. The second is an activation conversation.
-        Respond to both with the same discount and you&rsquo;re going to underperform on at least one
-        of them. We&rsquo;ll show what works for each in the next two findings.</p>
+      <div class="card" style="padding: 28px 32px; min-height: 180px;">
+        <div class="label"><span class="dot"></span>#2 Cancel Reason</div>
+        <div class="reason" style="margin: 18px 0;">&ldquo;We never really used it.&rdquo;</div>
+        <div style="font-size: 14px; color: var(--muted);">
+          <strong style="color: var(--ink);">Type:</strong> Activation problem
+        </div>
       </div>
+    </div>
+
+    <div class="prose" style="max-width: 820px;">
+      <p><strong>Finding.</strong> The top two cancellation reasons in 2026 are the same ones
+      you&rsquo;ve been seeing for years: &ldquo;this is too expensive&rdquo; at #1 and &ldquo;we
+      never really used it&rdquo; at #2. The lineup hasn&rsquo;t shifted.</p>
+      <p><strong>Evidence.</strong> These reflect what subscribers actually pick in your cancellation
+      flow&rsquo;s reason picker. We map free-text reasons back into the same taxonomy.</p>
+      <p><strong>Operational takeaway.</strong> Here&rsquo;s the catch: those two reasons are totally
+      different problems. The first is a value conversation. The second is an activation conversation.
+      Respond to both with the same discount and you&rsquo;re going to underperform on at least one
+      of them. We&rsquo;ll show what works for each in the next two findings.</p>
     </div>
   </div>
 </section>
 
-<!-- ===== KEY FINDING #4 — Discount sensitivity ===== -->
+<!-- ===== KEY FINDINGS #4 & #5 — Match the offer to the reason ===== -->
 <section id="finding-4">
   <div class="wrap">
     <div class="section-head">
       <div>
         <span class="pill green"><span class="dot"></span>Key Finding &middot; #4</span>
-        <h2>30&ndash;50% discounts retain the most revenue for price-sensitive customers.</h2>
+        <h2>Match the save offer to the cancellation reason.</h2>
       </div>
     </div>
 
-    <div class="card" style="text-align: center; padding: 56px 32px; margin-bottom: 24px;">
-      <div class="label ok"><span class="dot"></span>Best offer &middot; Price-sensitive segment</div>
-      <div class="stat" style="font-size: clamp(72px, 11vw, 128px); margin: 26px 0 8px; line-height: 1;">
-        30&ndash;50<span class="unit">% off</span>
+    <div class="grid-2" style="margin-bottom: 32px;">
+      <div class="card" style="padding: 28px 32px; position: relative;">
+        <div class="label"><span class="dot"></span>Offer Variant 01</div>
+        <span class="badge ok" style="position: absolute; top: 22px; right: 22px;">&check; TOP</span>
+        <div style="margin-top: 22px;">
+          <div style="font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px;">If they say</div>
+          <div class="reason" style="margin: 0;">&ldquo;This is too expensive.&rdquo;</div>
+        </div>
+        <div style="margin-top: 22px;">
+          <div style="font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px;">Best offer</div>
+          <div style="font-size: clamp(32px, 4vw, 44px); font-weight: 800; color: var(--brand); letter-spacing: -.02em; line-height: 1.05;">30&ndash;50%<br/>discount</div>
+        </div>
+        <div style="margin-top: 16px; font-size: 14px; color: var(--muted);">
+          Retains the most revenue after 90 days.
+        </div>
       </div>
-      <div style="font-size: 24px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
-        Bigger discounts retain the most revenue.
-      </div>
-      <div class="stat-sub" style="max-width: 540px; margin: 12px auto 0;">
-        Smaller offers &mdash; the classic 10% or 15% off &mdash; didn&rsquo;t move the needle. The
-        90-day retained-revenue winner for price-driven cancellations sits in the 30&ndash;50% band.
+      <div class="card" style="padding: 28px 32px; position: relative;">
+        <div class="label"><span class="dot"></span>Offer Variant 02</div>
+        <div style="margin-top: 22px;">
+          <div style="font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px;">If they say</div>
+          <div class="reason" style="margin: 0;">&ldquo;We never really used it.&rdquo;</div>
+        </div>
+        <div style="margin-top: 22px;">
+          <div style="font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px;">Best offer</div>
+          <div style="font-size: clamp(32px, 4vw, 44px); font-weight: 800; color: var(--brand); letter-spacing: -.02em; line-height: 1.05;">Trial<br/>extension</div>
+        </div>
+        <div style="margin-top: 16px; font-size: 14px; color: var(--muted);">
+          Beats discounts here. Price isn&rsquo;t the issue &mdash; they need more time to reach value.
+        </div>
       </div>
     </div>
 
     <div class="prose" style="max-width: 820px;">
-      <p><strong>Finding.</strong> For subscribers citing price as their cancellation reason, the
-      strongest 90-day retained revenue came from offers in the 30&ndash;50% range. Smaller discounts
-      &mdash; the classic 10% or 15% off &mdash; didn&rsquo;t move the needle the way they used to.</p>
-      <p><strong>Evidence.</strong> Retained revenue is measured 90 days after acceptance, net of the
-      discount applied. We limited the comparison to the price-sensitive segment, defined by the
-      customer&rsquo;s stated reason for cancelling.</p>
-      <p><strong>Operational takeaway.</strong> Hold up &mdash; this doesn&rsquo;t mean blast 50% off
-      across your entire cancel flow. That&rsquo;s how you train subscribers to cancel for a deal. The
-      lift here is conditional on three things: accurate segmentation by cancellation reason,
-      cancellation intent, and offer timing. Big discounts work when they&rsquo;re earned, not when
-      they&rsquo;re free.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== KEY FINDING #5 — Trial extensions ===== -->
-<section id="finding-5">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="pill green"><span class="dot"></span>Key Finding &middot; #5</span>
-        <h2>Trial extensions outperform discounts for activation failures.</h2>
-      </div>
-    </div>
-
-    <div class="two-col">
-      <div class="card" style="text-align: center; padding: 48px 28px; display: flex; flex-direction: column; justify-content: center;">
-        <div class="label ok"><span class="dot"></span>Best offer &middot; Activation segment</div>
-        <div class="stat" style="font-size: clamp(40px, 6vw, 64px); margin: 26px 0 10px; line-height: 1.05;">
-          Trial<br/>extension
-        </div>
-        <div style="font-size: 22px; font-weight: 700; letter-spacing: -.01em; color: var(--ink);">
-          Beats every discount tier here.
-        </div>
-        <div class="stat-sub" style="margin-top: 10px;">
-          For subscribers citing failure to begin using the product.
-        </div>
-      </div>
-      <div class="prose">
-        <p><strong>Finding.</strong> For subscribers citing activation failure (&ldquo;we never
-        really got started&rdquo;), trial extensions outperformed every tier of discount we tested.</p>
-        <p><strong>Evidence.</strong> The reason is pretty intuitive once you sit with it. A discount
-        lowers the price, but the customer&rsquo;s problem isn&rsquo;t price &mdash; it&rsquo;s that
-        they haven&rsquo;t reached value yet. A trial extension gives them more time to get there.</p>
-        <p><strong>Operational takeaway.</strong> The best outcomes came from pairing the extension
-        with active enablement: checklist nudges, scheduled implementation help, a simpler activation
-        path. And here&rsquo;s where retention gets bigger than the cancel flow. Activation-driven
-        cancellations are a leading indicator &mdash; they&rsquo;re telling you something about your
-        onboarding upstream. Route that signal back to the teams that can fix it.</p>
-      </div>
+      <p><strong>Finding.</strong> Different cancellation reasons need different save offers. For
+      subscribers citing price, the strongest 90-day retained revenue came from offers in the
+      30&ndash;50% range &mdash; smaller discounts (the classic 10% or 15%) didn&rsquo;t move the
+      needle the way they used to. For subscribers citing activation failure (&ldquo;we never really
+      got started&rdquo;), trial extensions outperformed every tier of discount we tested.</p>
+      <p><strong>Evidence.</strong> Retained revenue is measured 90 days after acceptance, net of any
+      discount applied. We segmented the comparison by stated cancellation reason. The trial-extension
+      result is intuitive once you sit with it: a discount lowers the price, but the customer&rsquo;s
+      problem isn&rsquo;t price &mdash; it&rsquo;s that they haven&rsquo;t reached value yet, and an
+      extension gives them more time to get there.</p>
+      <p><strong>Operational takeaway.</strong> Hold up &mdash; the 30&ndash;50% result doesn&rsquo;t
+      mean blast 50% off across your entire cancel flow. That&rsquo;s how you train subscribers to
+      cancel for a deal. The lift is conditional on accurate segmentation by cancellation reason,
+      cancellation intent, and offer timing. For the activation cases, pair the extension with active
+      enablement: checklist nudges, scheduled implementation help, a simpler activation path.
+      Activation-driven cancellations are a leading indicator &mdash; they&rsquo;re telling you
+      something about your onboarding upstream. Route that signal back to the teams that can fix it.</p>
     </div>
   </div>
 </section>
 
 <!-- ===== KEY FINDING #6 — Pause never resumes ===== -->
-<section id="finding-6">
+<section id="finding-5">
   <div class="wrap">
     <div class="section-head">
       <div>
-        <span class="pill red"><span class="dot"></span>Key Finding &middot; #6</span>
+        <span class="pill red"><span class="dot"></span>Key Finding &middot; #5</span>
         <h2>Approximately half of paused subscriptions never resume payment.</h2>
       </div>
     </div>
@@ -655,7 +630,7 @@
           </div>
           <span class="badge red">~50% never resume</span>
         </div>
-        <div class="chart-wrap donut" style="height: 240px;">
+        <div class="chart-wrap donut">
           <canvas id="pauseChart"></canvas>
         </div>
       </div>
@@ -890,7 +865,7 @@
           const {ctx} = chart;
           const meta = chart.getDatasetMeta(0);
           const labels = ['100', '136'];
-          const subs = ['baseline', '+36% YoY'];
+          const subs = ['baseline', '+36% Year over Year'];
           meta.data.forEach((el, i) => {
             ctx.save();
             ctx.fillStyle = ink;
